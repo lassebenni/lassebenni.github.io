@@ -10,6 +10,7 @@
 <meta name="keywords" content="">
 
 
+
 <!-- Twitter Cards -->
 <meta name="twitter:title" content="Theme Setup">
 <meta name="twitter:description" content="Instructions on how to install and customize the Jekyll theme Minimal Mistakes.">
@@ -85,11 +86,17 @@
 		    <ul>
 		        
 				    
+				        
+				    
 				    <li><a href="/" >Home</a></li>
 				
 				    
+				        
+				    
 				    <li><a href="/posts/" >Archive</a></li>
 				
+				    
+				        
 				    
 				    <li><a href="/about/" >About</a></li>
 				
@@ -114,6 +121,7 @@ f
 <div id="main" role="main">
   <div class="article-author-side">
     
+
 
 
 	<img src="/images/lasse.jpg" class="bio-photo" alt="Lasse Benninga bio photo">
@@ -223,9 +231,9 @@ f
   <p>However, this is unreliable and is the source of considerable pain. Even if it looks like it works, it may not work in the future or on another machine.</p>
 </blockquote>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">bundle exec jekyll build
+<div class="highlight"><pre><code class="language-text" data-lang="text">bundle exec jekyll build
 
-bundle exec jekyll serve</code></pre></figure>
+bundle exec jekyll serve</code></pre></div>
 
 <hr />
 
@@ -233,7 +241,7 @@ bundle exec jekyll serve</code></pre></figure>
 
 <p>How Minimal Mistakes is organized and what the various files are. All posts, layouts, includes, stylesheets, assets, and whatever else is grouped nicely under the root folder. The compiled Jekyll site outputs to <code>_site/</code>.</p>
 
-<figure class="highlight"><pre><code class="language-text" data-lang="text">minimal-mistakes/
+<div class="highlight"><pre><code class="language-text" data-lang="text">minimal-mistakes/
 ├── _includes/
 |    ├── _author-bio.html        # bio stuff layout. pulls optional owner data from _config.yml
 |    ├── _browser-upgrade.html   # prompt to install a modern browser for &lt; IE9
@@ -266,7 +274,7 @@ bundle exec jekyll serve</code></pre></figure>
 ├── feed.xml                     # Atom feed template
 ├── index.md                     # sample homepage. lists 5 latest posts 
 ├── posts/                       # sample post index page. lists all posts in reverse chronology
-└── theme-setup/                 # theme setup page. safe to remove</code></pre></figure>
+└── theme-setup/                 # theme setup page. safe to remove</code></pre></div>
 
 <hr />
 
@@ -290,10 +298,10 @@ bundle exec jekyll serve</code></pre></figure>
 
 <p>Examples:</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">url: http://mmistakes.github.io/minimal-mistakes
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml">url: http://mmistakes.github.io/minimal-mistakes
 url: http://localhost:4000
 url: //cooldude.github.io
-url:</code></pre></figure>
+url:</code></pre></div>
 
 <h4 id="google-analytics-and-webmaster-tools">Google Analytics and Webmaster Tools</h4>
 
@@ -303,11 +311,11 @@ url:</code></pre></figure>
 
 <p>To set what links appear in the top navigation edit <code>_data/navigation.yml</code>. Use the following format to set the URL and title for as many links as you’d like. <em>External links will open in a new window.</em></p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">- title: Portfolio
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml">- title: Portfolio
   url: /portfolio/
 
 - title: Made Mistakes
-  url: http://mademistakes.com</code></pre></figure>
+  url: http://mademistakes.com</code></pre></div>
 
 <hr />
 
@@ -315,23 +323,23 @@ url:</code></pre></figure>
 
 <p>While completely optional, I’ve included Octopress and some starter templates to automate the creation of new posts and pages. To take advantage of it start by installing the <a href="https://github.com/octopress/octopress">Octopress</a> gem if it isn’t already.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">$ gem install octopress --pre</code></pre></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ gem install octopress --pre</code></pre></div>
 
 <h3 id="new-post">New Post</h3>
 
 <p>Default command</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">$ octopress new post &quot;Post Title&quot;</code></pre></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ octopress new post &quot;Post Title&quot;</code></pre></div>
 
 <p>Default works great if you want all your posts in one directory, but if you’re like me and want to group them into subfolders like <code>/posts</code>, <code>/portfolio</code>, etc. Then this is the command for you. By specifying the DIR it will create a new post in that folder and populate the <code>categories:</code> YAML with the same value.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">$ octopress new post &quot;New Post Title&quot; --dir posts</code></pre></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ octopress new post &quot;New Post Title&quot; --dir posts</code></pre></div>
 
 <h3 id="new-page">New Page</h3>
 
 <p>To create a new page use the following command.</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">$ octopress new page new-page/</code></pre></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">$ octopress new page new-page/</code></pre></div>
 
 <p>This will create a page at <code>/new-page/index.md</code></p>
 
@@ -353,9 +361,9 @@ url:</code></pre></figure>
   <li>In <code>_config.yml</code> under <code>links:</code> rename the title and URL to the following:</li>
 </ul>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">links:
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml">links:
   - title: Writing
-    url: /writing/</code></pre></figure>
+    url: /writing/</code></pre></div>
 
 <ul>
   <li>Rename <code>posts/index.md</code> to <code>writing/index.md</code> and update the YAML front matter accordingly.</li>
@@ -368,16 +376,16 @@ url:</code></pre></figure>
 
 <p>The post and page layouts make the assumption that the feature images live in the <code>images/</code> folder. To add a feature image to a post or page just include the filename in the front matter like so. It’s probably best to host all your images from this folder, but you can hotlink from external sources if you desire.</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">image:
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml">image:
   feature: feature-image-filename.jpg
-  thumb: thumbnail-image.jpg #keep it square 200x200 px is good</code></pre></figure>
+  thumb: thumbnail-image.jpg #keep it square 200x200 px is good</code></pre></div>
 
 <p>To add attribution to a feature image use the following YAML front matter on posts or pages. Image credits appear directly below the feature image with a link back to the original source if supplied.</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">image:
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml">image:
   feature: feature-image-filename.jpg
   credit: Michael Rose #name of the person or site you want to credit
-  creditlink: http://mademistakes.com #url to their site or licensing</code></pre></figure>
+  creditlink: http://mademistakes.com #url to their site or licensing</code></pre></div>
 
 <h3 id="thumbnails-for-og-and-twitter-cards">Thumbnails for OG and Twitter Cards</h3>
 
@@ -391,7 +399,7 @@ url:</code></pre></figure>
 
 <p>Start by modifying <code>authors.yml</code> file in the <code>_data</code> folder and add your authors using the following format.</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml"># Authors
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"># Authors
 
 billy_rick:
   name: Billy Rick
@@ -410,11 +418,11 @@ cornelius_fiddlebone:
   avatar: bio-photo.jpg
   twitter: rhymeswithsackit
   google:
-    plus: +CorneliusFiddlebone</code></pre></figure>
+    plus: +CorneliusFiddlebone</code></pre></div>
 
 <p>To assign Billy Rick as an author for our post. We’d add the following YAML front matter to a post:</p>
 
-<figure class="highlight"><pre><code class="language-yaml" data-lang="yaml">author: billy_rick</code></pre></figure>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml">author: billy_rick</code></pre></div>
 
 <h3 id="table-of-contents">Table of Contents</h3>
 
@@ -422,7 +430,7 @@ cornelius_fiddlebone:
 
 <p class="notice"><strong>PS:</strong> The TOC is hidden on small devices because I haven’t gotten around to optimizing it. For now it only appears on larger screens (tablet and desktop).</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;section id=&quot;table-of-contents&quot; class=&quot;toc&quot;&gt;
   &lt;header&gt;
     &lt;h3&gt;Overview&lt;/h3&gt;
   &lt;/header&gt;
@@ -430,7 +438,7 @@ cornelius_fiddlebone:
 *  Auto generated table of contents
 {:toc}
 &lt;/div&gt;
-&lt;/section&gt;&lt;!-- /#table-of-contents --&gt;</code></pre></figure>
+&lt;/section&gt;&lt;!-- /#table-of-contents --&gt;</code></pre></div>
 
 <h3 id="paragraph-indentation">Paragraph Indentation</h3>
 
@@ -443,7 +451,7 @@ cornelius_fiddlebone:
 
 <p>To disable the indents and add spacing between paragraphs change the following line in <code>_sass/variables.scss</code> from <code>true !default</code> to <code>false</code> like so.</p>
 
-<figure class="highlight"><pre><code class="language-css" data-lang="css">$paragraph-indent: false;</code></pre></figure>
+<div class="highlight"><pre><code class="language-css" data-lang="css">$paragraph-indent: false;</code></pre></div>
 
 <figure>
   <img src="/images/paragraph-no-indent.png" alt="screen shot of paragraphs with indent style disabled" />
@@ -456,7 +464,7 @@ cornelius_fiddlebone:
 
 <p>Not sure if this only effects Kramdown or if it’s an issue with Markdown in general. But adding YouTube video embeds causes errors when building your Jekyll site. To fix add a space between the <code>&lt;iframe&gt;</code> tags and remove <code>allowfullscreen</code>. Example below:</p>
 
-<figure class="highlight"><pre><code class="language-html" data-lang="html">&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/PWf4WUoMXwg&quot; frameborder=&quot;0&quot;&gt; &lt;/iframe&gt;</code></pre></figure>
+<div class="highlight"><pre><code class="language-html" data-lang="html">&lt;iframe width=&quot;560&quot; height=&quot;315&quot; src=&quot;http://www.youtube.com/embed/PWf4WUoMXwg&quot; frameborder=&quot;0&quot;&gt; &lt;/iframe&gt;</code></pre></div>
 
 <hr />
 
@@ -468,7 +476,7 @@ cornelius_fiddlebone:
 
 <p>To modify the site’s JavaScript files I setup a Grunt build script to lint/concatenate/minify all scripts into <code>scripts.min.js</code>. <a href="http://nodejs.org/">Install Node.js</a>, then <a href="http://gruntjs.com/getting-started">install Grunt</a>, and then finally install the dependencies for the theme contained in <code>package.json</code>:</p>
 
-<figure class="highlight"><pre><code class="language-bash" data-lang="bash">npm install</code></pre></figure>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install</code></pre></div>
 
 <p>From the theme’s root, use <code>grunt</code> concatenate JavaScript files, and optimize .jpg, .png, and .svg files in the <code>images/</code> folder. You can also use <code>grunt dev</code> in combination with <code>jekyll build --watch</code> to watch for updates JS files that Grunt will then automatically re-build as you write your code which will in turn auto-generate your Jekyll site when developing locally.</p>
 
@@ -514,7 +522,7 @@ cornelius_fiddlebone:
       
       <article>
         
-          <h4 class="sideline-post-date"><a href="/web-development-for-dumme-kopie//web-development-for-dumme-kopie/" title="Web development for a dum-me">Web development for a du...</a></h4>
+          <h4 class="sideline-post-date"><a href="/web-development-for-dumme%20-%20kopie//web-development-for-dumme%20-%20kopie/" title="Web development for a dum-me">Web development for a du...</a></h4>
            <p class="byline">Published on <time datetime="2015-05-30T00:00:00+02:00">May 30, 2015</time>.</p>
         
       </article>
