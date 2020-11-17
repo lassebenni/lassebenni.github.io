@@ -1,0 +1,56 @@
+baseURL = "https://lassebenninga.nl"
+languageCode = "en-us"
+title = "Lasse's Schrijfsels"
+theme = "hugo-ink"
+paginate = 5
+
+copyright = "© Copyright notice"
+
+pygmentsstyle = "vs"
+pygmentscodefences = true
+pygmentscodefencesguesssyntax = true
+
+googleAnalytics = "UA-123-45"
+disqusShortname = "lassebenni"
+
+[params]
+	subtitle = "Fictie en Non-Fictie op dezelfde plank."
+
+	# Optional 64x64 avatar image.
+	avatar = "https://pbs.twimg.com/profile_images/1265659616056283136/ei4hG_1n_400x400.jpg"
+
+	# Content types to disable Disqus on.
+	disableDisqusTypes = ["page"]
+
+	featherIconsCDN = true
+
+	mode = "auto" # "dark" or "auto"
+	# customCSS = "css/custom.css"  # Custom CSS applied to default styles.
+	# customDarkCSS = "css/custom-dark.css"  # Custom styles applied to dark mode css.
+	# customJS = ["js/custom.js", "js/custom1.js"]  # Custom JS scripts.
+
+# Nav.
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Schrijfsels"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "Wie ben ik"
+url = "/about"
+weight = 3
+
+[[params.social]]
+name = "Github"
+icon = "github"
+url = "https://github.com/lassebenni/"
+
+[[params.social]]
+
+[taxonomies]
+   tag = "tags"

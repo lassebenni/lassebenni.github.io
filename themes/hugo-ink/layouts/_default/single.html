@@ -38,11 +38,13 @@
 			</div>
 
 			<div> {{ with .NextInSection }}
+			Later:
 				<a href="{{ .Permalink }}">{{ .Date.Day }}-{{ .Date.Month }}-{{ .Date.Year }}: {{ .Title }} </a>
 				{{ end }}
 			</div>
 
 			<div>
+			Eerder:
 				{{ with .PrevInSection }}
 				<a href="{{ .Permalink }}">{{ .Date.Day }}-{{ .Date.Month }}-{{ .Date.Year }}: {{ .Title }} </a>
 				{{ end }}
