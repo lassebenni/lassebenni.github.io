@@ -8,4 +8,4 @@ Ze liepen op het perron tegenover mij, onbewust van mij. De trein stoof op het s
 
 Met morbide fascinatie zou ik willen luisteren naar de verhalen, de droefheid en de positiviteit over mij. Ultiem voyeurisme: genieten van je eigen zelfmoord.
 
-**Onthoud: Dit is fictie. Mocht je echt met soortgelijke gevoelens worstelen, neem contact op met https://www.113.nl/i/zelfmoordlijn.**
+**Nota Bene: Dit is fictie. Mocht je echt met soortgelijke gevoelens worstelen, neem contact op met https://www.113.nl/i/zelfmoordlijn.**
