@@ -1,5 +1,5 @@
 ---
-title: "Wanneer leer ik het"
+title: "In-de-lift"
 date: 2020-10-15T21:37:58+05:30
 draft: false
 ---
