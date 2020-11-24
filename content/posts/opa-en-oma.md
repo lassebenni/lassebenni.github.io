@@ -9,3 +9,7 @@ Nu mijn opa en oma er niet meer zijn, is hun huis overgelaten aan mijn oom en ta
 Ik vraag mij af wanneer ik voor het laatst op de schoot van mijn oma ben geklommen als kind. Vele jaren later heb ik nog een laatste keer van mijn oma's schoot gebruik gemaakt. Die keer om in haar schoot te huilen. Ook toen troostte ze mij.
 
 Hoewel er geen bewijs voor is, geloof ik dat sommige herinneringen een warme gloed hebben die je kunt voelen. Een gevoel dat je even weer veilig laat voelen, net als toen bij oma op schoot.
+
+### Of beluister het:
+{{< opa_oma >}}
+{{< /opa_oma >}}
