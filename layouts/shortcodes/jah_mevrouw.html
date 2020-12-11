@@ -1,2 +1,10 @@
 {{.Inner}}
 <iframe src="https://share.descript.com/embed/6b1rr6LZBIM" width="640" height="360" frameborder="0" allowfullscreen></iframe>
+
+
+<figure {{ with .Get "class" }}class="{{ . }}" {{ end }}>
+  <audio controls preload="metadata">
+    <source src="https://lasse-schrijfsels.s3-eu-west-1.amazonaws.com/opa_oma.wav" type="audio/mpeg">
+    <figcaption>jah-jah-jah-mevrouw</figcaption>
+  </audio>
+</figure>
