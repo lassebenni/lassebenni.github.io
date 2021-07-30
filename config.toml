@@ -50,6 +50,9 @@ icon = "github"
 url = "https://github.com/lassebenni/"
 
 [[params.social]]
+name = "rss"
+icon = "rss"
+url = "index.xml"
 
 [taxonomies]
    tag = "tags"
