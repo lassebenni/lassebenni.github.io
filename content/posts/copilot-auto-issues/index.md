@@ -4,6 +4,7 @@ date: 2025-08-13
 description: "auto-create an issue on workflow failure and assign github copilot to propose a fix via pull request."
 tags: ["github actions", "copilot", "automation", "devops"]
 draft: false
+comments: true
 ---
 
 ![Copilot assigned actions](assets/copilot_auto_assign_issues.gif)

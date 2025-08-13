@@ -111,10 +111,54 @@ body {
     padding: 0;
 }
 
-/* Remove default paragraph margins within posts */
+/* Improved paragraph spacing for better readability in posts */
 .main article p {
-    margin-bottom: 8px;
+    margin-bottom: 24px;
+    margin-top: 0;
     padding: 0 4px;
+    line-height: 1.7;
+}
+
+/* Ensure first paragraph after headings has proper spacing */
+.main article h1 + p,
+.main article h2 + p,
+.main article h3 + p,
+.main article h4 + p,
+.main article h5 + p,
+.main article h6 + p {
+    margin-top: 16px;
+}
+
+/* Spacing for elements within articles */
+.main article blockquote {
+    margin: 24px 0;
+}
+
+.main article ul,
+.main article ol {
+    margin: 16px 0;
+}
+
+.main article li {
+    margin-bottom: 8px;
+}
+
+/* Heading spacing within articles */
+.main article h2 {
+    margin-top: 48px;
+    margin-bottom: 24px;
+}
+
+.main article h3 {
+    margin-top: 36px;
+    margin-bottom: 18px;
+}
+
+.main article h4,
+.main article h5,
+.main article h6 {
+    margin-top: 32px;
+    margin-bottom: 16px;
 }
 
 /* Ensure clean layout hierarchy */
@@ -149,4 +193,22 @@ body {
     .nav #menu li {
         margin-right: 0.5rem !important;
     }
+}
+
+/* Article image spacing for better visual hierarchy */
+.main article img {
+    margin: 32px auto;
+    display: block;
+}
+
+/* Code block spacing */
+.main article pre,
+.main article .highlight {
+    margin: 24px 0;
+}
+
+/* Inline code spacing */
+.main article code {
+    padding: 2px 6px;
+    margin: 0 2px;
 }

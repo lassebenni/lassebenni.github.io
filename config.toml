@@ -28,6 +28,22 @@ ignoreLogs = ['warning-goldmark-raw-html']
 	ShowShareButtons = true
 	defaultTheme = "auto"
 	disableSpecial1stPost = false
+	
+	# Comments settings using giscus
+	comments = true
+	
+[params.giscus]
+	repo = "lassebenni/lassebenni.github.io"
+	repoId = "MDEwOlJlcG9zaXRvcnkyNzI4MjAzMzU="
+	category = "General"
+	categoryId = "DIC_kwDOEDgMH84Ci5nH"
+	mapping = "pathname"
+	strict = "0"
+	reactionsEnabled = "1"
+	emitMetadata = "0"
+	inputPosition = "top"
+	theme = "preferred_color_scheme"
+	lang = "en"
 	# which sections to show on homepage and posts list
 	mainSections = ["posts"]
 
