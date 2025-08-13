@@ -1,0 +1,152 @@
+/* Custom CSS optimized for clean blog post listings following UX best practices */
+
+/* Header positioning for proper hierarchy */
+.header {
+    position: relative;
+    text-align: center;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+/* Ultra-tight main content padding for modern layout */
+.main {
+    padding: 8px var(--gap) 16px var(--gap);
+    max-width: 800px; /* Wider container for better readability */
+    margin: 0 auto;
+}
+
+/* Navigation spacing - centered and clean */
+.nav {
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.nav #menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 8px;
+}
+
+/* Theme toggle styling in navigation */
+#theme-toggle {
+    color: var(--primary);
+    transition: color 0.3s ease;
+}
+
+#theme-toggle:hover {
+    color: var(--tertiary);
+}
+
+/* Eliminate header spacing completely */
+.page-header,
+.post-header {
+    margin: 0 auto 8px auto;
+}
+
+/* Remove all spacing from first entry */
+.first-entry {
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+/* Wider post entries with better padding for readability */
+.post-entry {
+    margin-bottom: 16px;
+    padding: 20px;
+    border-bottom: 1px solid var(--border);
+    background: var(--entry);
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+/* Remove home info section completely */
+.home-info {
+    display: none;
+}
+
+/* Consistent 16px spacing between blog posts for optimal readability */
+.main article + article {
+    margin-top: 16px;
+    padding-top: 0;
+    border-top: none;
+}
+
+/* Post titles spacing */
+.main article h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+/* Post content spacing with better readability */
+.entry-content {
+    margin-top: 0;
+    margin-bottom: 8px;
+    line-height: 1.6;
+    padding: 0 4px;
+}
+
+/* Entry header optimization */
+.main article .entry-header,
+.main .entry-header {
+    margin-bottom: 8px;
+    margin-top: 0;
+    padding: 0 4px;
+}
+
+/* Post meta (date/reading time) spacing */
+.entry-footer {
+    margin-top: 4px;
+    margin-bottom: 0;
+    font-size: 0.875rem;
+    opacity: 0.7;
+    padding: 0 4px;
+}
+
+/* Ensure body has minimal spacing */
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Remove default paragraph margins within posts */
+.main article p {
+    margin-bottom: 8px;
+    padding: 0 4px;
+}
+
+/* Ensure clean layout hierarchy */
+.main {
+    min-height: auto;
+}
+
+/* Email signup styling improvements - positioned above posts */
+.header-subscribe {
+    max-width: 600px;
+    margin: 16px auto !important;
+}
+
+/* Responsive email form */
+@media (max-width: 768px) {
+    .header-subscribe form {
+        flex-direction: column !important;
+        gap: 8px !important;
+    }
+    
+    .header-subscribe input[type="email"] {
+        min-width: auto !important;
+        width: 100% !important;
+        max-width: 280px;
+    }
+    
+    .nav #menu {
+        gap: 1rem !important;
+        flex-wrap: wrap !important;
+    }
+    
+    .nav #menu li {
+        margin-right: 0.5rem !important;
+    }
+}
