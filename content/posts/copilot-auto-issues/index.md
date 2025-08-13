@@ -211,7 +211,7 @@ The best part? Once it's set up, you literally never think about it again. Your 
 
 <img src="https://media.licdn.com/dms/image/v2/C4E03AQFnI0ilOq4ocQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1636372591786?e=1758153600&v=beta&t=F6GTcHGTHqDNgPBngasObCUmen4YA-4zDr116r6ClXU" alt="Developer Settings" width="200"/>
 
-I'm Lasse Benninga, a Data & Analytics Engineer with 7+ years of experience building data platforms and automation pipelines across AWS, GCP, and Azure. I've worked with companies like KLM Royal Dutch Airlines, Vattenfall, and Felyx, where I've architected and implemented scalable data solutions using everything from managing cloud infrastructure with Terraform to building data warehouses with Snowflake and dbt.
+I'm Lasse, a Data & Analytics Engineer with 7+ years of experience building data platforms and automation pipelines across AWS, GCP, and Azure. I've worked with companies like KLM Royal Dutch Airlines, Vattenfall, and Felyx, where I've architected and implemented scalable data solutions using everything from managing cloud infrastructure with Terraform to building data warehouses with Snowflake and dbt.
 
 I believe building robust CI/CD pipelines and automation solutions is essential for streamlining development, reducing debugging time, and saving costs for clients. This GitHub Actions workflow was born out of the need to automate issue tracking for build failures, ensuring problems are detected and addressed quickly with AI-powered suggestions.
 
