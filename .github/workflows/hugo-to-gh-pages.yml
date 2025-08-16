@@ -28,8 +28,13 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v2
         with:
-          hugo-version: '0.127.0'
+          hugo-version: '0.149.0'
           extended: true
+
+      - name: Stub missing GA partial (no-op)
+        run: |
+          mkdir -p layouts/partials
+          printf '{{/* no-op GA for CI */}}' > layouts/partials/google_analytics.html
 
       - name: Build
         run: |
