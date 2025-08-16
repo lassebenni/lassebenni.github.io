@@ -100,34 +100,34 @@
 /* Subscription form - prominent but not competing */
 .header-subscribe {
     background: var(--code-bg);
-    border-radius: 8px;
-    padding: 6px 12px;
+    border-radius: 6px;
+    padding: 4px 8px;
     border: 1px solid var(--border);
-    max-width: 500px;
-    min-width: 350px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    max-width: 420px;
+    min-width: 280px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
 }
 
 .embeddable-buttondown-form {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
+    gap: 8px;
     flex-wrap: nowrap;
 }
 
 .subscribe-text {
-    font-size: 0.85rem;
-    color: var(--primary);
-    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--secondary);
+    font-weight: 500;
     white-space: nowrap;
     flex-shrink: 0;
 }
 
 .subscribe-input {
-    padding: 6px 10px;
-    border: 1.5px solid var(--border);
-    border-radius: 6px;
+    padding: 5px 8px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
     background: var(--theme);
     font-size: 0.85rem;
     color: var(--primary);
@@ -148,24 +148,24 @@
 }
 
 .subscribe-button {
-    padding: 6px 14px;
+    padding: 5px 10px;
     border: none;
-    border-radius: 6px;
+    border-radius: 4px;
     background: linear-gradient(135deg, var(--primary) 0%, var(--primary) 100%);
     color: var(--theme);
     cursor: pointer;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
     transition: all 0.2s ease;
     white-space: nowrap;
     flex-shrink: 0;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
 }
 
 .subscribe-button:hover {
     background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
     transform: translateY(-1px);
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
 }
 
 /* Responsive design */
@@ -196,7 +196,7 @@
     }
     
     .subscribe-input {
-        min-width: 200px;
+        min-width: 180px;
     }
     
     #menu {
