@@ -99,40 +99,45 @@
 
 /* Subscription form - prominent but not competing */
 .header-subscribe {
-    background: var(--code-bg);
-    border-radius: 6px;
-    padding: 4px 8px;
+    background: var(--entry);
+    border-radius: 12px;
+    padding: 8px 10px;
     border: 1px solid var(--border);
-    max-width: 520px;
+    max-width: 460px;
     min-width: 280px;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    display: inline-block;
 }
 
 .embeddable-buttondown-form {
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 8px;
+    gap: 0;
     flex-wrap: nowrap;
 }
 
 .subscribe-text {
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     color: var(--secondary);
-    font-weight: 500;
+    font-weight: 600;
     white-space: nowrap;
     flex-shrink: 0;
+    margin-right: 10px;
 }
 
 .subscribe-input {
-    padding: 4px 10px;
+    height: 32px;
+    padding: 0 12px;
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-right: 0;
+    border-top-left-radius: 9999px;
+    border-bottom-left-radius: 9999px;
     background: var(--theme);
     font-size: 0.85rem;
     color: var(--primary);
     flex: 1 1 260px; /* allow to grow; base width increased */
-    min-width: 200px;
+    min-width: 220px;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     outline: none;
 }
@@ -148,18 +153,34 @@
 }
 
 .subscribe-button {
-    padding: 4px 10px;
+    height: 32px;
+    padding: 0 12px 0 10px;
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-top-right-radius: 9999px;
+    border-bottom-right-radius: 9999px;
     background: var(--theme);
     color: var(--primary);
     cursor: pointer;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 600;
     transition: all 0.15s ease;
     white-space: nowrap;
     flex-shrink: 0;
     box-shadow: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.subscribe-button::before {
+    content: "";
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    background-repeat: no-repeat;
+    background-size: 14px 14px;
+    /* paper plane icon using currentColor */
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><path d='M22 2L11 13'/><path d='M22 2l-7 20-4-9-9-4 20-7z'/></svg>");
 }
 
 .subscribe-button:hover {
