@@ -1,8 +1,10 @@
 baseURL = "https://lassebenni.github.io/"
 languageCode = "en-us"
-title = "Lasse's Schrijfsels"
-theme = "ink"
-paginate = 5
+title = "Lasse on Data"
+theme = "PaperMod"
+
+[pagination]
+  pagerSize = 5
 
 copyright = "© Copyright notice"
 
@@ -11,9 +13,51 @@ pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
 googleAnalytics = "UA-123-45"
+ignoreLogs = ['warning-goldmark-raw-html']
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
 
 [params]
-	subtitle = "Fictie en Non-Fictie op dezelfde plank."
+	subtitle = "data engineering, analytics engineering, automation and devops notes."
+	# papermod params
+	homeInfoParams = { Title = "Lasse on Data", Content = "data engineering, analytics engineering, automation and devops notes." }
+	ShowReadingTime = true
+	ShowShareButtons = true
+	ShowSummary = true
+	defaultTheme = "auto"
+	disableSpecial1stPost = false
+	
+	# Table of Contents settings
+	ShowToc = true
+	TocOpen = false
+	
+	# Comments settings using giscus
+	comments = true
+	
+[params.giscus]
+	repo = "lassebenni/lassebenni.github.io"
+	repoId = "MDEwOlJlcG9zaXRvcnkyNzI4MjAzMzU="
+	category = "General"
+	categoryId = "DIC_kwDOEDgMH84Ci5nH"
+	mapping = "pathname"
+	strict = "0"
+	reactionsEnabled = "1"
+	emitMetadata = "0"
+	inputPosition = "top"
+	theme = "preferred_color_scheme"
+	lang = "en"
+	# which sections to show on homepage and posts list
+	mainSections = ["posts"]
+
+	# newsletter settings (buttondown recommended)
+	NewsletterSignup = "https://buttondown.email/lassebenni"
+
+[params.newsletter]
+  provider = "buttondown"
+  handle = "lassebenni"
 
 	# Optional 64x64 avatar image.
 	avatar = "https://pbs.twimg.com/profile_images/1265659616056283136/ei4hG_1n_400x400.jpg"
@@ -24,11 +68,12 @@ googleAnalytics = "UA-123-45"
 	featherIconsCDN = true
 
 	mode = "auto" # "dark" or "auto"
-	# customCSS = "css/custom.css"  # Custom CSS applied to default styles.
+	customCSS = ["css/custom.css"]  # Custom CSS applied to default styles.
 	# customDarkCSS = "css/custom-dark.css"  # Custom styles applied to dark mode css.
 	# customJS = ["js/custom.js", "js/custom1.js"]  # Custom JS scripts.
 
-	NewsletterSignup = "https://tinyletter.com/lbenninga"
+	# remove leftover tinyletter
+	# NewsletterSignup = "https://tinyletter.com/lbenninga"
 
 # Nav.
 [[menu.main]]
@@ -37,12 +82,12 @@ url = "/"
 weight = 1
 
 [[menu.main]]
-name = "Schrijfsels"
+name = "Posts"
 url = "/posts"
 weight = 2
 
 [[menu.main]]
-name = "Wie ben ik"
+name = "About"
 url = "/about"
 weight = 3
 

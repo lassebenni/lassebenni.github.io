@@ -1,0 +1,90 @@
+{{- define "main" }}
+
+{{/* Welcome Section */}}
+<div class="welcome-section" style="text-align: center; margin-bottom: 3rem; padding: 2rem 0;">
+    <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary);">Welcome to my personal blog</h1>
+    <p style="font-size: 1rem; line-height: 1.6; color: var(--secondary); max-width: 600px; margin: 0 auto 1.5rem auto;">
+        I share insights on data engineering, analytics engineering, automation, and DevOps. 
+        Practical guides, migration tips, and tools to help modern data teams build better systems. The views expressed here are my own and do not represent my employer(s).
+    </p>
+    <a href="/about/" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; font-size: 0.9rem;" 
+       onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
+        Learn more about me →
+    </a>
+</div>
+
+{{/* Latest Posts Section */}}
+<header class="page-header">
+    <h2>Latest Posts</h2>
+</header>
+
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- $paginator := .Paginate (first 5 $pages) }}
+
+{{- if $paginator.Pages }}
+{{- range $paginator.Pages }}
+{{- $class := "post-entry" }}
+
+{{- $user_preferred := or site.Params.disableSpecial1stPost site.Params.homeInfoParams }}
+{{- if (and $.IsHome (eq .Weight 0) (not $user_preferred)) }}
+{{- $class = "first-entry" }}
+{{- else if .Weight }}
+{{- $class = "post-entry featured" }}
+{{- end }}
+
+<article class="{{ $class }}">
+    {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+    {{- partial "cover.html" (dict "cxt" . "IsHome" true "isHidden" $isHidden) }}
+    <header class="entry-header">
+        <h2 class="entry-hint-parent">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h2>
+    </header>
+    {{- if (.Param "ShowSummary") | default (.Site.Params.ShowSummary) }}
+    <div class="entry-content">
+        <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+    </div>
+    {{- end }}
+    <footer class="entry-footer">
+        <div class="entry-footer-details">
+            {{- partial "post_meta.html" . -}}
+        </div>
+        {{- if .Params.tags }}
+        <div class="entry-tags">
+            {{- range .Params.tags }}
+            <span class="tag">{{ . }}</span>
+            {{- end }}
+        </div>
+        {{- end }}
+    </footer>
+    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+    <nav class="pagination">
+        {{- if $paginator.HasPrev }}
+        <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
+            « {{ i18n "prev_page" }}
+        </a>
+        {{- end }}
+        {{- if $paginator.HasNext }}
+        <a class="next" href="{{ $paginator.Next.URL | absURL }}">
+            {{ i18n "next_page" }} »
+        </a>
+        {{- end }}
+    </nav>
+</footer>
+{{- end }}
+
+{{- else }}
+{{- if .IsHome }}
+<div class="empty-state" style="text-align: center; padding: 3rem 0;">
+    <h3>No posts yet</h3>
+    <p>Check back soon for new content!</p>
+</div>
+{{- end }}
+{{- end }}
+
+{{- end }}{{/* end main */}}

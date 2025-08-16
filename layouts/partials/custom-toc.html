@@ -1,0 +1,7 @@
+{{- if and (eq .Type "posts") .TableOfContents }}
+<div class="custom-toc">
+    <div class="custom-toc-title">CONTENTS</div>
+    {{- .TableOfContents }}
+</div>
+
+{{- end }}

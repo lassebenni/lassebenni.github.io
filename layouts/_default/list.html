@@ -1,0 +1,371 @@
+{{- define "main" }}
+
+{{/* Define pages first */}}
+{{- $pages := where site.RegularPages "Type" "in" site.Params.mainSections }}
+
+{{- if .IsHome }}
+{{- $pages = where site.RegularPages "Type" "in" site.Params.mainSections }}
+{{- else }}
+{{- $pages = where .Site.RegularPages ".Section" .Section }}
+{{- end }}
+
+{{- if (and .Title (not .IsHome)) }}
+{{- if eq .Section "posts" }}
+<!-- Custom centered header for Posts page -->
+<div class="posts-page-header" style="text-align: center; margin-bottom: 2rem; width: 100%;">
+    <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 0.5rem;">{{ .Title }}</h1>
+    <p style="color: var(--secondary); font-size: 1.1rem; max-width: 600px; margin: 0 auto;">Explore <strong>{{ len $pages }} posts</strong> covering data engineering, automation, and DevOps topics</p>
+</div>
+{{- else }}
+<header class="page-header">
+    {{- if .Title }}
+    <h1>{{ .Title }}</h1>
+    {{- end }}
+    {{- if .Description }}
+    <div class="post-description">{{ .Description | markdownify }}</div>
+    {{- end }}
+</header>
+{{- end }}
+{{- end }}
+
+{{/* Search and filter functionality for Posts page */}}
+{{- if eq .Section "posts" }}
+
+{{/* Collect all unique tags */}}
+{{- $allTags := slice }}
+{{- range $pages }}
+  {{- range .Params.tags }}
+    {{- $allTags = $allTags | append . }}
+  {{- end }}
+{{- end }}
+{{- $allTags = $allTags | uniq | sort }}
+
+<!-- Posts Layout Container -->
+<div class="posts-layout">
+    <!-- Sidebar for Posts page -->
+    <div class="posts-sidebar">
+        <!-- Active Filters Display -->
+        <div id="activeFilters" class="hidden">
+            <h4 style="margin: 0 0 0.5rem 0; font-size: 0.85rem; font-weight: 600; color: var(--primary);">Active Filters:</h4>
+            <div id="activeFiltersList"></div>
+        </div>
+
+        <!-- Search Section -->
+        <div class="search-section">
+            <h3>Search Posts</h3>
+            <input 
+                type="search" 
+                id="searchInput" 
+                placeholder="Search titles and content..." 
+                autocomplete="off"
+                aria-label="Search blog posts"
+            >
+            <div class="search-results" id="searchResults" role="status" aria-live="polite"></div>
+        </div>
+
+        <!-- Tags Section -->
+        <div class="tags-section">
+            <h3>Filter by Tags</h3>
+            <div class="tag-filter-grid" id="tagFilterGrid">
+                {{- range $name, $taxonomy := $.Site.Taxonomies.tags }}
+                <button type="button" class="filter-tag" data-tag="{{ $name }}" role="button" tabindex="0" aria-label="Filter by {{ $name }} tag">
+                    {{ $name }} <span class="tag-count">({{ len $taxonomy }})</span>
+                </button>
+                {{- end }}
+            </div>
+            <button type="button" id="clearAllTags" class="filter-tag" aria-label="Clear all tag filters">
+                Clear All
+            </button>
+            <button type="button" id="toggleTags" aria-expanded="false" aria-label="Toggle tag visibility">
+                Show All Tags
+            </button>
+        </div>
+    </div>
+    
+    <!-- Main Content Area -->
+    <main class="posts-main" role="main">
+
+{{- $paginator := .Paginate $pages }}
+
+{{- if $paginator.Pages }}
+<div class="posts-container">
+{{- range $paginator.Pages }}
+{{- $class := "post-entry" }}
+
+{{- if .Weight }}
+{{- $class = "post-entry featured" }}
+{{- end }}
+
+<article class="{{ $class }}" data-tags="{{ delimit .Params.tags "," }}" data-title="{{ .Title | lower }}" data-content="{{ .Summary | plainify | lower }}">
+    {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+    {{- partial "cover.html" (dict "cxt" . "IsHome" false "isHidden" $isHidden) }}
+    <header class="entry-header">
+        <h2 class="entry-hint-parent">
+            <a href="{{ .Permalink }}">{{ .Title }}</a>
+        </h2>
+    </header>
+    {{- if (.Param "ShowSummary") | default (.Site.Params.ShowSummary) }}
+    <div class="entry-content">
+        <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+    </div>
+    {{- end }}
+    <footer class="entry-footer">
+        <div class="entry-footer-details">
+            {{- partial "post_meta.html" . -}}
+        </div>
+        {{- if .Params.tags }}
+        <div class="entry-tags">
+            {{- range .Params.tags }}
+            <span class="tag">{{ . }}</span>
+            {{- end }}
+        </div>
+        {{- end }}
+    </footer>
+    <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+</div>
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+    <nav class="pagination">
+        {{- if $paginator.HasPrev }}
+        <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
+            « {{ i18n "prev_page" }}
+        </a>
+        {{- end }}
+        {{- if $paginator.HasNext }}
+        <a class="next" href="{{ $paginator.Next.URL | absURL }}">
+            {{ i18n "next_page" }} »
+        </a>
+        {{- end }}
+    </nav>
+</footer>
+{{- end }}
+
+{{- else }}
+<div class="empty-state" style="text-align: center; padding: 3rem 0;">
+    <h3>No posts found</h3>
+    <p>{{ if eq .Section "posts" }}Try different search terms or browse all posts.{{ else }}Check back soon for new content!{{ end }}</p>
+</div>
+{{- end }}
+
+    </main>
+</div> <!-- Close posts-layout -->
+
+{{/* Enhanced Search and Filter JavaScript for Posts page */}}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.getElementById('searchInput');
+    const searchResults = document.getElementById('searchResults');
+    const postsContainer = document.querySelector('.posts-container');
+    const allPosts = document.querySelectorAll('.post-entry');
+    const pagination = document.querySelector('.page-footer');
+    const filterTags = document.querySelectorAll('.filter-tag');
+    const clearAllBtn = document.getElementById('clearAllTags');
+    const toggleTagsBtn = document.getElementById('toggleTags');
+    const activeFiltersDiv = document.getElementById('activeFilters');
+    const tagGrid = document.querySelector('.tag-filter-grid');
+    
+    let totalPosts = allPosts.length;
+    let activeTags = new Set();
+    let tagsExpanded = false; // Start collapsed
+    const maxTagsToShow = 4;
+    
+    // Get all tag buttons (excluding Clear All button)
+    const allTagButtons = Array.from(document.querySelectorAll('.filter-tag:not(#clearAllTags)'));
+    
+    // Initialize tags in collapsed state
+    function initializeTags() {
+        if (allTagButtons.length > maxTagsToShow) {
+            // Hide extra tags initially with more specific styling
+            allTagButtons.forEach((tag, index) => {
+                if (index >= maxTagsToShow) {
+                    tag.style.display = 'none !important';
+                    tag.classList.add('tag-hidden');
+                }
+            });
+            // Show the toggle button and set correct text
+            if (toggleTagsBtn) {
+                toggleTagsBtn.style.display = 'block';
+                toggleTagsBtn.textContent = `Show All Tags (${allTagButtons.length})`;
+            }
+        } else {
+            // Hide toggle button if we have few tags
+            if (toggleTagsBtn) {
+                toggleTagsBtn.style.display = 'none';
+            }
+        }
+    }
+    
+    // Initialize tags on page load
+    initializeTags();
+    
+    // Toggle tags visibility
+    if (toggleTagsBtn) {
+        toggleTagsBtn.addEventListener('click', function() {
+            tagsExpanded = !tagsExpanded;
+            if (tagsExpanded) {
+                // Show all tags
+                allTagButtons.forEach(tag => {
+                    tag.style.display = 'inline-flex';
+                    tag.classList.remove('tag-hidden');
+                });
+                this.textContent = 'Show Less Tags';
+                this.setAttribute('aria-expanded', 'true');
+            } else {
+                // Show only first maxTagsToShow tags
+                allTagButtons.forEach((tag, index) => {
+                    if (index < maxTagsToShow) {
+                        tag.style.display = 'inline-flex';
+                        tag.classList.remove('tag-hidden');
+                    } else {
+                        tag.style.display = 'none';
+                        tag.classList.add('tag-hidden');
+                    }
+                });
+                this.textContent = `Show All Tags (${allTagButtons.length})`;
+                this.setAttribute('aria-expanded', 'false');
+            }
+        });
+    }
+    
+    // Add hover effects and ARIA attributes to filter tags
+    filterTags.forEach(tag => {
+        // Add ARIA attributes
+        tag.setAttribute('aria-pressed', 'false');
+        tag.setAttribute('role', 'button');
+    });
+    
+    function updateActiveFilters() {
+        if (activeTags.size === 0) {
+            activeFiltersDiv.textContent = '';
+            clearAllBtn.style.display = 'none';
+        } else {
+            activeFiltersDiv.textContent = `Active filters: ${Array.from(activeTags).join(', ')}`;
+            clearAllBtn.style.display = 'inline-block';
+        }
+    }
+    
+    function toggleTag(tagName) {
+        if (activeTags.has(tagName)) {
+            activeTags.delete(tagName);
+        } else {
+            activeTags.add(tagName);
+        }
+        
+        // Update button appearance and ARIA attributes
+        filterTags.forEach(btn => {
+            const tag = btn.getAttribute('data-tag');
+            if (activeTags.has(tag)) {
+                btn.classList.add('active');
+                btn.setAttribute('aria-pressed', 'true');
+            } else {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            }
+        });
+        
+        updateActiveFilters();
+        performFilter();
+    }
+    
+    function performFilter() {
+        const searchQuery = searchInput.value.trim();
+        const keywords = searchQuery.toLowerCase().split(' ').filter(k => k.length > 0);
+        let visibleCount = 0;
+        
+        allPosts.forEach(post => {
+            const title = post.getAttribute('data-title') || '';
+            const content = post.getAttribute('data-content') || '';
+            const postTags = (post.getAttribute('data-tags') || '').toLowerCase().split(',').filter(t => t.trim());
+            const searchText = (title + ' ' + content).toLowerCase();
+            
+            // Check search keywords
+            const matchesSearch = keywords.length === 0 || keywords.every(keyword => 
+                searchText.includes(keyword)
+            );
+            
+            // Check tag filters
+            const matchesTags = activeTags.size === 0 || Array.from(activeTags).some(activeTag => 
+                postTags.some(postTag => postTag.trim() === activeTag.toLowerCase())
+            );
+            
+            if (matchesSearch && matchesTags) {
+                post.style.display = 'block';
+                visibleCount++;
+            } else {
+                post.style.display = 'none';
+            }
+        });
+        
+        // Hide pagination during filtering
+        if (pagination) {
+            pagination.style.display = (keywords.length > 0 || activeTags.size > 0) ? 'none' : 'block';
+        }
+        
+        // Update search results with better messaging
+        if (visibleCount === 0) {
+            if (activeTags.size > 0 && keywords.length > 0) {
+                searchResults.textContent = 'No posts found matching both search terms and selected tags.';
+            } else if (activeTags.size > 0) {
+                searchResults.textContent = 'No posts found with the selected tags.';
+            } else if (keywords.length > 0) {
+                searchResults.textContent = 'No posts found matching your search.';
+            } else {
+                searchResults.textContent = '';
+            }
+        } else if (visibleCount === 1) {
+            searchResults.textContent = '1 post found';
+        } else if (activeTags.size > 0 || keywords.length > 0) {
+            searchResults.textContent = `${visibleCount} posts found`;
+        } else {
+            searchResults.textContent = '';
+        }
+    }
+    
+    // Tag filter event listeners
+    filterTags.forEach(tag => {
+        tag.addEventListener('click', function() {
+            const tagName = this.getAttribute('data-tag');
+            toggleTag(tagName);
+        });
+    });
+    
+    // Clear all tags button
+    if (clearAllBtn) {
+        clearAllBtn.addEventListener('click', function() {
+            activeTags.clear();
+            filterTags.forEach(btn => {
+                btn.classList.remove('active');
+                btn.setAttribute('aria-pressed', 'false');
+            });
+            updateActiveFilters();
+            performFilter();
+        });
+    }
+    
+    // Search input event listeners
+    let searchTimeout;
+    searchInput.addEventListener('input', function() {
+        clearTimeout(searchTimeout);
+        searchTimeout = setTimeout(() => {
+            performFilter();
+        }, 300);
+    });
+    
+    // Clear search on ESC key
+    searchInput.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            this.value = '';
+            performFilter();
+        }
+    });
+    
+    // Initialize
+    updateActiveFilters();
+});
+</script>
+{{- end }}
+
+{{- end }}{{/* end main */}}
