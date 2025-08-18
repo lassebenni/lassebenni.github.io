@@ -1,6 +1,9 @@
-/* Custom CSS optimized for clean blog post listings following UX best practices */
-
 @import url('./header.css');
 @import url('./post-page.css');
 @import url('./post-cards.css');
 @import url('./about-page.css');
+
+/* Anchor offset for sticky header (best practice) */
+:root { --anchor-extra-offset: 24px; --anchor-offset: calc(var(--header-height) + var(--anchor-extra-offset)); }
+html, body { scroll-padding-top: var(--anchor-offset); }
+/* Custom CSS optimized for clean blog post listings following UX best practices */
