@@ -38,7 +38,7 @@ jobs:
         git push
 ```
 
-## Intro: Git Scraping
+## Git scraping
 
 This guide is inspired by the excellent [Simon Willison's](https://simonwillison.net/) "Git Scraping" concept https://simonwillison.net/2021/Mar/5/git-scraping/ which combines the free compute in Github Actions with storing flat-files (e.g. json) in a Git repository.
 
@@ -60,7 +60,7 @@ Nowadays, many websites use JSON ([what is JSON?](https://www.infoworld.com/arti
 
 This makes it possible to perform any number of actions that you would previously run on your own computer, in the cloud using Github Actions. A good use case is web scraping. And since we can often get data from API's in the form of JSON and store this file in a Github repository, it creates a very powerful opportunity for virtually free, scheduled, and tracked web scraping. In this guide I will show you how I scrape the news articles for a Dutch news website [https://www.nu.nl](https://www.nu.nl) on a schedule and store the JSON file containing the articles into the repository in [https://github.com/lassebenni/git-scraper-nu-nl](https://github.com/lassebenni/git-scraper-nu-nl).
 
-## Steps for to follow for creating the scraper
+## Steps to create the scraper
 
 ### 1. Find something to scrape
 
@@ -72,7 +72,7 @@ We will navigate to [https://www.nu.nl](https://www.nu.nl) which is a popular Du
 
 I am interested in scraping the article headlines so we can start an archive of news headlines over time. At this point I am not interested in anything more than just the single line of text comprising the headline. Shouldn't be too complicated.
 
-### 2. Explore the Network Requests
+### 2. Explore network requests
 
 When you access a website using it's URL, your browser ([what is a browser?](https://www.mozilla.org/en-US/firefox/browsers/what-is-a-browser/)), is actually performing many HTTP requests to different URLs to fetch all the data needed for display on the screen. Some of these requests return the images and text on the page, where others might retrieve advertisements or other related actions which you might not see on the page itself. For a more [in-depth explanation of the HTTP protocol.](https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview)
 
@@ -122,7 +122,7 @@ Firefox shows me a "pretty" version of the JSON: indented and colored, which mak
 
 Anyway, looking through the JSON we can see that it contains what we want: the article titles accompanied with dates of the creation and update. It also contains some extra "meta" information that we don't care about, like the "component" information. We will still have to do a minor tweak later to only extract the articles themselves from the JSON, but for now we should be happy to have found the "API endpoint". This is what we call the URL that contains the data, API standing for Application Programming Interface which is an older term for the part of a software system that is used for communicating with the outside world/other systems. If we keep visiting the URL and storing the results, we can start to create a history of headlines. Let's move to the actual scraping part now!
 
-### 4. Create a Github repository (Free)
+### 4. Create a GitHub repository
 
 Now that we have the endpoint, we can start the Github part of the guide. If you don't have one already, go the github.com and create an account (it's free). Next create a new repository: [https://github.com/new](https://github.com/new)
 
@@ -136,7 +136,7 @@ Create the repository:
 
 ![Repository Settings](assets/repository-settings.png)
 
-### 5. Add a Workflow file
+### 5. Add a workflow file
 
 Now that the repository has been created, we need to create a [Workflow](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions#create-an-example-workflow). This is basically just a file that contains the steps that Github Actions should follow during every scrape. The file format should be yaml. Click **Add File**
 
@@ -263,7 +263,7 @@ Commit the Workflow file:
 
 Now it should automatically start the first scrape.
 
-### 6. Check the Action
+### 6. Check the action
 
 Go to the "Actions" tab in the repository.
 
@@ -291,7 +291,7 @@ We can see that a file called `headlines.json` has been added. Exciting times! L
 
 The file contains the JSON for the articles, and no longer the full metadata like in the original response. Perfect! I have one last trick up my sleeve before we are done.
 
-### 7. View the results using Flat-viewer
+### 7. View results in Flat Viewer
 
 In 2021, Github introduced the [flat-viewer application](https://github.com/githubocto/flat-viewer) for exploring flat-files (CSV and JSON) as part of their [Flat Data initiative](https://githubnext.com/projects/flat-data/). It integrates with the repository and can show the changes between commits (version) for a file. It has some filtering capabilities and is an overall joy to work with.
 

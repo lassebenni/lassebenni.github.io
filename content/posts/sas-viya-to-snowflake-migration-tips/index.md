@@ -17,11 +17,11 @@ In this blog, we'll share key insights from our recent project migrating a sport
 
 • We discuss practical tips such as using the [dbt-audit-helper](https://github.com/dbt-labs/dbt-audit-helper) package for **comparing migrated tables**, the **challenges of lift-and-shift vs remodeling**, and the **intricacies of incremental flows**.
 
-## A bit of background
+# A bit of background
 
 A client of ours in the sports sector had been relying on [SAS Viya](https://www.sas.com/en_us/software/viya.html) as their primary analytics platform for several years. The platform housed more than 50 analytical flows that had been built up over multiple years, representing significant business logic and institutional knowledge. These flows were important for the organization's decision-making processes and downstream reporting.
 
-## Challenges with SAS Viya
+# Challenges with SAS Viya
 
 As the client's business grew, their SAS Viya platform struggled to keep pace with evolving needs. Key limitations became increasingly apparent:
 
@@ -32,7 +32,7 @@ As the client's business grew, their SAS Viya platform struggled to keep pace wi
 
 **These** limitations are common pain points for many organizations as they scale. Although SAS Viya is a platform that offers a range of features for visualization, data lineage, and support for multiple programming languages, today's data teams can expect more sophisticated development practices to be able to scale and maintain their analytics workloads.
 
-## dbt and Snowflake for modern data teams
+# dbt and Snowflake for modern data teams
 
 Alright, so what alternatives are there for data teams wanting more development control? Well, if you're already familiar with Xebia Data, you could say we [really like dbt](https://xebia.com/blog/?q=dbt). For those of you unfamiliar with the tool (or rather *platform* if we're talking about the managed offering), [dbt](https://docs.getdbt.com/docs/introduction) is a product by **dbt Labs** that started out as an open-source Python package. It's essentially a framework to write SQL in a more sane and modular way, which was very useful to analysts navigating through a mess of individual SQL files. Over the years [it has grown](https://www.getdbt.com/product/dbt-cloud) into a fully-fledged platform. But today, we'll focus on the open-source package, [dbt-core](https://github.com/dbt-labs/dbt-core), which many data teams use today.
 
@@ -40,7 +40,7 @@ What we like about dbt is how it provides a [SQL-first approach](https://docs.ge
 
 dbt connects to a [plethora of data platforms](https://docs.getdbt.com/docs/trusted-adapters), so it's not tied to a specific data platform. In this case, the client had already picked [Snowflake](https://www.snowflake.com/) as their data platform. A popular choice, since it's a [fully-managed data warehouse](https://www.snowflake.com/en/why-snowflake/) that's [highly scalable](https://docs.snowflake.com/en/user-guide/warehouses-overview) and offers [top-tier data analytics capabilities](https://www.snowflake.com/en/product/analytics/), alongside robust [access control](https://docs.snowflake.com/en/user-guide/security-access-control-privileges). We're not biased (well, maybe some of us are) but we do like Snowflake for these reasons. So not a bad choice. [Combined with the previously stated features of dbt](https://www.getdbt.com/data-platforms/snowflake), this was a solid choice for our client.
 
-## Data development capabilities comparison
+# Data development capabilities comparison
 
 | Task | SAS Viya | dbt + Snowflake |
 |------|----------|-----------------|
@@ -49,17 +49,19 @@ dbt connects to a [plethora of data platforms](https://docs.getdbt.com/docs/trus
 | **Documentation** | ❌ Often separate from code, manual maintenance | ✅ Self-documenting models with integrated documentation that updates with code |
 | **Visualizations** | ✅ Robust built-in dashboarding and visualization capabilities | ❌️ Limited native visualization options; typically requires separate BI tools |
 
-## The Migration
+# The Migration
 
 The solution was to migrate the fundamental workloads to Snowflake, paired with dbt (data build tool) for transformations. This combination would provide the scalability and modern development features needed, while allowing the client to retain SAS Viya for downstream analysis and reporting, where the team was comfortable.
 
 Our team of two analytics engineers and a supporting data engineer embarked on a six-month migration journey, after which we would transition the remaining work to the client's internal team. The significant differences between SAS Viya's approach and SQL-based platforms like Snowflake required careful planning and execution.
 
-## Key Learnings and Tips
+---
+
+# **Tips**
 
 So finally here are the key learnings and tips we have collected after 6 months of migration:
 
-## Tip 1: Lift-and-Shift vs. Remodeling
+## **Tip 1: Lift and shift vs remodeling**
 
 Migrating data workloads involves a critical decision: should you lift-and-shift existing models and logic as-is, or seize the opportunity to redesign the data model from the ground up?
 
@@ -85,7 +87,7 @@ Once remodeling begins, stakeholders may request additional features: "Since you
 
 The image above shows how complex SAS flows can become over time, making them challenging to maintain and migrate without careful planning.
 
-## Tip 2: Implement Table Comparison Tools
+## **Tip 2: Implement table comparison tools**
 
 When migrating business logic from SAS to Snowflake, validation is crucial. Comparing tables with millions of rows manually is impractical and error-prone. Using a "eyes-only" approach simply does not cut it for tables with millions of rows and multiple columns.
 
@@ -104,7 +106,7 @@ Another option worth exploring is [dbt-data-diff](https://github.com/infinitelam
 
 Without a comparison tool, you will have to manually check the tables and compare the results. This is a time-consuming process and can be error-prone. A comparison tool can help you with this task and save you a lot of time.
 
-## Tip 3: Debug Complex SAS Flows with Variables
+## **Tip 3: Debug complex SAS flows with variables**
 
 A common challenge in SAS flows is variable overwriting. In many flows, we encountered code patterns where the same variable was reassigned multiple times:
 
@@ -156,7 +158,7 @@ DATA results_final;
 RUN;
 ```
 
-## Tip 4: Mixing SQL and SAS Logic in the SAS Flows
+## **Tip 4: Mixing SQL and SAS logic in flows**
 
 One of the most challenging aspects of the migration was dealing with flows that combined SQL with SAS-specific logic. Instead of only SQL logic, which is easier to port to Snowflake and dbt, the SAS language can also be used for doing things that are not possible or very hard in SQL such as:
 
@@ -170,7 +172,7 @@ This does increase the complexity of the SAS flows and migration since this logi
 
 **Solution:** Take a step back and examine the intent of the SAS logic. Is it possible to achieve the same result using just SQL? Instead of simply porting the logic, we might be able to achieve the same result with a different approach.
 
-## Tip 5: Untangling SAS Flow Dependencies
+## **Tip 5: Untangle SAS flow dependencies**
 
 In SAS, flows can depend on each other. For instance, *Flow A* can create an output table, which *Flow B* reads as an input. In fact, the output table created by *Flow A* could have any number of downstream dependencies, including dashboards.
 
@@ -180,13 +182,13 @@ This requires careful consideration. Once you replace a SAS flow with a dbt mode
 
 ![SAS Lineage Feature](assets/sas-lineage.png)
 
-## Tip 6: Get Familiar with the SAS Preview Filtering
+## **Tip 6: Use SAS preview filtering**
 
 Often when debugging differences between the dbt model and the original SAS flow, you will want to open up the flow and run parts of it to figure out why records are different. You can do this by using the preview functionality in SAS. In here you can filter the records (similar to the `WHERE` clause in SQL) e.g. `season = '2025'`. Be aware though that there are some gotcha's with the types as filtering a date string has to be cast in SAS by adding 'd' to the string: `season = '2025'd`.
 
 ![SAS Preview Filtering](assets/sas-preview-filtering.png)
 
-## Tip 7: Be Mindful of dbt Data Tests
+## **Tip 7: Be mindful of dbt data tests**
 
 In the SAS flows, there were no uniqueness or null tests. If you're not familiar with these, check out the [dbt documentation on data tests](https://docs.getdbt.com/docs/build/data-tests). These "data tests" validate the data in your tables. A table should [ALWAYS have a primary key](https://next.docs.getdbt.com/terms/primary-key) (which can consist of multiple columns), and that key should NEVER be null.
 
@@ -196,7 +198,7 @@ When performing a "lift-and-shift" data migration, be aware that implementing db
 
 ![dbt Data Tests](assets/dbt-data-tests.png)
 
-## Tip 8: Handle True Deletes in Source Systems
+## **Tip 8: Handle true deletes in sources**
 
 The source data that we were working with was being delivered in weekly incremental batches, meaning that we only received the newest data from the source system. However, at some point during the migration, we discovered that a certain dataset was not making sense due to duplicate records where they shouldn't be, which broke our primary key tests in dbt.
 
@@ -204,7 +206,7 @@ This led us to realize that the users of the source system had actually deleted 
 
 Here's a simplified example to illustrate the problem using sports data:
 
-### Week 1: Initial player data in source system
+**Week 1: Initial player data in source system**
 
 | player_id | player_name       | team_name | season |
 |-----------|-------------------|-----------|--------|
@@ -212,7 +214,7 @@ Here's a simplified example to illustrate the problem using sports data:
 | 1002      | Lasse Benninga    | Xebia FC  | 2025   |
 | 1003      | Jovan Gligorevic  | Xebia FC  | 2025   |
 
-### Week 1: Our data warehouse after initial load
+**Week 1: Our data warehouse after initial load**
 
 | player_id | player_name       | team_name | season |
 |-----------|-------------------|-----------|--------|
@@ -222,7 +224,7 @@ Here's a simplified example to illustrate the problem using sports data:
 
 In Week 2, Lasse Benninga transferred to another team and was removed from the Xebia FC roster in the source system. However, our incremental load process only receives new or modified records, not information about deletions.
 
-### Week 2: Current data in the source system
+**Week 2: Current data in the source system**
 
 | player_id | player_name       | team_name | season |
 |-----------|-------------------|-----------|--------|
@@ -230,13 +232,13 @@ In Week 2, Lasse Benninga transferred to another team and was removed from the X
 | 1003      | Jovan Gligorevic  | Xebia FC  | 2025   |
 | 1004      | Ricardo Granados  | Xebia FC  | 2025   | <- New player added
 
-### Week 2: Incremental export we receive
+**Week 2: Incremental export we receive**
 
 | player_id | player_name       | team_name | season |
 |-----------|-------------------|-----------|--------|
 | 1004      | Ricardo Granados  | Xebia FC  | 2025   | <- Only new records
 
-### Week 2: Our data warehouse after the incremental load
+**Week 2: Our data warehouse after the incremental load**
 
 | player_id | player_name       | team_name | season |
 |-----------|-------------------|-----------|--------|
@@ -247,7 +249,7 @@ In Week 2, Lasse Benninga transferred to another team and was removed from the X
 
 As you can see, our data warehouse still shows Lasse Benninga on the team even though this player was removed from the source system. This causes issues when joining with other tables (like match statistics) or when running primary key tests in dbt.
 
-### Solution: Periodic full sync of all data
+**Solution: Periodic full sync of all data**
 
 If we perform a full sync instead, our data warehouse would correctly reflect the current state of the team roster:
 
@@ -261,7 +263,7 @@ In dbt, you can implement this by scheduling a full refresh of your incremental 
 
 **Solution:** Request periodic full-syncs of the source data to ensure you stay updated with the source system. The lesson here is that if you're getting incremental exports from a source system that allows deletions, you need regular full syncs to handle **true deletes** properly.
 
-## Tip 9: Consider Incremental SAS Flows Carefully
+## **Tip 9: Consider incremental SAS flows carefully**
 
 Beyond the incremental data loads, the SAS flows themselves also contained "incremental logic". Simply put, this means that when a flow executes, it doesn't read and process ALL the data in the source table, but only a subset — for example, `where season = '2025'` to read only the latest season, or `insert_date >= last_run_date` to process only records inserted since the last run.
 
@@ -278,7 +280,7 @@ This one is tricky, since there are multiple options and requires making a decis
 - **Option 1**: Run a full-sync on the SAS side. This will overwrite all the history with the *CURRENT* business logic. This might not be what you want, depending on the nature of the logic, since you are effectively erasing history. If you do this, you might want to keep a copy of the older partitions (seasons) you will be overwriting, just in case. The advantage is that you can match the Snowflake table with the SAS tables since they should now result in the same data because the business logic has been updated.
 - **Option 2**: To preserve history, you should not overwrite it by running a full sync in the SAS flow. But this does mean that we cannot replicate the historical values since the business logic has been lost (and even if we could go back in the SAS changelogs, this might be a monumental task depending on the number of changes up to now). A pragmatic approach is to migrate the older partitions (seasons) to a separate Snowflake model and to UNION that with the latest dbt model (of the current season). Also, document the differences between the two so that the team is aware of these in the future. Consider running regular full syncs for the new dbt incremental model from now on (obviously without overwriting the separate historical data).
 
-## Tip 10: Preserve History for Overwritten Data
+**Tip 10: Preserve history for overwritten data**
 
 This introduced a problem when a sports team switched to another division, and the previous division membership was overwritten during the weekly SAS flow run.
 
@@ -318,7 +320,7 @@ ORDER BY dbt_valid_from;
 
 **Solution:** Use dbt snapshots to preserve the history. We can store the data in these snapshots so that if the original table is overwritten, we keep the history. [Read more on snapshots here](https://docs.getdbt.com/docs/build/snapshots)
 
-## Tip 11: Handle SAS-Specific Functions in Snowflake
+**Tip 11: Handle SAS-specific functions in Snowflake**
 
 Another free tip since you made it this far!
 
@@ -326,7 +328,7 @@ During migration, you'll likely encounter SAS-specific functions that don't have
 
 **Solution:** Document the differences between SAS and Snowflake functions, and decide with stakeholders what level of precision variance is acceptable. In our case, we accepted small differences in age calculations after confirming they wouldn't impact business decisions.
 
-## Conclusion
+# Conclusion
 
 Migrating from SAS Viya to Snowflake and dbt is not a silver bullet — it's a significant transformation that comes with its own set of challenges. While these modern tools offer advantages like scalability and version control, they're ultimately just that: tools.
 
@@ -338,7 +340,7 @@ Our migration journey taught us that success depends on people and processes as 
 
 ---
 
-## Need more gear on your journey on becoming an Analytics Engineer?
+**Need more gear on your journey to becoming an Analytics Engineer?**
 
 Looking to deepen your Analytics Engineering knowledge? Look no further! Our team of experts has written the definitive guide: [The Fundamentals of Analytics Engineering](https://www.amazon.com/Fundamentals-Analytics-Engineering-end-end/dp/1837636451). This comprehensive resource, authored by myself and six talented co-authors, covers everything you need to know to excel as an Analytics Engineer.
 

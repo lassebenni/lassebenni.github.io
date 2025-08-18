@@ -16,7 +16,7 @@ comments: true
 
 I assume you are here because you cloned a Flask python application and you want to debug it in Visual Studio Code. You tried fooling around in `launch.json` with the "Python: Flask" app. Perhaps with the `Docker: add Dockerfiles to workspace...` command. Who knows what you tried, the VS Code docs can be confusing. The point is, it didn't work and now you are here. I'll spare you the words, here's the code.
 
-## Assumptions:
+## Prerequisites
 
 - You have a Flask application opened in VS Code (and you want to debug it).
 - Your Flask app is similar to the Cookiecutter Flask application (See [https://github.com/jamescurtin/demo-cookiecutter-flask](https://github.com/jamescurtin/demo-cookiecutter-flask)), which uses `node`. This means there's a `package.json` that contains commands like `start` to run the app (webpack + flask).
@@ -24,7 +24,7 @@ I assume you are here because you cloned a Flask python application and you want
 - You have `docker-compose.yml` to build & run the `Dockerfile`.
 - There's a `app.py` that starts your Flask app.
 
-## Step 1 — Add the `debugpy` library to your `Dockerfile`
+## Step 1: Install debugpy in Dockerfile
 
 We'll want to use [debugpy](https://github.com/microsoft/debugpy#debugging-a-module). It's a nifty debugger for Python that can debug a file/module (among other) and wait until a Listener (VS Code) has attached itself to the debug proces.
 
@@ -39,7 +39,7 @@ RUN pip install debugpy
 CMD [ "npm", "start"]
 ```
 
-## Step 2 — Add the `debugpy` command to the launch script
+## Step 2: Start Flask via debugpy
 
 In my case, there's an elaborate `package.json` that runs all kinds of `node` commands and also starts `flask`. We have to force the app to start with `debugpy` before starting flask.
 
@@ -55,7 +55,7 @@ In my case, there's an elaborate `package.json` that runs all kinds of `node` co
 - The `--listen 0.0.0.0:5678` starts the debug listener on port 5678 (default Python debugger port) on `localhost.`
 - The `flask run --host=0.0.0.0` was my default command, perhaps you have a more elaborate one, so modify it as you see fit.
 
-## Step 3- Add the "Python: Remote Attach" option to `launch.json`
+## Step 3: Add Python Remote Attach
 
 1. Open a `.py` file in your project. Now open the [Command Palette](https://code.visualstudio.com/docs/getstarted/userinterface#_command-palette) and run "Debug: Start Debugging".
 
@@ -98,7 +98,7 @@ In my case, there's an elaborate `package.json` that runs all kinds of `node` co
 
 Almost done.
 
-## Step 4 — Expose port `5678` in your `docker-compose.yml`
+## Step 4: Expose port 5678 in docker-compose
 
 Everything is ready, except for exposing the debug port from inside the container to the host (your computer). Open the docker-compose file and expose the port
 
@@ -118,7 +118,7 @@ services:
 
 Done. Let's start the container and debugger.
 
-## Step 5 — Start the container and debugger
+## Step 5: Start containers and debugger
 
 1. Build the docker-compose file to run your changes:
 
@@ -169,7 +169,7 @@ Go to the "Run and Debug" view in VS Code and start the "Python: Remote Attach" 
 
 ![Debugger Connected](assets/debugger-connected.png)
 
-## Step 6 — Set a breakpoint and debug
+## Step 6: Set a breakpoint and debug
 
 1. Set a breakpoint in your `views.py` (or another routing file), e.g. like I did on line 35 for my `/` route which will be triggered on loading the homepage.
 
