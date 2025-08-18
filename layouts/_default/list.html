@@ -116,7 +116,7 @@
         {{- if .Params.tags }}
         <div class="entry-tags">
             {{- range .Params.tags }}
-            <span class="tag">{{ . }}</span>
+            <a class="tag" href="{{ "/tags/" | relURL }}{{ . | urlize }}/">{{ . }}</a>
             {{- end }}
         </div>
         {{- end }}

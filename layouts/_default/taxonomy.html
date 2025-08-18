@@ -1,0 +1,75 @@
+{{- define "main" }}
+
+<header class="page-header">
+  <h1>{{ .Title }}</h1>
+  {{- if .Description }}
+  <div class="post-description">{{ .Description | markdownify }}</div>
+  {{- end }}
+</header>
+
+{{- $pages := .Pages }}
+{{- $paginator := .Paginate $pages }}
+
+{{- if $paginator.Pages }}
+<div class="posts-container">
+{{- range $paginator.Pages }}
+{{- $class := "post-entry" }}
+{{- if .Weight }}
+{{- $class = "post-entry featured" }}
+{{- end }}
+
+<article class="{{ $class }}">
+  {{- $isHidden := (.Param "cover.hiddenInSingle") | default (.Param "cover.hidden") | default false }}
+  {{- partial "cover.html" (dict "cxt" . "IsHome" false "isHidden" $isHidden) }}
+  <header class="entry-header">
+    <h2 class="entry-hint-parent">
+      <a href="{{ .Permalink }}">{{ .Title }}</a>
+    </h2>
+  </header>
+  {{- if (.Param "ShowSummary") | default (.Site.Params.ShowSummary) }}
+  <div class="entry-content">
+    <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+  </div>
+  {{- end }}
+  <footer class="entry-footer">
+    <div class="entry-footer-details">
+      {{- partial "post_meta.html" . -}}
+    </div>
+    {{- if .Params.tags }}
+    <div class="entry-tags">
+      {{- range .Params.tags }}
+      <span class="tag">{{ . }}</span>
+      {{- end }}
+    </div>
+    {{- end }}
+  </footer>
+  <a class="entry-link" aria-label="post link to {{ .Title | plainify }}" href="{{ .Permalink }}"></a>
+</article>
+{{- end }}
+</div>
+
+{{- if gt $paginator.TotalPages 1 }}
+<footer class="page-footer">
+  <nav class="pagination">
+    {{- if $paginator.HasPrev }}
+    <a class="prev" href="{{ $paginator.Prev.URL | absURL }}">
+      « {{ i18n "prev_page" }}
+    </a>
+    {{- end }}
+    {{- if $paginator.HasNext }}
+    <a class="next" href="{{ $paginator.Next.URL | absURL }}">
+      {{ i18n "next_page" }} »
+    </a>
+    {{- end }}
+  </nav>
+</footer>
+{{- end }}
+
+{{- else }}
+<div class="empty-state" style="text-align: center; padding: 3rem 0;">
+  <h3>No posts with this tag yet</h3>
+  <p>Browse other tags on the <a href="{{ "/tags/" | relURL }}">tags page</a>.</p>
+</div>
+{{- end }}
+
+{{- end }}{{/* end main */}}
