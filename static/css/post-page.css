@@ -26,8 +26,7 @@ body:not(.list) {
 }
 
 #post-main {
-    flex-grow: 1; /* Allow main content to grow */
-    max-width: 1600px; /* Set max width for the main content */
+    flex: 1 1 auto; /* Allow main content to grow within .main cap */
 }
 
 #toc-sidebar {
@@ -53,20 +52,18 @@ body:not(.list) .main {
 
 /* Target the post container and its children */
 #post-container {
-    /* Align with toc-sidebar layout; keep container centered and constrained */
-    max-width: 1600px;
+    /* Follow .main cap; container itself should not expand beyond it */
     width: 100%;
     margin: 0 auto;
-    padding: 0 1rem;
+    padding: 0; /* let .main padding provide the outer spacing */
 }
 
 /* Main content area in posts */
 #post-main {
-    max-width: 100% !important;
-    width: 100% !important;
+    /* In flex layout, let #post-main shrink next to the 300px TOC */
     margin: 0 !important;
-    margin-right: 20px !important; /* leave space for sticky ToC on the right */
     padding: 0 !important;
+    min-width: 0;         /* prevents long code blocks from forcing overflow */
 }
 
 /* Ensure the article content takes full width */
