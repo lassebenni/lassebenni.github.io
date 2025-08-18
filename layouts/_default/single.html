@@ -94,9 +94,12 @@
       </footer>
 
 
+      {{/* DEBUG comments param: {{ .Param "comments" }} | has giscus: {{ if site.Params.giscus }}yes{{ else }}no{{ end }} */}}
       {{- if (.Param "comments") }}
       {{- partial "comments.html" . }}
-      {{- end }}
+      {{- else }}
+      <div data-debug="comments=false"></div>
+    {{- end }}
 
       {{/* Add about section to all single posts except the about page */}}
       {{- if not (eq .File.Path "about.md") }}
