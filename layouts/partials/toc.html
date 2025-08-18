@@ -97,67 +97,102 @@
 </div>
 
 <script>
-// Active link alignment that accounts for sticky header height and smooth-scroll offset
+// Active link alignment and correct anchor scrolling under sticky header
 document.addEventListener('DOMContentLoaded', function () {
   const toc = document.querySelector('.toc');
-  if (!toc) return;
-
   const tocSidebar = document.getElementById('toc-sidebar') || toc;
-  const links = toc.querySelectorAll('a[href^="#"]');
-  if (!links.length) return;
 
-  const headers = Array.from(links)
-    .map(a => document.getElementById(a.getAttribute('href').slice(1)))
-    .filter(Boolean);
+  const tocLinks = toc ? toc.querySelectorAll('a[href^="#"]') : [];
+  const headerAnchors = document.querySelectorAll('.post-content a.anchor[href^="#"]');
 
   function getHeaderOffset() {
-    // Read CSS var --header-height, fallback to 64px, add small breathing room
+    // Prefer unified CSS var for anchor offset
+    const offRaw = getComputedStyle(document.documentElement).getPropertyValue('--anchor-offset').trim();
+    let off = parseInt(offRaw, 10);
+    if (!Number.isNaN(off)) return off;
+
+    // Fallback: header height plus additional breathing room
     const raw = getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim();
     let h = parseInt(raw, 10);
     if (Number.isNaN(h)) h = 64;
-    return h + 12;
+
+    const extraRaw = getComputedStyle(document.documentElement).getPropertyValue('--anchor-extra-offset').trim();
+    let extra = parseInt(extraRaw, 10);
+    if (Number.isNaN(extra)) extra = 24;
+
+    return h + extra;
   }
 
+  function scrollToId(id, smooth = true) {
+    const target = document.getElementById(id);
+    if (!target) return;
+    const top = window.scrollY + target.getBoundingClientRect().top - getHeaderOffset();
+    window.scrollTo({ top, behavior: smooth ? 'smooth' : 'auto' });
+  }
+
+  // Build headers list for active-link tracking when ToC exists
+  const headers = tocLinks && tocLinks.length
+    ? Array.from(tocLinks).map(a => document.getElementById(a.getAttribute('href').slice(1))).filter(Boolean)
+    : [];
+
   function updateActive() {
+    if (!headers.length || !toc) return;
     const offset = getHeaderOffset();
     let active = headers[0];
 
-    // choose the last header whose top is above the offset line
     for (let i = 0; i < headers.length; i++) {
       const rect = headers[i].getBoundingClientRect();
       if (rect.top - offset <= 0) active = headers[i];
       else break;
     }
 
-    links.forEach(a => a.classList.remove('active'));
+    tocLinks.forEach(a => a.classList.remove('active'));
     if (active) {
       const link = toc.querySelector(`a[href="#${active.id}"]`);
       if (link) {
         link.classList.add('active');
         // keep active link in view inside the sidebar
-        const c = tocSidebar;
-        const linkTop = link.offsetTop;
-        const linkBottom = linkTop + link.offsetHeight;
-        if (linkTop < c.scrollTop) c.scrollTop = linkTop;
-        else if (linkBottom > c.scrollTop + c.clientHeight) c.scrollTop = linkBottom - c.clientHeight;
+        const c = tocSidebar || document.scrollingElement;
+        if (c && c.scrollTop !== undefined) {
+          const linkTop = link.offsetTop;
+          const linkBottom = linkTop + link.offsetHeight;
+          if (linkTop < c.scrollTop) c.scrollTop = linkTop;
+          else if (linkBottom > c.scrollTop + c.clientHeight) c.scrollTop = linkBottom - c.clientHeight;
+        }
       }
     }
   }
 
-  // Smooth scroll that compensates for sticky header
-  links.forEach(a => {
+  // ToC link clicks with sticky-header compensation
+  (tocLinks || []).forEach(a => {
     a.addEventListener('click', function (e) {
       e.preventDefault();
       const id = this.getAttribute('href').slice(1);
-      const target = document.getElementById(id);
-      if (!target) return;
-
-      const offset = getHeaderOffset();
-      const top = window.scrollY + target.getBoundingClientRect().top - offset;
-      window.scrollTo({ top, behavior: 'smooth' });
+      scrollToId(id, true);
       history.pushState(null, '', '#' + id);
     });
   });
+
+  // BEST PRACTICE: also compensate when clicking the small "#" heading anchors in content
+  headerAnchors.forEach(a => {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      const id = this.getAttribute('href').slice(1);
+      scrollToId(id, true);
+      history.pushState(null, '', '#' + id);
+    });
+  });
+
+  // Handle initial load with hash and subsequent hash changes (e.g., external links)
+  function adjustForCurrentHash() {
+    if (location.hash && location.hash.length > 1) {
+      const id = decodeURIComponent(location.hash.slice(1));
+      // Use a tick to allow native jump then correct offset
+      setTimeout(() => scrollToId(id, false), 0);
+    }
+  }
+  adjustForCurrentHash();
+  window.addEventListener('hashchange', adjustForCurrentHash);
 
   updateActive();
   window.addEventListener('scroll', updateActive, { passive: true });
