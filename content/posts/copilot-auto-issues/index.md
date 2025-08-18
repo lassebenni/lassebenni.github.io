@@ -1,6 +1,6 @@
 ---
 title: "Automatically fix Github Actions failures with Copilot coding agent [GitHub Copilot Pro]"
-date: 2025-08-13
+date: 2025-08-18
 description: "Save time on issue creation and debugging failed Workflows by enabling Copilot's coding agent and automating the process."
 tags: ["github actions", "copilot", "automation", "devops"]
 draft: false
