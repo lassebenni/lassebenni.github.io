@@ -290,5 +290,3 @@ In the [Pro plan you get 300 Premium requests per month](https://docs.github.com
 Thanks for reading!
 
 ---
-
-*Got questions or want to see this in action? [Connect with me on LinkedIn](https://www.linkedin.com/in/lasse-benninga-a462b194/) or check out more automation guides on my [GitHub](https://github.com/lassebenni).*
