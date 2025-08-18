@@ -57,7 +57,7 @@ Another key benefit is using the [GitHub Mobile](https://github.com/mobile) app 
 
 ![Enable coding agent](assets/enable_coding_agent.gif)
 
-### 1. Enable GitHub Copilot Features
+**1. Enable GitHub Copilot Features**
 
 ![Enable Copilot](assets/step_1_enable_copilot.png)
 
@@ -73,7 +73,7 @@ Finally, configure repository access. **Choose "Only selected repositories"** to
 
 > **Security tip:** Never choose "All repositories" - this gives AI access to everything. Select only the repos where you want automated fixes.
 
-### 2. Create Access Token
+**2. Create Access Token**
 
 <img src="assets/step_4_developer_setings.png" alt="Developer Settings" width="300"/>
 
@@ -89,7 +89,7 @@ Create a new **fine-grained Personal Access Token** with these permissions:
 
 Store the resulting token (starts with `github_pat_...`) - we'll add it to repository secrets next.
 
-### 3. Configure Repository Secrets
+**3. Configure Repository Secrets**
 
 <img src="assets/step_6_repo_secrets.png" alt="Repository Secrets" width="600"/>
 
@@ -103,7 +103,7 @@ Click "New repository secret" and add:
 
 <img src="assets/step_8_pat_secret.png" alt="PAT Secret" width="600"/>
 
-### 4. Add the Workflow
+**4. Add the Workflow**
 
 ![Workflow File](assets/step_9_workflow_file.png)
 
@@ -115,7 +115,7 @@ The workflow automatically:
 3. Assigns it to Copilot using the GraphQL API
 4. Copilot analyzes and creates a fix PR
 
-### 5. Test It Works
+**5. Test It Works**
 
 Test your setup before waiting for a real failure:
 
@@ -134,7 +134,7 @@ Test your setup before waiting for a real failure:
 
 Once your setup is complete, here's the automated flow when your build fails:
 
-### When Your Build Fails...
+**When Your Build Fails...**
 
 ![Failed Workflow](assets/step_10_failed_workflow.png)
 
@@ -150,7 +150,7 @@ The failure trigger activates your issue creation workflow, which creates a deta
 
 ![Issue Created](assets/step_12_issue_created.png)
 
-### Copilot Takes Action...
+**Copilot Takes Action...**
 
 Since the issue was automatically assigned to Copilot, the AI immediately begins analyzing the failure:
 
@@ -164,7 +164,7 @@ You can chat with Copilot in the PR to understand the problem better or request 
 
 ![Copilot Action](assets/step_17_copilot_action.png)
 
-### Review and Merge...
+**Review and Merge...**
 
 ![PR Updated](assets/step_18_pr_updated.png)
 
@@ -216,7 +216,7 @@ This automation works particularly well for common failure patterns. For complex
 
 The best part? Once it's set up, you literally never think about it again. Your CI failures just... get addressed automatically.
 
-# Security Considerations
+## Security Considerations
 
 > **In context:** While these security considerations are important, they shouldn't prevent you from using this automation on appropriate repositories. The goal is informed usage, not avoidance.
 

@@ -3,3 +3,13 @@
 
 {{- /* Custom CSS for Posts Layout and Styling */ -}}
 <link rel="stylesheet" href="{{ "css/custom.css" | absURL }}">
+
+{{- /* Custom CSS for post width overrides */ -}}
+{{ if .IsPage }}
+<link rel="stylesheet" href="{{ "css/post-width.css" | absURL }}">
+{{ end }}
+
+{{- /* Custom CSS for about page */ -}}
+{{ if eq .RelPermalink "/about/" }}
+<link rel="stylesheet" href="{{ "css/about-page.css" | absURL }}">
+{{ end }}

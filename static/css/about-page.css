@@ -1,0 +1,51 @@
+/* About page specific styles - targets the 'page-about' class from the dedicated template */
+
+.page-about {
+  max-width: 100% !important;
+  margin: 0 auto !important;
+  width: 100% !important;
+  text-align: center !important;
+  padding: 0 var(--gap) !important;
+}
+
+/* Limit inner content width */
+.page-about .post-content {
+  max-width: 900px !important;
+  margin: 0 auto !important;
+  padding: 0 1rem !important;
+}
+
+/* Make the profile image smaller and round */
+.page-about img.profile-image,
+.page-about .post-content img {
+  width: 150px !important;
+  height: 150px !important;
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  display: block !important;
+  margin: 0 auto 1rem !important;
+}
+
+/* Ensure text blocks don't stretch */
+.page-about p,
+.page-about ul,
+.page-about ol {
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+/* Ensure links are properly spaced */
+.page-about a {
+  margin: 0 0.25rem !important;
+}
+
+/* Guard rails in case post layout classes appear */
+.page-about #post-container,
+.page-about #post-main,
+.page-about .post-single {
+  max-width: 600px !important;
+  width: 100% !important;
+  margin: 0 auto !important;
+  padding: 0 !important;
+}

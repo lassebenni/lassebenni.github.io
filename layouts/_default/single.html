@@ -2,13 +2,13 @@
 
 {{/* Include custom TOC for posts */}}
 
-<div class="post-container">
+<div id="post-container" class="post-container">
   {{- if (.Param "ShowToc") }}
-  <aside class="toc-sidebar">
-    {{- partial "custom-toc.html" . }}
+  <aside id="toc-sidebar" class="toc-sidebar">
+    {{- partial "toc.html" . }}
   </aside>
   {{- end }}
-  <main class="post-main">
+  <main id="post-main" class="post-main">
     <article class="post-single">
       <header class="post-header">
         {{ partial "breadcrumbs.html" . }}
@@ -90,12 +90,9 @@
             <p>You can find more of my work on <a href="https://github.com/lassebenni" target="_blank" rel="noopener noreferrer">GitHub</a> or connect with me on <a href="https://www.linkedin.com/in/lasse-benninga-a462b194/" target="_blank" rel="noopener noreferrer">LinkedIn</a>.</p>
           </div>
         </div>
-      </div>
-      {{- end }}
-    </article>
-  </main>
-</div>
-
-</div>
+        {{- end }}
+      </article>
+    </main>
+  </div>
 
 {{- end }}{{/* end main */}}

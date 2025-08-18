@@ -1,0 +1,78 @@
+/* =====================================================
+   POST PAGE LAYOUT WITH TOC
+   ===================================================== */
+
+
+/* Ultra-tight main content padding for modern layout - only for blog posts */
+#post-main {
+    padding: 4px var(--gap) 8px var(--gap);
+    margin: 0 auto;
+}
+
+/* Specific styling for post body text - removed broad rule that affected all pages */
+
+/* Flexbox for post container to align main content and ToC */
+.post-container {
+    display: flex;
+    justify-content: space-between; /* Place main content and ToC at edges */
+    align-items: flex-start; /* Align items to the top */
+    gap: var(--gap); /* Space between main content and ToC */
+}
+
+#post-main {
+    flex-grow: 1; /* Allow main content to grow */
+    max-width: 1600px; /* Set max width for the main content */
+}
+
+#toc-sidebar {
+    flex-shrink: 0; /* Prevent ToC from shrinking */
+    width: 300px; /* Fixed width for ToC */
+    position: sticky; /* Make ToC sticky */
+    top: var(--header-height); /* Stick below the header */
+    padding-top: var(--gap); /* Add some padding at the top */
+}
+
+/* Navigation spacing - centered and clean */
+.nav {
+    margin-bottom: 0;
+}
+
+/* Target only actual blog posts (not about page) - must have both post-container and post-meta */
+body:has(#post-container):has(.post-meta) .main {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    width: 100% !important;
+}
+
+/* Target the post container and its children */
+#post-container {
+    /* Align with toc-sidebar layout; keep container centered and constrained */
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Main content area in posts */
+#post-main {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    margin-right: 20px !important; /* leave space for sticky ToC on the right */
+    padding: 0 !important;
+}
+
+/* Ensure the article content takes full width */
+#post-main .post-single {
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* Search container styling */
+.search-container input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.1);
+}

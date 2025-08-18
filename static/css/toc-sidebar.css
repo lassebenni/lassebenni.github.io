@@ -1,71 +1,72 @@
 /* Sticky TOC Sidebar Styles */
-.post-single {
-    position: relative;
-    max-width: none;
+
+/* Target the main content container */
+#post-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px; /* Adjust as needed */
     margin: 0 auto;
-    width: 100%;
     padding: 0 1rem;
 }
 
-.post-main {
-    width: 800px; /* Fixed width similar to the image */
-    max-width: 800px; /* Match the width shown in the screenshot */
-    margin: 0 auto; /* Center the content */
+/* Target the main article content */
+#post-main {
+    flex-grow: 1;
+    max-width: 1200px; /* Wider content for better readability */
+    margin-right: 20px;
 }
 
-/* Override PaperMod theme width restrictions */
-.post-main article {
-    max-width: none !important;
-    width: 100% !important;
-}
-
-.post-main .post-content {
-    max-width: none !important;
-    width: 100% !important;
-}
-
-.post-main .post-header {
-    max-width: none !important;
-    width: 100% !important;
-}
-
-/* Ensure paragraphs and other content take full width */
-.post-main p,
-.post-main ul,
-.post-main ol,
-.post-main blockquote,
-.post-main pre {
-    max-width: none !important;
-}
-
-.toc-sidebar {
+/* Target the Table of Contents */
+#toc-sidebar {
     position: sticky;
-    top: 6rem; /* Account for header */
-    right: 1rem; /* Position closer to right edge for wide content */
-    width: 200px; /* Smaller TOC width to match the image */
+    top: 6rem;
+    width: 200px;
     height: calc(100vh - 8rem);
     overflow-y: auto;
     z-index: 10;
-    background: var(--entry);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 0.75rem; /* Slightly less padding */
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+    order: 2;
+    flex-shrink: 0;
 }
 
-.toc-sidebar .toc {
-    background: transparent; /* Remove duplicate background */
-    border: none; /* Remove duplicate border */
-    border-radius: 0; /* Remove duplicate border-radius */
-    padding: 0; /* Remove duplicate padding */
-    box-shadow: none; /* Remove duplicate shadow */
+/* Mobile responsiveness */
+@media (max-width: 1024px) {
+    #post-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #post-main {
+        width: 100%;
+        margin-right: 0;
+    }
+    
+    #toc-sidebar {
+        position: static;
+        width: 100%;
+        height: auto;
+        max-height: none;
+        margin-bottom: 2rem;
+        order: 0;
+    }
 }
 
-.toc-sidebar .toc details {
+/* Styles for the actual ToC list */
+.toc {
+    margin-bottom: 1rem;
+    padding: 0;
+}
+
+.toc details {
     border: none;
 }
 
-.toc-sidebar .toc summary {
+.toc summary {
     font-weight: 600;
     font-size: 1.1rem;
     color: var(--primary);
@@ -75,34 +76,33 @@
     list-style: none;
 }
 
-.toc-sidebar .toc summary::-webkit-details-marker {
+.toc summary::-webkit-details-marker {
     display: none;
 }
 
-.toc-sidebar .toc .inner {
+.toc .inner {
     margin: 0;
     padding: 0;
 }
 
-.toc-sidebar .toc ul {
+.toc ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    border-left: 2px solid var(--border);
-    margin-left: 0.5rem;
+    margin-left: 0; 
 }
 
-.toc-sidebar .toc ul ul {
+.toc ul ul {
     margin-left: 1rem;
     border-left: 1px solid var(--border);
 }
 
-.toc-sidebar .toc li {
+.toc li {
     margin: 0;
     padding: 0;
 }
 
-.toc-sidebar .toc a {
+.toc a {
     display: block;
     padding: 0.4rem 0.75rem;
     color: var(--secondary);
@@ -114,71 +114,45 @@
     border-left: 3px solid transparent;
 }
 
-.toc-sidebar .toc a:hover {
+.toc a:hover {
     color: var(--primary);
     background: var(--theme);
     border-left-color: var(--primary);
 }
 
-.toc-sidebar .toc a.active {
-    color: var(--primary);
-    background: var(--theme);
-    border-left-color: var(--primary);
-    font-weight: 500;
-}
-
-/* Mobile responsiveness */
-@media (max-width: 1200px) {
-    .post-main {
-        width: 700px; /* Slightly narrower on smaller screens */
-        max-width: 700px;
-    }
-    
-    .toc-sidebar {
-        width: 180px; /* Smaller TOC on smaller screens */
-        right: 0.5rem; /* Very close to edge on smaller screens */
-    }
-}
-
-@media (max-width: 1024px) {
-    .post-single {
-        position: static;
-    }
-    
-    .post-main {
-        width: 100%;
-    }
-    
-    .toc-sidebar {
-        position: static;
-        width: 100%;
-        height: auto;
-        max-height: none;
-        margin-bottom: 2rem;
-        right: auto;
-        top: auto;
-    }
-}
-
-@media (max-width: 768px) {
-    .toc-sidebar .toc {
-        padding: 0.75rem;
-    }
-    
-    .toc-sidebar .toc summary {
-        font-size: 1rem;
-    }
-    
-    .toc-sidebar .toc a {
-        padding: 0.3rem 0.5rem;
-        font-size: 0.85rem;
-    }
-}
-
-/* Scrollspy active section highlighting */
-.toc-sidebar .toc a[href*="#"]:target {
+.toc a.active {
     color: var(--primary);
     background: var(--theme);
     border-left-color: var(--primary);
     font-weight: 500;
+}
+/* Override: make ToC look inline (remove card background/border from theme) */
+.toc {
+  background: transparent !important;
+  border: none !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;            /* remove card-like padding */
+  margin: 0 0 1rem 0 !important;    /* minimal spacing below summary */
+}
+
+/* Flatten inner container spacing */
+.toc .inner {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Ensure details wrapper has no border even if theme adds one */
+.toc details {
+  border: none !important;
+}
+/* Remove hover/active background so ToC looks inline */
+.toc a:hover,
+.toc a.active {
+  background: transparent !important;
+}
+
+/* Keep a subtle cue via left border only */
+.toc a.active {
+  border-left-color: var(--primary) !important;
 }
