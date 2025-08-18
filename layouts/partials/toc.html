@@ -97,55 +97,69 @@
 </div>
 
 <script>
-// Add scrollspy functionality for active section highlighting
-document.addEventListener('DOMContentLoaded', function() {
-    const headers = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]');
-    const tocLinks = document.querySelectorAll('.toc a[href^="#"]');
-    
-    if (headers.length === 0 || tocLinks.length === 0) return;
-    
-    const observerOptions = {
-        rootMargin: '-20% 0px -70% 0px',
-        threshold: 0
-    };
-    
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-            const id = entry.target.getAttribute('id');
-            const tocLink = document.querySelector(`.toc a[href="#${id}"]`);
-            
-            if (entry.isIntersecting) {
-                // Remove active class from all links
-                tocLinks.forEach(link => link.classList.remove('active'));
-                // Add active class to current link
-                if (tocLink) {
-                    tocLink.classList.add('active');
-                }
-            }
-        });
-    }, observerOptions);
-    
-    headers.forEach((header) => {
-        observer.observe(header);
+// Active link alignment that accounts for sticky header height and smooth-scroll offset
+document.addEventListener('DOMContentLoaded', function () {
+  const toc = document.querySelector('.toc');
+  if (!toc) return;
+
+  const tocSidebar = document.getElementById('toc-sidebar') || toc;
+  const links = toc.querySelectorAll('a[href^="#"]');
+  if (!links.length) return;
+
+  const headers = Array.from(links)
+    .map(a => document.getElementById(a.getAttribute('href').slice(1)))
+    .filter(Boolean);
+
+  function getHeaderOffset() {
+    // Read CSS var --header-height, fallback to 64px, add small breathing room
+    const raw = getComputedStyle(document.documentElement).getPropertyValue('--header-height').trim();
+    let h = parseInt(raw, 10);
+    if (Number.isNaN(h)) h = 64;
+    return h + 12;
+  }
+
+  function updateActive() {
+    const offset = getHeaderOffset();
+    let active = headers[0];
+
+    // choose the last header whose top is above the offset line
+    for (let i = 0; i < headers.length; i++) {
+      const rect = headers[i].getBoundingClientRect();
+      if (rect.top - offset <= 0) active = headers[i];
+      else break;
+    }
+
+    links.forEach(a => a.classList.remove('active'));
+    if (active) {
+      const link = toc.querySelector(`a[href="#${active.id}"]`);
+      if (link) {
+        link.classList.add('active');
+        // keep active link in view inside the sidebar
+        const c = tocSidebar;
+        const linkTop = link.offsetTop;
+        const linkBottom = linkTop + link.offsetHeight;
+        if (linkTop < c.scrollTop) c.scrollTop = linkTop;
+        else if (linkBottom > c.scrollTop + c.clientHeight) c.scrollTop = linkBottom - c.clientHeight;
+      }
+    }
+  }
+
+  // Smooth scroll that compensates for sticky header
+  links.forEach(a => {
+    a.addEventListener('click', function (e) {
+      e.preventDefault();
+      const id = this.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (!target) return;
+
+      const offset = getHeaderOffset();
+      const top = window.scrollY + target.getBoundingClientRect().top - offset;
+      window.scrollTo({ top, behavior: 'smooth' });
+      history.pushState(null, '', '#' + id);
     });
-    
-    // Handle click events for smooth scrolling
-    tocLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetElement = document.getElementById(targetId);
-            
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                // Update URL without triggering scroll
-                history.pushState(null, null, `#${targetId}`);
-            }
-        });
-    });
+  });
+
+  updateActive();
+  window.addEventListener('scroll', updateActive, { passive: true });
 });
 </script>
