@@ -1,0 +1,174 @@
+/* =====================================================
+   POSTS LIST PAGE: Two-column layout with sticky sidebar
+   ===================================================== */
+
+/* Constrain only the Posts page container (leave Home untouched) */
+.main:has(.posts-layout) {
+  max-width: 1320px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Layout wrapper */
+.posts-layout {
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr);
+  gap: var(--gap, 1.5rem);
+  align-items: start;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* Sticky sidebar */
+.posts-sidebar {
+  position: sticky;
+  top: var(--anchor-offset, 88px);
+  height: calc(100vh - var(--anchor-offset, 88px) - 24px);
+  overflow: auto;
+  padding-right: 8px;
+}
+
+/* Sections inside sidebar */
+.search-section,
+.tags-section {
+  background: var(--entry);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-section h3,
+.tags-section h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1rem;
+  color: var(--primary);
+}
+
+/* Search input */
+#searchInput {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--theme);
+  color: var(--primary);
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  box-sizing: border-box;
+}
+
+#searchInput:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(0,0,0,0.05);
+}
+
+/* Search results message */
+#searchResults {
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: var(--secondary);
+}
+
+/* Active filters area */
+#activeFilters {
+  font-size: 0.85rem;
+  color: var(--secondary);
+  margin: 0 0 0.75rem 0;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Tag grid */
+.tag-filter-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+/* Tag buttons */
+.filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--theme);
+  color: var(--secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  user-select: none;
+  transition: all 0.2s ease;
+}
+
+.filter-tag:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+.filter-tag.active {
+  background: var(--primary);
+  color: var(--theme);
+  border-color: var(--primary);
+}
+
+.tag-count {
+  opacity: 0.7;
+}
+
+/* Toggle and Clear buttons */
+#toggleTags,
+#clearAllTags {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--theme);
+  color: var(--secondary);
+  cursor: pointer;
+  font-size: 0.85rem;
+  line-height: 1;
+  margin-top: 0.5rem;
+  transition: all 0.2s ease;
+}
+
+#toggleTags:hover,
+#clearAllTags:hover {
+  color: var(--primary);
+  border-color: var(--primary);
+}
+
+/* Posts list area spacing */
+.posts-main .posts-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+/* Responsive: stack on tablets/phones */
+@media (max-width: 1024px) {
+  .posts-layout {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  .posts-sidebar {
+    position: static;
+    top: auto;
+    height: auto;
+    overflow: visible;
+    padding-right: 0;
+  }
+}
+
+/* Minor tweaks for very large screens */
+@media (min-width: 1400px) {
+  .posts-layout {
+    max-width: 1400px;
+  }
+}
