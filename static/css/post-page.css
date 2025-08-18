@@ -11,6 +11,12 @@
 
 /* Specific styling for post body text - removed broad rule that affected all pages */
 
+/* Ensure posts expand the main wrapper to 1200px total (var --main-width + 2*--gap) */
+/* Use a broad selector without :has() to avoid compatibility issues */
+body:not(.list) {
+    --main-width: calc(1200px - var(--gap) * 2);
+}
+
 /* Flexbox for post container to align main content and ToC */
 .post-container {
     display: flex;
@@ -37,8 +43,9 @@
     margin-bottom: 0;
 }
 
-/* Target only actual blog posts (not about page) - must have both post-container and post-meta */
-body:has(#post-container):has(.post-meta) .main {
+/* Target only post pages that use the post container structure (excludes About) */
+/* Explicitly enforce article wrapper width on posts (overrides theme) */
+body:not(.list) .main {
     max-width: 1200px !important;
     margin: 0 auto !important;
     width: 100% !important;
@@ -47,7 +54,7 @@ body:has(#post-container):has(.post-meta) .main {
 /* Target the post container and its children */
 #post-container {
     /* Align with toc-sidebar layout; keep container centered and constrained */
-    max-width: 1200px;
+    max-width: 1600px;
     width: 100%;
     margin: 0 auto;
     padding: 0 1rem;
@@ -75,4 +82,29 @@ body:has(#post-container):has(.post-meta) .main {
     outline: none;
     border-color: var(--primary);
     box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.1);
+}
+
+/* Offset anchored headings so sticky compact header doesn't cover them */
+.post-single h1,
+.post-single h2,
+.post-single h3,
+.post-single h4,
+.post-single h5,
+.post-single h6 {
+    scroll-margin-top: 72px;
+}
+/* Anchor offset for sticky header to prevent headings from being hidden */
+.post-single h1,
+.post-single h2,
+.post-single h3,
+.post-single h4,
+.post-single h5,
+.post-single h6,
+.post-content h1[id],
+.post-content h2[id],
+.post-content h3[id],
+.post-content h4[id],
+.post-content h5[id],
+.post-content h6[id] {
+  scroll-margin-top: 88px; /* enough for compact header + small gap */
 }
