@@ -273,3 +273,89 @@
         gap: 16px;
     }
 }
+
+/* =====================================================
+   Home-only compact subscription overrides
+   Keeps the card visually lighter and narrower
+   ===================================================== */
+.home-subscribe.header-subscribe {
+    width: 100% !important;
+    max-width: 560px !important;
+    margin: 1.25rem auto 2rem !important;
+    padding: 10px 12px !important;
+    border-radius: 10px !important;
+}
+
+.home-subscribe .embeddable-buttondown-form {
+    row-gap: 6px !important;
+}
+
+.home-subscribe .subscribe-text {
+    font-size: 0.8rem;
+    opacity: 0.9;
+}
+
+.home-subscribe .subscribe-input {
+    height: 34px;
+}
+
+.home-subscribe .subscribe-button {
+    height: 34px;
+    font-size: 0.8rem;
+    padding: 0 12px 0 10px;
+}
+
+/* =====================================================
+   Compact header (applies when header has .header--compact)
+   Collapses layout on scroll: title left, nav right
+   ===================================================== */
+.header--compact .nav {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 0 !important;
+}
+
+.header--compact .nav-top-row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    min-height: 56px;
+    padding: 6px 0;
+}
+
+.header--compact .logo-nav-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+    width: 100%;
+}
+
+.header--compact .logo {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    margin-bottom: 0 !important;
+}
+
+.header--compact .logo-subtitle {
+    display: none !important;
+}
+
+.header--compact .nav-links {
+    display: flex !important;
+    align-items: center !important;
+    margin-left: auto !important;
+}
+
+.header--compact #menu {
+    display: flex !important;
+    gap: 8px !important;
+}
+
+.header--compact #menu li a {
+    padding: 0.25rem 0.5rem !important;
+}

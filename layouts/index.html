@@ -4,14 +4,33 @@
 <div class="welcome-section" style="text-align: center; margin-bottom: 3rem; padding: 2rem 0;">
     <h1 style="font-size: 2rem; font-weight: 700; margin-bottom: 1rem; color: var(--primary);">Welcome to my personal blog</h1>
     <p style="font-size: 1rem; line-height: 1.6; color: var(--secondary); max-width: 600px; margin: 0 auto 1.5rem auto;">
-        I share insights on data engineering, analytics engineering, automation, and DevOps. 
+        I share insights on data engineering, analytics engineering, automation, and DevOps.
         Practical guides, migration tips, and tools to help modern data teams build better systems. The views expressed here are my own and do not represent my client(s).
     </p>
-    <a href="/about/" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; font-size: 0.9rem;" 
+    <a href="/about/" style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; font-size: 0.9rem;"
        onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">
         Learn more about me →
     </a>
 </div>
+
+{{/* Newsletter Subscription (home only) */}}
+{{- $provider := (index .Site.Params "newsletter").provider }}
+{{- if eq $provider "buttondown" }}
+{{- $newsletterHandle := (index .Site.Params "newsletter").handle }}
+<div class="header-subscribe home-subscribe" style="margin: 1.25rem auto 2rem; width: 100%; max-width: 560px; padding: 10px 12px; border-radius: 10px;">
+  <form
+    action="https://buttondown.email/api/emails/embed-subscribe/{{ $newsletterHandle }}"
+    method="post"
+    target="popupwindow"
+    onsubmit="window.open('https://buttondown.email/{{ $newsletterHandle }}', 'popupwindow')"
+    class="embeddable-buttondown-form">
+    <span class="subscribe-text">📧 Subscribe to new posts by email:</span>
+    <input type="email" name="email" placeholder="you@example.com" required class="subscribe-input">
+    <input type="hidden" value="1" name="embed"/>
+    <button type="submit" class="subscribe-button">Subscribe</button>
+  </form>
+</div>
+{{- end }}
 
 {{/* Latest Posts Section */}}
 <header class="page-header">
