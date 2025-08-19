@@ -1,0 +1,10 @@
+{{- $type := .Get "type" | default "info" -}}
+{{- $title := .Get "title" -}}
+<aside class="callout {{ $type }}">
+  {{- if $title -}}
+  <span class="callout-title">{{ $title }}</span>
+  {{- end -}}
+  <div class="callout-body">
+    {{- .Inner | markdownify -}}
+  </div>
+</aside>
