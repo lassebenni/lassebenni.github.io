@@ -39,14 +39,14 @@ ignoreLogs = ['warning-goldmark-raw-html']
 	
 [params.giscus]
 	repo = "lassebenni/lassebenni.github.io"
-	repoId = "MDEwOlJlcG9zaXRvcnkyNzI4MjAzMzU="
+	repoId = "MDEwOlJlcG9zaXRvcnkzNjU2MzYzOA=="
 	category = "General"
-	categoryId = "DIC_kwDOEDgMH84Ci5nH"
+	categoryId = "MDE4OkRpc2N1c3Npb25DYXRlZ29yeTMyMjY4ODI3"
 	mapping = "pathname"
 	strict = "0"
 	reactionsEnabled = "1"
 	emitMetadata = "0"
-	inputPosition = "top"
+	inputPosition = "bottom"
 	theme = "preferred_color_scheme"
 	lang = "en"
 	# which sections to show on homepage and posts list
