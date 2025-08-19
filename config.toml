@@ -2,6 +2,7 @@ baseURL = "https://lassebenni.github.io/"
 languageCode = "en-us"
 title = "Lasse on Data"
 theme = "PaperMod"
+summaryLength = 120
 
 [pagination]
   pagerSize = 5

@@ -1,6 +1,7 @@
 ---
 title: "10 Tips for Migrating from SAS Viya to Snowflake + dbt"
 description: "Key insights from migrating a sports sector client from SAS Viya to Snowflake and dbt, focusing on practical tips to make your migration smoother."
+ai_summary: "Pragmatic tips learned migrating analytics from SAS Viya to Snowflake plus dbt. Compare capabilities, choose lift‑and‑shift vs remodeling, validate with dbt‑audit‑helper, debug flows, translate SAS logic to SQL, track dependencies, manage previews, scope data tests, handle true deletes and incremental logic, and preserve history with dbt snapshots."
 date: 2025-07-08T19:30:16.760Z
 tags: ["analytics engineer", "snowflake", "dbt", "data-engineering", "migration", "analytics"]
 categories: ["Data Engineering", "Analytics Engineering"]

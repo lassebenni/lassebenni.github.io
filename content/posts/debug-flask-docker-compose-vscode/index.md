@@ -5,6 +5,7 @@ date: 2021-12-21T21:45:31+02:00
 lastmod: 2025-08-13T17:50:00+02:00
 draft: false
 description: "TLDR; Install debugpy and run the debugpy in your package.json. Then launch 'Python: Remote Attach' in VS Code."
+ai_summary: "Step‑by‑step recipe to debug a Flask app running in docker‑compose with VS Code. Install debugpy in the image, start Flask via debugpy, expose port 5678, add a Remote Attach launch configuration, and run the containers. Screenshots illustrate each step for a reliable workflow."
 tags: ["flask", "docker", "vscode", "debugging", "python"]
 categories: ["Tutorial"]
 comments: true

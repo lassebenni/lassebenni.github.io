@@ -105,8 +105,11 @@
         </h2>
     </header>
     {{- if (.Param "ShowSummary") | default (.Site.Params.ShowSummary) }}
+    {{- $teaser := .Params.ai_summary -}}
+    {{- if not $teaser -}}{{- $teaser = .Description -}}{{- end -}}
+    {{- if not $teaser -}}{{- $teaser = (.Summary | plainify | htmlUnescape) -}}{{- end -}}
     <div class="entry-content">
-        <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+        <p>{{ $teaser }}</p>
     </div>
     {{- end }}
     <footer class="entry-footer">

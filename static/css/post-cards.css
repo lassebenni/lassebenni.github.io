@@ -12,7 +12,7 @@
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08) !important;
     transition: all 0.3s ease !important;
     position: relative !important;
-    overflow: hidden !important;
+    overflow: visible !important;
 }
 
 .post-entry:hover {
@@ -75,4 +75,44 @@
     display: flex !important;
     flex-direction: column !important;
     gap: 0.25rem !important;
+}\n\n/* Ensure full AI summary is visible on cards (override PaperMod clamps) */
+.post-entry .entry-content,
+.first-entry .entry-content {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: initial !important;
+  overflow: visible !important;
+}
+/* Allow cards to expand fully for long AI summaries */
+.post-entry { 
+  overflow: visible !important; /* override theme's hidden overflow */
+  height: auto !important;
+  min-height: 0 !important;
+}
+.entry-content {
+  max-height: none !important;
+}
+.entry-content p {
+  white-space: normal !important;
+}
+/* Option A: Full‑wrap AI summary with high-specificity overrides on list pages */
+body.list .post-entry .entry-content,
+body.list .first-entry .entry-content {
+  display: block !important;
+  -webkit-line-clamp: unset !important;
+  -webkit-box-orient: initial !important;
+  overflow: visible !important;
+  max-height: none !important;
+  text-overflow: clip !important;
+  white-space: normal !important;
+}
+
+/* Compact, readable summary typography for full text */
+body.list .post-entry .entry-content p,
+body.list .first-entry .entry-content p {
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+  color: var(--secondary) !important;
+  margin: 0 !important;
+  word-break: normal !important;
 }

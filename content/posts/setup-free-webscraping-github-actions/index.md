@@ -5,6 +5,7 @@ date: 2022-07-31T22:47:15+02:00
 lastmod: 2025-08-13T17:50:00+02:00
 draft: false
 description: "Use Github Actions to automate web scraping tasks."
+ai_summary: "Tutorial for free scheduled web scraping with GitHub Actions. Find a site’s JSON endpoint, then use curl and jq in a workflow to save data to the repo on a cron schedule. Explore results with Flat Viewer. Includes YAML, limits, and practical setup guidance."
 tags: ["github-actions", "automation", "devops", "webscraping"]
 categories: ["Tutorial"]
 comments: true
