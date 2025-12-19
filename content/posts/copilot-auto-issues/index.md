@@ -2,6 +2,10 @@
 title: "Automatically fix Github Actions failures with Copilot coding agent [GitHub Copilot Pro]"
 date: 2025-08-18
 description: "Save time on issue creation and debugging failed Workflows by enabling Copilot's coding agent and automating the process."
+cover:
+    image: "https://cdn.jsdelivr.net/npm/undraw-svg@1.0.0/svgs/artificial-intelligence.svg"
+    alt: "AI and Coding illustration"
+    relative: false
 ai_summary: "Guide to automatically triage and fix failing GitHub Actions builds using GitHub Copilot’s coding agent. Walks through enabling the agent, creating a fine‑grained PAT, adding a workflow that opens issues and PRs, testing the setup, mobile review, and key security considerations, caveats, and costs."
 tags: ["github actions", "copilot", "automation", "devops"]
 draft: false
