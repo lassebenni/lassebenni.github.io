@@ -1,0 +1,30 @@
+/* Constrain cover images on list pages to approx 50% of card width */
+.post-entry .entry-cover {
+    width: 50% !important;
+    max-width: 50% !important;
+    margin: 0 auto 1.5rem auto !important;
+    display: block !important;
+}
+
+.post-entry .entry-cover img {
+    width: 100% !important;
+    height: auto !important;
+    max-height: 200px !important;
+    object-fit: contain !important;
+}
+
+/* Constrain cover image on single post pages */
+.post-single .entry-cover {
+    width: 35% !important;
+    max-width: 35% !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    display: block !important;
+}
+
+.post-single .entry-cover img {
+    width: 100% !important;
+    height: auto !important;
+    object-fit: contain !important;
+    margin: 0 auto !important;
+}
