@@ -10,20 +10,20 @@ cover:
     caption: "AI Agent Architecture (Illustration by unDraw)"
 ---
 
-There's such an overflow of interesting projects out there, both open-source and proprietary, that it's hard to keep track of them all. Just for myself, I've been finding it hard to keep track of them all. For myself, I've wanted to create a curated newsletter as a way to keep track of the projects I find interesting. Hopefully you can find some inspiration too!
+There's such an overflow of interesting projects out there, both open-source and proprietary, that it's hard to keep track of them all. I've wanted to create a curated newsletter as a way to keep track of the projects I find interesting. Hopefully you can find some inspiration too!
 
 What I found interesting this week:
 
 ## Projects:
 
 {{% accordion title="GammaVibe - a newsletter that generates start-up ideas. One idea per day." level="3" %}}
-- [GammaVibe - a newsletter that generates start-up ideas. One idea per day.](https://gammavibe.com/newsletter/)
+[URL: GammaVibe - a newsletter that generates start-up ideas. One idea per day.](https://gammavibe.com/newsletter/)
 
 <p align="center">
   <img src="image-1.png" alt="GammaVibe" width="500" />
 </p>
 
-- The Ex-Googlee Mirko Froehlich recently created this automated partly-free newsletter to generate start-up ideas. I subscribed to the free one, but there's a more detailed paid version (5 dollars a month) available.
+- The Ex-Googler Mirko Froehlich recently created this automated partly-free newsletter to generate start-up ideas. I subscribed to the free one, but there's a more detailed paid version (5 dollars a month) available.
 
 - This idea of a startup-idea generator is not new, I remember one of the first ChatGPT-powered sites in 2022 that I subscribed to was doing this: ![ideasai.com](image.png) They seemed to have stopped maintaining it, since [it now](https://ideasai.com/) just redirects to the X-profile of the serial AI-entrepeneur that is selling [an e-course](https://readmake.com/).
 

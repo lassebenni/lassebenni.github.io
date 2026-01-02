@@ -22,9 +22,9 @@ ignoreLogs = ['warning-goldmark-raw-html']
       unsafe = true
 
 [params]
-	subtitle = "data engineering, analytics engineering, automation and devops notes."
+	subtitle = "Notes on data/analytics engineering, and whatever data interests me."
 	# papermod params
-	homeInfoParams = { Title = "Lasse on Data", Content = "data engineering, analytics engineering, automation and devops notes." }
+	homeInfoParams = { Title = "Lasse on Data", Content = "Notes on data/analytics engineering, and whatever data interests me." }
 	ShowReadingTime = true
 	ShowShareButtons = true
 	ShowSummary = true
