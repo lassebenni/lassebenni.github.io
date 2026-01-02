@@ -1,0 +1,15 @@
+<details class="accordion">
+    <summary class="accordion-header">
+        {{- $title := .Get "title" | default "Click to expand" -}}
+        {{- $level := .Get "level" -}}
+        {{- if $level -}}
+            {{- $tag := printf "h%s" $level -}}
+            {{- printf "<%s>%s</%s>" $tag $title $tag | safeHTML -}}
+        {{- else -}}
+            <span class="accordion-title">{{ $title }}</span>
+        {{- end -}}
+    </summary>
+    <div class="accordion-content">
+        {{ .Inner | markdownify }}
+    </div>
+</details>

@@ -7,7 +7,9 @@
 {{- /* Fly.io-like typography and callouts */ -}}
 <link rel="stylesheet" href="{{ "css/fly-typography.css" | absURL }}">
 
-{{- /* Custom CSS for about page */ -}}
+{{- /* Custom CSS for accordion/collapsible content */ -}}
+<link rel="stylesheet" href="{{ "css/accordion.css" | absURL }}">
+
 {{ if eq .RelPermalink "/about/" }}
 <link rel="stylesheet" href="{{ "css/about-page.css" | absURL }}">
 {{ end }}

@@ -1,0 +1,81 @@
+/* Notion-like Accordion Styles */
+.accordion {
+    margin: 1rem 0;
+    padding: 0.2rem 0;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.accordion:hover {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.dark .accordion:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.accordion-header {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    list-style: none; /* Remove default triangle */
+    padding: 0.4rem 0.6rem;
+    user-select: none;
+}
+
+/* Hide default marker in Safari/Chrome */
+.accordion-header::-webkit-details-marker {
+    display: none;
+}
+
+.accordion-header::before {
+    content: "▶"; /* Notion-like triangle */
+    display: inline-block;
+    font-size: 0.8rem;
+    margin-right: 0.6rem;
+    transition: transform 0.2s ease;
+    opacity: 0.6;
+    color: var(--secondary);
+}
+
+.accordion[open] > .accordion-header::before {
+    transform: rotate(90deg);
+}
+
+/* Ensure markdown headings inside summary work with flex alignment */
+.accordion-header h1,
+.accordion-header h2,
+.accordion-header h3,
+.accordion-header h4,
+.accordion-header h5,
+.accordion-header h6 {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    font-size: inherit;
+    font-weight: inherit;
+    line-height: inherit;
+}
+
+.accordion-title {
+    flex: 1;
+}
+
+.accordion-content {
+    padding: 0.4rem 0.6rem 0.8rem 2.2rem;
+    border-left: 2px solid var(--border);
+    margin-left: 1.1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--content);
+}
+
+/* Ensure markdown inside works correctly */
+.accordion-content > *:first-child {
+    margin-top: 0;
+}
+
+.accordion-content > *:last-child {
+    margin-bottom: 0;
+}
