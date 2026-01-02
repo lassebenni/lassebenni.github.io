@@ -1,5 +1,5 @@
 ---
-title: "SELECT * FROM WEEK_EDITION_1"
+title: "`SELECT * FROM WEEK_EDITION_1`"
 date: 2026-01-02T11:10:24+01:00
 draft: false
 ai_summary: "A deep dive into GammaVibe, an autonomous startup-idea generator. This post explores its modern tech stack—including Python, PydanticAI, and Gemini—and breaks down a pragmatic deployment strategy using Docker, Raspberry Pi for staging, and DigitalOcean for production."
@@ -14,7 +14,7 @@ There's such an overflow of interesting projects out there, both open-source and
 
 What I found interesting this week:
 
-### Projects:
+## Projects:
 
 {{% accordion title="GammaVibe - a newsletter that generates start-up ideas. One idea per day." level="3" %}}
 - [GammaVibe - a newsletter that generates start-up ideas. One idea per day.](https://gammavibe.com/newsletter/)
@@ -31,4 +31,4 @@ What I found interesting this week:
   > Total cost: $77/month now, $167/month later (with EventRegistry paid tier). 
 
 Check it out as an inspiration project!
-{{< /accordion >}}
+{{% /accordion %}}

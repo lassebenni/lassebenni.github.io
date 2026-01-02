@@ -10,6 +10,9 @@
 {{- /* Custom CSS for accordion/collapsible content */ -}}
 <link rel="stylesheet" href="{{ "css/accordion.css" | absURL }}">
 
+{{- /* Custom JS for accordion auto-open from TOC */ -}}
+<script src="{{ "js/accordion.js" | absURL }}" defer></script>
+
 {{ if eq .RelPermalink "/about/" }}
 <link rel="stylesheet" href="{{ "css/about-page.css" | absURL }}">
 {{ end }}

@@ -101,7 +101,7 @@
     {{- partial "cover.html" (dict "cxt" . "IsHome" false "isHidden" $isHidden) }}
     <header class="entry-header">
         <h2 class="entry-hint-parent">
-            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            <a href="{{ .Permalink }}">{{ .Title | replaceRE "`([^`]+)`" "<code>$1</code>" | safeHTML }}</a>
         </h2>
     </header>
     {{- if (.Param "ShowSummary") | default (.Site.Params.ShowSummary) }}
