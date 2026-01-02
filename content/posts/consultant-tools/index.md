@@ -6,7 +6,7 @@ summary: "Some tools and techniques that help me do my job better."
 tags: ["consulting", "productivity", "tools"]
 categories: ["Productivity"]
 cover:
-    image: "/images/posts/consultant-tools/cover.svg"
+    image: "cover.svg"
     alt: "Data processing illustration"
     caption: "Invaluable tools for the modern consultant (Illustration by unDraw)"
 ---

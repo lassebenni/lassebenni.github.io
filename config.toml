@@ -30,6 +30,7 @@ ignoreLogs = ['warning-goldmark-raw-html']
 	ShowSummary = true
 	defaultTheme = "auto"
 	disableSpecial1stPost = false
+	mainSections = ["posts"]
 	
 	# Table of Contents settings
 	ShowToc = true
@@ -50,9 +51,6 @@ ignoreLogs = ['warning-goldmark-raw-html']
 	inputPosition = "bottom"
 	theme = "preferred_color_scheme"
 	lang = "en"
-	# which sections to show on homepage and posts list
-	mainSections = ["posts"]
-
 	# newsletter settings (buttondown recommended)
 	NewsletterSignup = "https://buttondown.email/lassebenni"
 
