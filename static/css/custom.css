@@ -31,8 +31,8 @@ article.post-entry figure.entry-cover img {
 article.post-single .entry-cover,
 .post-single .entry-cover,
 .post-single figure.entry-cover {
-    width: 30% !important;
-    max-width: 30% !important;
+    width: 15% !important;
+    max-width: 15% !important;
     margin-left: auto !important;
     margin-right: auto !important;
     display: block !important;
