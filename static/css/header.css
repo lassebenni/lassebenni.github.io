@@ -38,6 +38,29 @@
     flex: 1 1 auto !important;
 }
 
+.logo-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    margin-bottom: 4px !important;
+}
+
+.header-avatar {
+    width: 96px;
+    height: 96px;
+    border-radius: 50% !important;
+    object-fit: cover !important;
+    display: block !important;
+    flex-shrink: 0 !important;
+    border: 2px solid var(--border);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header-avatar:hover {
+    transform: scale(1.05);
+}
+
 .logo {
     flex: 0 0 auto !important;
     display: flex !important;
@@ -358,4 +381,15 @@
 
 .header--compact #menu li a {
     padding: 0.25rem 0.5rem !important;
+}
+
+.header--compact .header-avatar {
+    width: 24px;
+    height: 24px;
+    border-width: 1px;
+}
+
+.header--compact .logo-wrapper {
+    gap: 8px !important;
+    margin-bottom: 0 !important;
 }
