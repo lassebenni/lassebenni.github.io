@@ -141,8 +141,11 @@
                     {{- end }}
                 </ul>
                 </div>
+
             </div>
 
+            {{/* Newsletter Subscription in Header */}}
+            {{ partial "newsletter_form.html" (dict "Site" .Site "class" "header-subscribe") }}
         </div>
     </nav>
 </header>
