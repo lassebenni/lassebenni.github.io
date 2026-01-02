@@ -48,6 +48,7 @@
 .header-avatar {
     width: 96px;
     height: 96px;
+    margin-top: 4px !important;
     border-radius: 50% !important;
     object-fit: cover !important;
     display: block !important;
@@ -384,8 +385,8 @@
 }
 
 .header--compact .header-avatar {
-    width: 24px;
-    height: 24px;
+    width: 64px;
+    height: 64px;
     border-width: 1px;
 }
 
