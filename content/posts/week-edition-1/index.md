@@ -2,8 +2,12 @@
 title: "SELECT * FROM WEEK_EDITION_1"
 date: 2026-01-02T11:10:24+01:00
 draft: false
-ai_summary: "Analysis of the GammaVibe newsletter, an automated startup-idea generator by an ex-Googler. Explores the landscape of ChatGPT-powered startup tools and includes insights into the newsletter's technical architecture."
-tags: ["newsletter", "startups", "automation", "architecture", "ai"]
+ai_summary: "A deep dive into GammaVibe, an autonomous startup-idea generator. This post explores its modern tech stack—including Python, PydanticAI, and Gemini—and breaks down a pragmatic deployment strategy using Docker, Raspberry Pi for staging, and DigitalOcean for production."
+tags: ["python", "pydantic-ai", "gemini", "docker", "automation", "architecture"]
+cover:
+    image: "cover.svg"
+    alt: "Artificial Intelligence illustration"
+    caption: "AI Agent Architecture (Illustration by unDraw)"
 ---
 
 There's such an overflow of interesting projects out there, both open-source and proprietary, that it's hard to keep track of them all. Just for myself, I've been finding it hard to keep track of them all. For myself, I've wanted to create a curated newsletter as a way to keep track of the projects I find interesting. Hopefully you can find some inspiration too!
