@@ -44,7 +44,11 @@
         <div class="nav-top-row">
             {{/* Site title and tagline */}}
             <div class="logo-nav-container">
-                <div class="logo">
+                <div class="logo-wrapper">
+                    <a href="{{ "" | absLangURL }}" aria-label="Home">
+                        <img src="{{ "/images/profile.jpg" | absURL }}" alt="Lasse Benninga" class="header-avatar">
+                    </a>
+                    <div class="logo">
                     {{- $title := (site.Params.homeInfoParams.Title | default site.Title) }}
                     {{- $content := site.Params.homeInfoParams.Content }}
                     {{- if $title }}
@@ -81,6 +85,7 @@
                     </div>
                     {{- end }}
                     {{- end }}
+                </div>
                 </div>
 
                 {{/* Navigation menu - moved directly under logo */}}
