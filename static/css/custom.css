@@ -26,25 +26,3 @@ article.post-entry figure.entry-cover img {
     max-height: 200px !important;
     object-fit: contain !important;
 }
-
-/* Constrain cover image on single post pages */
-article.post-single .entry-cover,
-.post-single .entry-cover,
-.post-single figure.entry-cover {
-    width: 15% !important;
-    max-width: 15% !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
-    display: block !important;
-}
-
-article.post-single .entry-cover img,
-.post-single .entry-cover img,
-.post-single figure.entry-cover img {
-    width: 100% !important;
-    max-width: 100% !important;
-    height: auto !important;
-    max-height: 400px !important;
-    object-fit: contain !important;
-    margin: 0 auto !important;
-}
