@@ -61,21 +61,8 @@
       {{/* Newsletter Subscription (post footer) */}}
         {{- $provider := (index .Site.Params "newsletter").provider }}
         {{- if and (eq $provider "buttondown") (not (eq .File.Path "about.md")) }}
-        {{- $newsletterHandle := (index .Site.Params "newsletter").handle }}
         <h3 style="text-align: center; margin-bottom: 1rem;">Subscribe to stay updated and get notified when new posts are published</h3>
-        <div class="header-subscribe post-subscribe" style="margin: 2rem auto 2rem; width: 100%; max-width: 560px; padding: 10px 12px; border-radius: 10px; text-align: center;">
-          <form
-            action="https://buttondown.email/api/emails/embed-subscribe/{{ $newsletterHandle }}"
-            method="post"
-            target="popupwindow"
-            onsubmit="window.open('https://buttondown.email/{{ $newsletterHandle }}', 'popupwindow')"
-            class="embeddable-buttondown-form">
-            <span class="subscribe-text">📧 Subscribe to new posts by email:</span>
-            <input type="email" name="email" placeholder="you@example.com" required class="subscribe-input">
-            <input type="hidden" value="1" name="embed"/>
-            <button type="submit" class="subscribe-button">Subscribe</button>
-          </form>
-        </div>
+        {{ partial "newsletter_form.html" (dict "Site" .Site "class" "home-subscribe post-subscribe" "style" "margin: 2rem auto 2rem; width: 100%; max-width: 560px; padding: 10px 12px; border-radius: 10px; text-align: center;") }}
         {{- end }}
 
       <footer class="post-footer">
