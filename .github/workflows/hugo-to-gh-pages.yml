@@ -4,13 +4,10 @@ on:
   push:
     branches:
       - main
-  pull_request:
-    types: [opened, synchronize, reopened]
   workflow_dispatch:
 
 permissions:
   contents: write
-  pull-requests: write
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
@@ -37,36 +34,16 @@ jobs:
           mkdir -p layouts/partials
           printf '{{/* no-op GA for CI */}}' > layouts/partials/google_analytics.html
 
-      - name: Determine environment
-        id: env
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "dest=pr-${{ github.event.number }}" >> $GITHUB_OUTPUT
-            echo "base_url=https://lasse.be/pr-${{ github.event.number }}/" >> $GITHUB_OUTPUT
-          else
-            echo "dest=." >> $GITHUB_OUTPUT
-            echo "base_url=https://lasse.be/" >> $GITHUB_OUTPUT
-          fi
-
       - name: Build
         run: |
-          hugo --minify --baseURL ${{ steps.env.outputs.base_url }}
+          hugo --minify --baseURL https://lasse.be/
 
       - name: Deploy to GitHub Pages Branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
-          destination_dir: ${{ steps.env.outputs.dest }}
-          keep_files: true
+          keep_files: false
+          cname: lasse.be
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
-
-      - name: Comment on PR
-        if: github.event_name == 'pull_request'
-        uses: mshick/add-pr-comment@v2
-        with:
-          message: |
-            ## 🚀 Preview Site Ready!
-            Your changes have been deployed to the preview site:
-            [View Preview](https://lasse.be/pr-${{ github.event.number }}/)
