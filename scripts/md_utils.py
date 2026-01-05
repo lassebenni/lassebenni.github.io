@@ -1,22 +1,43 @@
 import re
 
+def _extract_yaml_value(pattern, content):
+    """
+    Extract a single-line YAML scalar value supporting double-quoted, single-quoted,
+    and unquoted forms. Returns an empty string if no match is found.
+    """
+    match = re.search(pattern, content, re.MULTILINE)
+    if not match:
+        return ""
+    for group in match.groups():
+        if group is not None:
+            return group.strip()
+    return ""
+
+
 def extract_metadata(file_path):
     """Extracts title, summary, and tags from YAML front matter using regex."""
     with open(file_path, 'r') as f:
         content = f.read()
     
-    # Simple regex to get title, summary, and tags from YAML front matter
-    title_match = re.search(r'^title:\s*"(.*)"', content, re.MULTILINE)
-    summary_match = re.search(r'^summary:\s*"(.*)"', content, re.MULTILINE)
-    # Also support description as a fallback for summary
-    if not summary_match:
-        summary_match = re.search(r'^description:\s*"(.*)"', content, re.MULTILINE)
+    # Regex patterns that support double-quoted, single-quoted, and unquoted values
+    title = _extract_yaml_value(
+        r'^\s*title:\s*(?:"([^"]*)"|\'([^\']*)\'|([^\r\n#]+))',
+        content,
+    )
+
+    summary = _extract_yaml_value(
+        r'^\s*summary:\s*(?:"([^"]*)"|\'([^\']*)\'|([^\r\n#]+))',
+        content,
+    )
+    if not summary:
+        # Also support description as a fallback for summary
+        summary = _extract_yaml_value(
+            r'^\s*description:\s*(?:"([^"]*)"|\'([^\']*)\'|([^\r\n#]+))',
+            content,
+        )
     
-    tags_match = re.search(r'^tags:\s*\[(.*)\]', content, re.MULTILINE)
-    
-    title = title_match.group(1) if title_match else ""
-    summary = summary_match.group(1) if summary_match else ""
-    tags = tags_match.group(1) if tags_match else ""
+    tags_match = re.search(r'^\s*tags:\s*\[(.*)\]', content, re.MULTILINE)
+    tags = tags_match.group(1).strip() if tags_match else ""
     
     return title, summary, tags
 

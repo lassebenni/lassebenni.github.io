@@ -46,7 +46,9 @@
             <div class="logo-nav-container">
                 <div class="logo-wrapper">
                     <a href="{{ "" | absLangURL }}" aria-label="Home">
-                        <img src="{{ "/images/profile.jpg" | absURL }}" alt="Lasse Benninga" class="header-avatar">
+                        {{- $avatarSrc := site.Params.headerAvatar.src | default "/images/profile.jpg" -}}
+                        {{- $avatarAlt := site.Params.headerAvatar.alt | default "Lasse Benninga" -}}
+                        <img src="{{ $avatarSrc | absURL }}" alt="{{ $avatarAlt }}" class="header-avatar">
                     </a>
                     <div class="logo">
                     {{- $title := (site.Params.homeInfoParams.Title | default site.Title) }}

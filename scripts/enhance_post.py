@@ -15,7 +15,13 @@ def main():
         content = f.read()
     
     # We strip the front matter for the agent to have cleaner content to analyze
-    body = content.split('---', 2)[-1].strip()
+    parts = content.split('---', 2)
+    if len(parts) == 3:
+        # Proper front matter detected: use the content after the second delimiter
+        body = parts[2].strip()
+    else:
+        # No or malformed front matter: fall back to using the whole content
+        body = content.strip()
     
     print(f"TITLE: {title}")
     print(f"CONTENT_PREVIEW: {body[:500]}...")

@@ -103,6 +103,6 @@ details.accordion[open] summary::after {
 
 .accordion-content {
     padding: 1rem;
-    background-color: transparent; /* Was var(--content), causing issues */
+    background-color: transparent; /* Using var(--content) here introduced a second solid panel background that clashed with the parent entry color (especially in dark mode). Transparent lets the content inherit the surrounding container background so the accordion blends correctly in all themes. */
     color: var(--primary, inherit);
 }

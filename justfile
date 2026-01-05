@@ -10,6 +10,9 @@ post title:
     @if [ -f "content/posts/{{title}}.md" ]; then \
         echo "Error: content/posts/{{title}}.md already exists. Please delete or move it first."; \
         exit 1; \
+    elif [ -e "content/posts/{{title}}/index.md" ]; then \
+        echo "Error: content/posts/{{title}}/index.md already exists. Please delete or move it first."; \
+        exit 1; \
     fi
     hugo new "posts/{{title}}/index.md"
 
