@@ -2,8 +2,8 @@
 title: "`SELECT * FROM WEEK_EDITION_1`"
 date: 2026-01-02T11:10:24+01:00
 draft: false
-ai_summary: "This week's edition covers the architecture of GammaVibe, text-to-code generated startup ideas, and key takeaways from Simon Willison's 'Year in LLMs'. We also explore Daniel Nettle's advice on maintaining a research career, data engineering predictions for 2026, and the reality of analytics chatbot usage."
-tags: ["python", "pydantic-ai", "llm", "data-engineering", "productivity", "simon-willison", "architecture"]
+ai_summary: "This first edition covers the architecture of GammaVibe, text-to-code generated startup ideas, and key takeaways from Simon Willison's 'Year in LLMs'. We also explore Daniel Nettle's advice on maintaining a research career, data engineering predictions for 2026, the reality of analytics chatbot usage, and a handy data warehouse recommender tool by Aztela."
+tags: ["python", "pydantic-ai", "llm", "data-engineering", "productivity", "simon-willison", "architecture", "tools"]
 cover:
     image: "cover.svg"
     alt: "Artificial Intelligence illustration"
