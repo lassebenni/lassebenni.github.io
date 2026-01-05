@@ -44,7 +44,13 @@
         <div class="nav-top-row">
             {{/* Site title and tagline */}}
             <div class="logo-nav-container">
-                <div class="logo">
+                <div class="logo-wrapper">
+                    <a href="{{ "" | absLangURL }}" aria-label="Home">
+                        {{- $avatarSrc := site.Params.headerAvatar.src | default "/images/profile.jpg" -}}
+                        {{- $avatarAlt := site.Params.headerAvatar.alt | default "Lasse Benninga" -}}
+                        <img src="{{ $avatarSrc | absURL }}" alt="{{ $avatarAlt }}" class="header-avatar">
+                    </a>
+                    <div class="logo">
                     {{- $title := (site.Params.homeInfoParams.Title | default site.Title) }}
                     {{- $content := site.Params.homeInfoParams.Content }}
                     {{- if $title }}
@@ -81,6 +87,7 @@
                     </div>
                     {{- end }}
                     {{- end }}
+                </div>
                 </div>
 
                 {{/* Navigation menu - moved directly under logo */}}
@@ -136,8 +143,11 @@
                     {{- end }}
                 </ul>
                 </div>
+
             </div>
 
+            {{/* Newsletter Subscription in Header */}}
+            {{ partial "newsletter_form.html" (dict "Site" .Site "class" "header-subscribe") }}
         </div>
     </nav>
 </header>

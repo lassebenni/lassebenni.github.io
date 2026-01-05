@@ -1,25 +1,5 @@
 {{- define "main" }}
 
-
-{{/* Newsletter Subscription (home only) */}}
-{{- $provider := (index .Site.Params "newsletter").provider }}
-{{- if eq $provider "buttondown" }}
-{{- $newsletterHandle := (index .Site.Params "newsletter").handle }}
-<div class="header-subscribe home-subscribe" style="margin: 1.25rem auto 2rem; width: 100%; max-width: 560px; padding: 10px 12px; border-radius: 10px;">
-  <form
-    action="https://buttondown.email/api/emails/embed-subscribe/{{ $newsletterHandle }}"
-    method="post"
-    target="popupwindow"
-    onsubmit="window.open('https://buttondown.email/{{ $newsletterHandle }}', 'popupwindow')"
-    class="embeddable-buttondown-form">
-    <span class="subscribe-text">📧 Subscribe to new posts by email:</span>
-    <input type="email" name="email" placeholder="you@example.com" required class="subscribe-input">
-    <input type="hidden" value="1" name="embed"/>
-    <button type="submit" class="subscribe-button">Subscribe</button>
-  </form>
-</div>
-{{- end }}
-
 {{/* Latest Posts Section */}}
 <header class="page-header">
     <h2>Latest Posts</h2>
@@ -44,7 +24,7 @@
     {{- partial "cover.html" (dict "cxt" . "IsHome" true "isHidden" $isHidden) }}
     <header class="entry-header">
         <h2 class="entry-hint-parent">
-            <a href="{{ .Permalink }}">{{ .Title }}</a>
+            <a href="{{ .Permalink }}">{{ .Title | replaceRE "`([^`]+)`" "<code>$1</code>" | safeHTML }}</a>
         </h2>
     </header>
     {{- if (.Param "ShowSummary") | default (.Site.Params.ShowSummary) }}

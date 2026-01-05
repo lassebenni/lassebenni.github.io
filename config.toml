@@ -22,9 +22,9 @@ ignoreLogs = ['warning-goldmark-raw-html']
       unsafe = true
 
 [params]
-	subtitle = "data engineering, analytics engineering, automation and devops notes."
+	subtitle = "Notes on data, and whatever interests me."
 	# papermod params
-	homeInfoParams = { Title = "Lasse on Data", Content = "data engineering, analytics engineering, automation and devops notes." }
+	homeInfoParams = { Title = "Lasse on Data", Content = "Notes on data, and whatever interests me." }
 	ShowReadingTime = true
 	ShowShareButtons = true
 	ShowSummary = true
@@ -94,6 +94,11 @@ weight = 3
 name = "Github"
 icon = "github"
 url = "https://github.com/lassebenni/"
+
+[[params.social]]
+name = "Medium"
+icon = "medium"
+url = "https://medium.com/@lassebenninga"
 
 [[params.social]]
 name = "rss"

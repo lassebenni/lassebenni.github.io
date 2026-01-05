@@ -1,0 +1,28 @@
+{{- $title := .Get "title" | default "Click to expand" -}}
+{{- $level := .Get "level" -}}
+{{- $id := "" -}}
+{{- if $level -}}
+    {{- $id = anchorize $title -}}
+{{- end -}}
+
+<details class="accordion"{{- if $id }} data-heading-id="{{ $id }}"{{- end }}>
+    <summary class="accordion-header">
+        <div class="accordion-header-content">
+        {{- if $level -}}
+            {{- $tag := printf "h%s" $level -}}
+            {{- $titleHTML := $title | markdownify | replaceRE "</?p>" "" -}}
+            {{- printf "<%s id=\"%s\">%s</%s>" $tag $id $titleHTML $tag | safeHTML -}}
+        {{- else -}}
+            {{- $titleHTML := $title | markdownify | replaceRE "</?p>" "" -}}
+            <span class="accordion-title">{{ $titleHTML | safeHTML }}</span>
+        {{- end -}}
+        {{- with .Get "summary" -}}
+            <span class="accordion-summary">{{ . | markdownify }}</span>
+        {{- end -}}
+        </div>
+    </summary>
+    <div class="accordion-content">
+        {{- .Inner | markdownify -}}
+    </div>
+</details>
+{{- /* Trim any trailing whitespace */ -}}
