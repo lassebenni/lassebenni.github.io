@@ -21,11 +21,17 @@ details.accordion summary {
     padding: 1rem;
     background-color: var(--entry, inherit);
     display: flex;
-    align-items: center;
+    align-items: flex-start; /* Align top for multi-line support */
     justify-content: space-between;
     list-style: none; /* Hide default marker */
     transition: background-color 0.2s ease;
     user-select: none;
+}
+
+.accordion-header-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Take up available space */
 }
 
 /* Hide default marker for Chrome/Safari */
@@ -58,6 +64,14 @@ details.accordion summary h6 {
     color: var(--primary, inherit);
 }
 
+.accordion-summary {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--secondary, #666);
+    margin-top: 0.2rem;
+    line-height: 1.4;
+}
+
 /* Chevron Icon */
 details.accordion summary::after {
     content: '';
@@ -68,6 +82,7 @@ details.accordion summary::after {
     transform: rotate(45deg); /* Pointing Right */
     transition: transform 0.2s ease;
     margin-left: 10px;
+    margin-top: 0.5rem; /* Optical alignment with text */
     flex-shrink: 0;
 }
 
