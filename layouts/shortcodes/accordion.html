@@ -5,7 +5,7 @@
     {{- $id = anchorize $title -}}
 {{- end -}}
 
-<details class="accordion"{{- if $id }} data-heading-id="{{ $id }}"{{- end }} open>
+<details class="accordion"{{- if $id }} data-heading-id="{{ $id }}"{{- end }}>
     <summary class="accordion-header">
         {{- if $level -}}
             {{- $tag := printf "h%s" $level -}}
