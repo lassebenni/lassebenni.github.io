@@ -1,6 +1,6 @@
 ---
 title: "SELECT * FROM WEEK (1)"
-date: 2026-01-02T11:10:24+01:00
+date: 2026-01-05T21:10:24+01:00
 draft: false
 ai_summary: "This first edition covers the architecture of GammaVibe, text-to-code generated startup ideas, and key takeaways from Simon Willison's 'Year in LLMs'. We also explore Daniel Nettle's advice on maintaining a research career, data engineering predictions for 2026, the reality of analytics chatbot usage, and a handy data warehouse recommender tool by Aztela."
 tags: ["weekly", "data-engineering", "tools", "llm"]
