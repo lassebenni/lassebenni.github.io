@@ -1,5 +1,5 @@
 ---
-title: "`SELECT * FROM WEEK_EDITION_1`"
+title: "SELECT * FROM WEEK (1)"
 date: 2026-01-02T11:10:24+01:00
 draft: false
 ai_summary: "This first edition covers the architecture of GammaVibe, text-to-code generated startup ideas, and key takeaways from Simon Willison's 'Year in LLMs'. We also explore Daniel Nettle's advice on maintaining a research career, data engineering predictions for 2026, the reality of analytics chatbot usage, and a handy data warehouse recommender tool by Aztela."
@@ -8,7 +8,7 @@ tags: ["weekly", "data-engineering", "tools", "llm"]
 
 There's such an overflow of interesting things out there related to data and software that it's hard to keep track of them all. I've wanted to create a curated newsletter as a way to keep track of the projects I find interesting. Hopefully you can find some inspiration too!
 
-What I found interesting this week (click a topic to expand):
+What I found interesting this week (click on a topic to expand it):
 
 ## Projects:
 
@@ -32,7 +32,13 @@ Check it out as an inspiration project!
 ## Articles
 
 {{% accordion title="Simon Willisons's The Year in LLMs (Simon Willison's Blog)" level="3" summary="AI Summary: Highlights from Simon Willison's extensive 2025 timeline, covering coding agents, the rise of tool-building, and the shift towards cloud models over local ones." %}}
-![Year in LLMs](image-2.png) https://simonwillison.net/2025/Dec/31/the-year-in-llms/#the-year-of-reasoning-
+
+<p align="center">
+  <img src="image-2.png" alt="Year in LLMs" width="400" />
+</p> 
+
+https://simonwillison.net/2025/Dec/31/the-year-in-llms/#the-year-of-reasoning-
+
 - Simon has an incredibly detailed timeline of "LLM" related events of 2025, and his views/notes on these. Some highlights:
 	- It's hard to overstate Simon's impact on technical software writing. He is such a prolific and transparent writer: his blog is a goldmine of insights for software and data engineers alike. And since the rise of LLM's as part of any serious software developer's toolkit, he's been commenting on them. Furthermore, many of his projects are opensource on Github and used by many developers (some reaching more than 10k stars). And his flow of self-documenting projects in [Github Issues](https://github.com/simonw/llm/issues/1300) should be an inspiration to anyone crafting their own projects (private or public). The [inventor of the term "git scraping"](https://simonwillison.net/2020/Oct/9/git-scraping/), for me he the example of a prodigious public coder & blogger who is just too interesting not to follow.
 	- Simon built `110` tools in 2025, an explosion of new tools compared to previous years (see [tools by month overview on his own site](https://tools.simonwillison.net/by-month)). From a Green Chef recipe-site for personal use to more technical ones such as a xml-validator and text-diff.  LLM's assisted him greatly. It's great to see the toolmaster (I don't use this term lighly, Simon has created over 170 open-source tools since 2024) at work, sharing his day-to-day experience with tooling. For me, Simon is an example of how to critically apply your software engineering experience to the new AI-assisted code generation frontier. Great to see his output grew this much.
@@ -99,8 +105,12 @@ Check it out as an inspiration project!
 ## Other
 
 {{% accordion title="Aztela's Data Warehouse Recommender" level="3" summary="AI Summary: A quick look at a user-friendly tool for recommending data warehouse solutions based on company needs." %}}
-- https://aztela.com/tools/best-data-warehouse-calculator
-![alt text](image-7.png)
+
+<p align="center">
+  <img src="image-7.png" alt="Data Warehouse Recommender" width="400" />
+</p> 
+
+https://aztela.com/tools/best-data-warehouse-calculator
 
  - I love this recommender for selecting a Data Warehouse for your business by [Aztela](https://aztela.com/), a Slovenian data boutique consultancy.
 	- The recommender asks a few questions on company size cloud etc, and recommends a data warehouse. Options seem to be BigQuery, Databricks, Snowflake, and Synapse(?) doesn't seem to have RedShift or Fabric interestingly enough.
