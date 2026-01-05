@@ -3,7 +3,7 @@ title: "`SELECT * FROM WEEK_EDITION_1`"
 date: 2026-01-02T11:10:24+01:00
 draft: false
 ai_summary: "This first edition covers the architecture of GammaVibe, text-to-code generated startup ideas, and key takeaways from Simon Willison's 'Year in LLMs'. We also explore Daniel Nettle's advice on maintaining a research career, data engineering predictions for 2026, the reality of analytics chatbot usage, and a handy data warehouse recommender tool by Aztela."
-tags: ["python", "pydantic-ai", "llm", "data-engineering", "productivity", "simon-willison", "architecture", "tools"]
+tags: ["weekly", "data-engineering", "tools", "llm"]
 ---
 
 There's such an overflow of interesting things out there related to data and software that it's hard to keep track of them all. I've wanted to create a curated newsletter as a way to keep track of the projects I find interesting. Hopefully you can find some inspiration too!
