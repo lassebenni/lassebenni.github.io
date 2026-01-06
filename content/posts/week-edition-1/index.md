@@ -6,6 +6,8 @@ ai_summary: "This first edition covers the architecture of GammaVibe, text-to-co
 tags: ["weekly", "data-engineering", "tools", "llm"]
 ---
 
+-- Note: No LLM's were harmed during the writing of this post, only my own brain.
+
 There's such an overflow of interesting things out there related to data and software that it's hard to keep track of them all. I've wanted to create a curated newsletter as a way to keep track of the projects I find interesting. Hopefully you can find some inspiration too!
 
 What I found interesting this week (click on a topic to expand it):
