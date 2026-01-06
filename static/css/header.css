@@ -12,12 +12,19 @@
     text-align: center;
     margin-bottom: 0;
     padding-bottom: 0;
+    /* Ensure no restrictive margins on mobile */
+    left: 0;
+    right: 0;
+    width: 100%;
 }
 
 .nav {
     display: flex !important;
     flex-direction: column !important;
     gap: 0 !important;
+    max-width: none !important; /* Override theme max-width */
+    margin: 0 auto !important;
+    padding: 0 16px !important; /* Standard side padding */
 }
 
 /* Top row: Logo/Navigation left, Subscription right */
@@ -120,6 +127,8 @@
 #menu li a {
     padding: 0.25rem 0.5rem !important;
     margin: 0 !important;
+    /* Prevent default underline and other theme styles if they interfere */
+    text-decoration: none !important;
 }
 
 /* Subscription form - styled to match reference image */
@@ -273,14 +282,35 @@
 
     .logo-nav-container {
         width: 100%;
-        align-items: flex-start;
+        align-items: center; /* Center elements in vertical stack */
+    }
+
+    .logo-wrapper {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 12px !important;
+        margin-bottom: 12px !important;
+    }
+
+    .logo {
+        align-items: center !important;
+        margin-bottom: 4px !important;
     }
     
     #menu {
-        gap: 0.25rem !important;
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        width: 100% !important;
+        gap: 6px 6px !important; /* Tighter gaps for SE */
+        margin: 4px 0 !important;
+        padding: 0 !important;
+        list-style: none !important;
+        text-align: center !important;
     }
-    
-    
+
     .embeddable-buttondown-form {
         grid-template-columns: 1fr auto !important;
         row-gap: 8px !important;
@@ -290,16 +320,35 @@
     .subscribe-input {
         min-width: 180px;
     }
-    
-    #menu {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 16px;
-    }
-    
+
     /* Hide newsletter subscription in compact header on mobile */
     .header--compact .header-subscribe {
         display: none !important;
+    }
+
+    #menu li {
+        margin: 0 !important;
+        padding: 0 !important;
+        display: inline-flex !important;
+    }
+
+    #menu li a {
+        padding: 0.25rem 0.4rem !important;
+        white-space: nowrap !important; /* Keep individual links on one line */
+        font-size: 0.95rem !important;
+    }
+
+    /* Target the long consulting link specifically */
+    #menu li a[href*="labenniconsulting"] {
+        font-size: 0.6rem !important; /* Even smaller for SE */
+        opacity: 0.8;
+        letter-spacing: -0.01em;
+        padding: 0.1rem 0.15rem !important;
+    }
+    
+    #menu li a[href*="labenniconsulting"] svg {
+        width: 10px !important;
+        height: 10px !important;
     }
 }
 
@@ -368,6 +417,16 @@
     flex-direction: row !important;
     align-items: center !important;
     margin-bottom: 0 !important;
+    flex: 0 1 auto !important; /* Allow it to shrink if needed */
+    min-width: 0 !important; /* Safe for flex truncation */
+    overflow: hidden !important;
+}
+
+.header--compact .logo a {
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: block !important;
 }
 
 .header--compact .logo-subtitle {
@@ -377,7 +436,10 @@
 .header--compact .nav-links {
     display: flex !important;
     align-items: center !important;
+    justify-content: center !important;
     margin-left: auto !important;
+    margin-right: auto !important;
+    flex-shrink: 0 !important;
 }
 
 .header--compact #menu {
@@ -411,17 +473,26 @@
    ===================================================== */
 @media (max-width: 768px) {
     .header--compact .header-avatar {
-        width: 48px;
-        height: 48px;
+        width: 44px;
+        height: 44px;
     }
     
     .header--compact .logo {
-        font-size: 0.95rem;
+        display: none !important; /* Hide title in compact mode on mobile to save space */
+    }
+    
+    .header--compact .logo-wrapper {
+        gap: 4px !important;
     }
     
     .header--compact #menu {
-        gap: 4px !important;
+        gap: 2px !important;
         flex-wrap: nowrap !important;
+    }
+
+    /* Shorten or hide the long link in compact mobile view if it still overlaps */
+    .header--compact #menu li a[href*="labenniconsulting"] {
+        display: none !important;
     }
     
     .header--compact #menu li a {
@@ -430,11 +501,11 @@
     }
     
     .header--compact .nav-top-row {
-        min-height: 48px;
+        min-height: 44px;
         padding: 4px 0;
     }
     
     .header--compact .logo-nav-container {
-        gap: 8px !important;
+        gap: 6px !important;
     }
 }
