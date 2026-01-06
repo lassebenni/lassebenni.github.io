@@ -12,7 +12,7 @@ There's such an overflow of interesting things out there related to data and sof
 
 What I found interesting this week (click on a topic to expand it):
 
-## Projects:
+## Projects
 
 {{% accordion title="GammaVibe - a newsletter that generates start-up ideas. One idea per day." level="3" summary="AI Summary: Explores GammaVibe, an automated startup idea generator, detailing its Python/PydanticAI tech stack and low-cost deployment architecture." %}}
 <p align="center">
