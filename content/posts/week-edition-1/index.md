@@ -10,11 +10,11 @@ tags: ["weekly", "data-engineering", "tools", "llm"]
 
 There's such an overflow of interesting things out there related to data and software that it's hard to keep track of them all. I've wanted to create a curated newsletter as a way to keep track of the projects I find interesting. Hopefully you can find some inspiration too!
 
-What I found interesting this week (click on a topic to expand it):
+What I found interesting this week:
 
 ## Projects
 
-{{% accordion title="GammaVibe - a newsletter that generates start-up ideas. One idea per day." level="3" summary="AI Summary: Explores GammaVibe, an automated startup idea generator, detailing its Python/PydanticAI tech stack and low-cost deployment architecture." %}}
+{{% accordion title="GammaVibe - a newsletter that generates start-up ideas. One idea per day." level="3" summary="Explores GammaVibe, an automated startup idea generator, detailing its Python/PydanticAI tech stack and low-cost deployment architecture." %}}
 <p align="center">
   <img src="image-1.png" alt="GammaVibe" width="500" />
 </p> 
@@ -33,7 +33,7 @@ Check it out as an inspiration project!
 
 ## Articles
 
-{{% accordion title="Simon Willisons's The Year in LLMs (Simon Willison's Blog)" level="3" summary="AI Summary: Highlights from Simon Willison's extensive 2025 timeline, covering coding agents, the rise of tool-building, and the shift towards cloud models over local ones." %}}
+{{% accordion title="Simon Willisons's The Year in LLMs (Simon Willison's Blog)" level="3" summary="Highlights from Simon Willison's extensive 2025 timeline, covering coding agents, the rise of tool-building, and the shift towards cloud models over local ones." %}}
 
 <p align="center">
   <img src="image-2.png" alt="Year in LLMs" width="400" />
@@ -67,7 +67,7 @@ https://simonwillison.net/2025/Dec/31/the-year-in-llms/#the-year-of-reasoning-
 
 {{% /accordion %}}
 
-{{% accordion title="Staying In The Game (Daniel Nettle's Blog)" level="3" summary="AI Summary: Insights from researcher Daniel Nettle on maintaining a long-term scientific career, emphasizing daily writing and focusing on work that matters personally." %}}
+{{% accordion title="Staying In The Game (Daniel Nettle's Blog)" level="3" summary="Insights from researcher Daniel Nettle on maintaining a long-term scientific career, emphasizing daily writing and focusing on work that matters personally." %}}
 ![alt text](image-8.png) https://www.danielnettle.org.uk/wp-content/uploads/2017/09/Staying-in-the-game.pdf
 - I came across this blog post from a Professor and cognitive science researcher and author of multiple books and scientific papers over the last 25+ years: [Daniel Nettle](https://www.danielnettle.eu/) and thought it was insightful to see how a professional researcher views his own craft for a scientist in a lifelong commitment for advancing his field. Other than being well-written, it contains some good insights:
 - On writing every day instead of when inspiration hits. Something I have as a goal for the coming month:
@@ -83,7 +83,7 @@ https://simonwillison.net/2025/Dec/31/the-year-in-llms/#the-year-of-reasoning-
 
 {{% /accordion %}}
 
-{{% accordion title="Data Engineering Predictions for 2026 (Columnar Blog)" level="3" summary="AI Summary: Predictions from Columnar focusing on the growth of Apache Arrow and Iceberg, and new tools for managed DuckDB and distributed SQL engines." %}}
+{{% accordion title="Data Engineering Predictions for 2026 (Columnar Blog)" level="3" summary="Predictions from Columnar focusing on the growth of Apache Arrow and Iceberg, and new tools for managed DuckDB and distributed SQL engines." %}}
 ![alt text](image-9.png) https://columnar.tech/blog/2026-predictions/
 - Can't have a new-years post without predictions for the new year. In this one [Columnar](https://columnar.tech/) (the group that is building inter-database connectivity using the Arrow format as the connectivity layer gives some interesting predictions. Mostly focused on the boons of Apache Arrow and the Iceberg open table format, but also mentions some interesting players in the scene:
 	- [Greybeam](https://www.greybeam.ai/) - For managed DuckDB clusters. Targets a hybrid Snowflake + managed duckdb solution.
@@ -91,7 +91,7 @@ https://simonwillison.net/2025/Dec/31/the-year-in-llms/#the-year-of-reasoning-
 	- Query Kafka streams with SQL using one of the many [Query.Farm duck-db extensions](https://query.farm/).
 {{% /accordion %}}
 
-{{% accordion title="The next data bottleneck (Katie Bauer's Substack)" level="3" summary="AI Summary: Argues that despite the potential of analytics chatbots, users primarily use them for simple data retrieval questions that dashboards could answer." %}}
+{{% accordion title="The next data bottleneck (Katie Bauer's Substack)" level="3" summary="Argues that despite the potential of analytics chatbots, users primarily use them for simple data retrieval questions that dashboards could answer." %}}
 ![alt text](image-10.png) https://wrongbutuseful.substack.com/p/the-next-data-bottleneck
 - Katie Bauer (Head of Data for Hex) shares her view on what user's really query analytics agents (chatbots) after (presumably) having insights to the actual query logs. Not grand strategy. Not data-driven storytelling. Just simple data-retrieval. Probably what a dashboard could've answered.
 	> "People _are_ asking more questions and a wider variety of functional roles are asking them to boot. The query stream for an analytics chatbot is a tantalizing dataset. What clever or crazy data questions do people ask for when there’s nothing to stop them from asking?"
@@ -106,7 +106,7 @@ https://simonwillison.net/2025/Dec/31/the-year-in-llms/#the-year-of-reasoning-
 
 ## Other
 
-{{% accordion title="Aztela's Data Warehouse Recommender" level="3" summary="AI Summary: A quick look at a user-friendly tool for recommending data warehouse solutions based on company needs." %}}
+{{% accordion title="Aztela's Data Warehouse Recommender" level="3" summary="A quick look at a user-friendly tool for recommending data warehouse solutions based on company needs." %}}
 
 <p align="center">
   <img src="image-7.png" alt="Data Warehouse Recommender" width="400" />
