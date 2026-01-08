@@ -16,6 +16,126 @@
     left: 0;
     right: 0;
     width: 100%;
+    /* Smooth transition for hide/show */
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Hidden state - slides header out of view */
+.header--hidden {
+    transform: translateY(-100%);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Hamburger menu button - hidden on desktop */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    z-index: 101;
+}
+
+.hamburger-menu svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary);
+}
+
+/* Mobile navigation overlay */
+.mobile-nav-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 200;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.mobile-nav-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav-content {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 280px;
+    max-width: 80vw;
+    height: 100%;
+    background: var(--theme);
+    padding: 20px;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+}
+
+.mobile-nav-overlay.active .mobile-nav-content {
+    transform: translateX(0);
+}
+
+.mobile-nav-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+}
+
+.mobile-nav-close svg {
+    width: 24px;
+    height: 24px;
+    stroke: var(--primary);
+}
+
+.mobile-nav-links {
+    list-style: none;
+    padding: 0;
+    margin: 60px 0 0 0;
+}
+
+.mobile-nav-links li {
+    margin: 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.mobile-nav-links li a {
+    display: block;
+    padding: 16px 0;
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.mobile-nav-links li a:hover {
+    color: var(--secondary);
+}
+
+/* Theme toggle labels in mobile nav */
+.theme-label-dark {
+    display: none;
+}
+
+.theme-label-light {
+    display: inline;
+}
+
+.dark .theme-label-dark {
+    display: inline;
+}
+
+.dark .theme-label-light {
+    display: none;
 }
 
 .nav {
@@ -272,83 +392,63 @@
 
 /* Responsive design */
 @media (max-width: 768px) {
-    .nav-top-row {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 15px;
-        /* Allow wrap on small screens */
-        flex-wrap: wrap !important;
-    }
-
-    .logo-nav-container {
-        width: 100%;
-        align-items: center; /* Center elements in vertical stack */
-    }
-
-    .logo-wrapper {
-        flex-direction: column !important;
-        align-items: center !important;
-        text-align: center !important;
-        gap: 12px !important;
-        margin-bottom: 12px !important;
-    }
-
-    .logo {
-        align-items: center !important;
-        margin-bottom: 4px !important;
+    /* Show hamburger menu on mobile */
+    .hamburger-menu {
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
     
-    #menu {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        justify-content: center !important;
-        align-items: center !important;
-        width: 100% !important;
-        gap: 6px 6px !important; /* Tighter gaps for SE */
-        margin: 4px 0 !important;
-        padding: 0 !important;
-        list-style: none !important;
-        text-align: center !important;
-    }
-
-    .embeddable-buttondown-form {
-        grid-template-columns: 1fr auto !important;
-        row-gap: 8px !important;
-        justify-items: stretch !important;
+    /* Show mobile nav overlay structure on mobile */
+    .mobile-nav-overlay {
+        display: block;
     }
     
-    .subscribe-input {
-        min-width: 180px;
+    /* Hide regular nav links on mobile */
+    .nav-links {
+        display: none !important;
     }
-
-    /* Hide newsletter subscription in compact header on mobile */
-    .header--compact .header-subscribe {
+    
+    /* Hide email subscription on mobile */
+    .header-subscribe {
         display: none !important;
     }
 
-    #menu li {
-        margin: 0 !important;
-        padding: 0 !important;
-        display: inline-flex !important;
+    .nav-top-row {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: nowrap !important;
+        padding: 8px 0;
     }
 
-    #menu li a {
-        padding: 0.25rem 0.4rem !important;
-        white-space: nowrap !important; /* Keep individual links on one line */
-        font-size: 0.95rem !important;
+    .logo-nav-container {
+        width: auto;
+        flex: 1;
+        align-items: flex-start;
     }
 
-    /* Target the long consulting link specifically */
-    #menu li a[href*="labenniconsulting"] {
-        font-size: 0.6rem !important; /* Even smaller for SE */
-        opacity: 0.8;
-        letter-spacing: -0.01em;
-        padding: 0.1rem 0.15rem !important;
+    .logo-wrapper {
+        flex-direction: row !important;
+        align-items: center !important;
+        text-align: left !important;
+        gap: 10px !important;
+        margin-bottom: 0 !important;
     }
     
-    #menu li a[href*="labenniconsulting"] svg {
-        width: 10px !important;
-        height: 10px !important;
+    .header-avatar {
+        width: 48px;
+        height: 48px;
+    }
+
+    .logo {
+        align-items: flex-start !important;
+        margin-bottom: 0 !important;
+    }
+    
+    .logo-subtitle {
+        display: none !important;
     }
 }
 
@@ -469,35 +569,19 @@
 
 /* =====================================================
    Mobile-specific compact header rules
-   Prevents awkward navigation wrapping on mobile
    ===================================================== */
 @media (max-width: 768px) {
     .header--compact .header-avatar {
-        width: 44px;
-        height: 44px;
+        width: 36px;
+        height: 36px;
     }
     
-    .header--compact .logo {
-        display: none !important; /* Hide title in compact mode on mobile to save space */
+    .header--compact .logo a {
+        font-size: 0.95rem;
     }
     
     .header--compact .logo-wrapper {
-        gap: 4px !important;
-    }
-    
-    .header--compact #menu {
-        gap: 2px !important;
-        flex-wrap: nowrap !important;
-    }
-
-    /* Shorten or hide the long link in compact mobile view if it still overlaps */
-    .header--compact #menu li a[href*="labenniconsulting"] {
-        display: none !important;
-    }
-    
-    .header--compact #menu li a {
-        padding: 0.2rem 0.4rem !important;
-        font-size: 0.85rem;
+        gap: 8px !important;
     }
     
     .header--compact .nav-top-row {

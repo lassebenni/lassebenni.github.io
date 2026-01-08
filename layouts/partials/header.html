@@ -146,8 +146,47 @@
 
             </div>
 
-            {{/* Newsletter Subscription in Header */}}
+            {{/* Newsletter Subscription in Header - hidden on mobile via CSS */}}
             {{ partial "newsletter_form.html" (dict "Site" .Site "class" "header-subscribe") }}
+            
+            {{/* Hamburger menu button - visible on mobile only */}}
+            <button class="hamburger-menu" aria-label="Open menu">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </button>
         </div>
     </nav>
 </header>
+
+{{/* Mobile navigation overlay */}}
+<div class="mobile-nav-overlay">
+    <div class="mobile-nav-content">
+        <button class="mobile-nav-close" aria-label="Close menu">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <ul class="mobile-nav-links">
+            {{- if (not site.Params.disableThemeToggle) }}
+            <li>
+                <a href="#" id="mobile-theme-toggle">
+                    <span class="theme-label-dark">☀️ Light Mode</span>
+                    <span class="theme-label-light">🌙 Dark Mode</span>
+                </a>
+            </li>
+            {{- end }}
+            {{- range site.Menus.main }}
+            <li>
+                <a href="{{ .URL | absLangURL }}" title="{{ .Title | default .Name }}">
+                    {{- .Name -}}
+                    {{- if (findRE "://" .URL) }} ↗{{- end }}
+                </a>
+            </li>
+            {{- end }}
+        </ul>
+    </div>
+</div>
