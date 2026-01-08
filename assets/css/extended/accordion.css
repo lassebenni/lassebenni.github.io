@@ -1,37 +1,21 @@
-/* Accordion Styles */
+/* Minimal Accordion Styles - Content matches regular post text */
 details.accordion {
-    border: 1px solid var(--border, #e0e0e0);
-    border-radius: 8px;
-    margin-bottom: 1rem;
-    overflow: hidden;
-    background-color: var(--entry, #fff);
-    transition: all 0.3s ease;
-}
-
-/* Dark mode fallback for border if var not defined */
-@media (prefers-color-scheme: dark) {
-    details.accordion {
-        border-color: var(--border, #333);
-        background-color: var(--entry, #1d1e20);
-    }
+    border: none;
+    border-radius: 0;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+    background: transparent;
 }
 
 details.accordion summary {
     cursor: pointer;
-    padding: 1rem;
-    background-color: var(--entry, inherit);
+    padding: 0;
+    background: transparent;
     display: flex;
-    align-items: flex-start; /* Align top for multi-line support */
-    justify-content: space-between;
-    list-style: none; /* Hide default marker */
-    transition: background-color 0.2s ease;
+    align-items: flex-start;
+    list-style: none;
     user-select: none;
-}
-
-.accordion-header-content {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1; /* Take up available space */
+    gap: 0.5rem;
 }
 
 /* Hide default marker for Chrome/Safari */
@@ -39,17 +23,37 @@ details.accordion summary::-webkit-details-marker {
     display: none;
 }
 
-details.accordion summary:hover {
-    background-color: var(--tertiary, #f5f5f5);
+/* Toggle arrow - before the content */
+details.accordion summary::before {
+    content: "▼";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6em;
+    width: 1em;
+    height: 1.6em;
+    transition: transform 0.2s ease;
+    opacity: 0.5;
+    color: var(--secondary);
+    flex-shrink: 0;
 }
 
-@media (prefers-color-scheme: dark) {
-    details.accordion summary:hover {
-        background-color: var(--tertiary, #2f2f2f);
-    }
+details.accordion:not([open]) summary::before {
+    transform: rotate(-90deg);
 }
 
-/* Reset headings inside summary to appear as normal text */
+/* Remove the chevron after */
+details.accordion summary::after {
+    display: none;
+}
+
+.accordion-header-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Headings match regular post heading sizes */
 details.accordion summary h1,
 details.accordion summary h2,
 details.accordion summary h3,
@@ -58,51 +62,68 @@ details.accordion summary h5,
 details.accordion summary h6 {
     margin: 0;
     padding: 0;
-    display: inline-block;
-    font-size: 1.1rem; /* Adjust if needed */
-    font-weight: 600;
+    display: inline;
     color: var(--primary, inherit);
+}
+
+details.accordion summary h2 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+details.accordion summary h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+details.accordion summary h4 {
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .accordion-summary {
     display: block;
-    font-size: 0.9rem;
-    color: var(--secondary, #666);
-    margin-top: 0.2rem;
-    line-height: 1.4;
+    font-size: 0.9em;
+    color: var(--secondary, #888);
+    margin-top: 0.3rem;
+    line-height: 1.5;
+    font-weight: 400;
 }
 
-/* Chevron Icon */
-details.accordion summary::after {
-    content: '';
-    width: 0.5rem;
-    height: 0.5rem;
-    border-top: 2px solid var(--primary, currentColor);
-    border-right: 2px solid var(--primary, currentColor);
-    transform: rotate(45deg); /* Pointing Right */
-    transition: transform 0.2s ease;
-    margin-left: 10px;
-    margin-top: 0.5rem; /* Optical alignment with text */
-    flex-shrink: 0;
-}
-
-/* Open State */
+/* Open State - no border */
 details.accordion[open] summary {
-    border-bottom: 1px solid var(--border, #e0e0e0);
+    border: none;
+    margin-bottom: 0.75rem;
 }
 
-@media (prefers-color-scheme: dark) {
-    details.accordion[open] summary {
-        border-bottom-color: var(--border, #333);
-    }
-}
-
-details.accordion[open] summary::after {
-    transform: rotate(135deg); /* Pointing Down */
-}
-
+/* Content area - matches regular post body text */
 .accordion-content {
-    padding: 1rem;
-    background-color: transparent; /* Using var(--content) here introduced a second solid panel background that clashed with the parent entry color (especially in dark mode). Transparent lets the content inherit the surrounding container background so the accordion blends correctly in all themes. */
-    color: var(--primary, inherit);
+    padding: 0;
+    background: transparent;
+    color: var(--content);
+    font-size: inherit;
+    line-height: inherit;
+}
+
+/* Proper spacing for content elements */
+.accordion-content > *:first-child {
+    margin-top: 0;
+}
+
+.accordion-content > *:last-child {
+    margin-bottom: 0;
+}
+
+.accordion-content p,
+.accordion-content ul,
+.accordion-content ol {
+    margin-bottom: var(--content-gap, 20px);
+}
+
+.accordion-content a {
+    color: var(--primary);
+}
+
+.accordion-content a:hover {
+    text-decoration: underline;
 }

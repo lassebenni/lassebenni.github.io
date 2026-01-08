@@ -1,27 +1,20 @@
-/* Notion-like Accordion Styles */
+/* Minimal Accordion Styles - Content matches regular post text */
 .accordion {
-    margin: 1rem 0;
-    padding: 0.2rem 0;
-    border-radius: 4px;
-    transition: background-color 0.2s ease;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
 }
 
-.accordion:hover {
-    background-color: rgba(0, 0, 0, 0.03);
-}
-
-.dark .accordion:hover {
-    background-color: rgba(255, 255, 255, 0.05);
-}
-
+/* Header with toggle arrow */
 .accordion-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     cursor: pointer;
-    font-weight: 600;
-    list-style: none; /* Remove default triangle */
-    padding: 0.4rem 0.6rem;
+    list-style: none;
+    padding: 0;
     user-select: none;
+    gap: 0.5rem;
 }
 
 /* Hide default marker in Safari/Chrome */
@@ -29,21 +22,33 @@
     display: none;
 }
 
+/* Toggle arrow */
 .accordion-header::before {
-    content: "▶"; /* Notion-like triangle */
-    display: inline-block;
-    font-size: 0.8rem;
-    margin-right: 0.6rem;
+    content: "▼";
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65em;
+    width: 1.2em;
+    height: 1.5em;
+    margin-top: 0.15em;
     transition: transform 0.2s ease;
-    opacity: 0.6;
+    opacity: 0.5;
     color: var(--secondary);
+    flex-shrink: 0;
 }
 
-.accordion[open] > .accordion-header::before {
-    transform: rotate(90deg);
+.accordion:not([open]) > .accordion-header::before {
+    transform: rotate(-90deg);
 }
 
-/* Ensure markdown headings inside summary work with flex alignment */
+/* Header content wrapper */
+.accordion-header-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Headings inside accordion match regular post headings */
 .accordion-header h1,
 .accordion-header h2,
 .accordion-header h3,
@@ -53,29 +58,74 @@
     display: inline;
     margin: 0;
     padding: 0;
-    font-size: inherit;
-    font-weight: inherit;
-    line-height: inherit;
+}
+
+/* Match post-content heading sizes */
+.accordion-header h2 {
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.accordion-header h3 {
+    font-size: 24px;
+    font-weight: 600;
+}
+
+.accordion-header h4 {
+    font-size: 20px;
+    font-weight: 600;
 }
 
 .accordion-title {
-    flex: 1;
+    font-size: inherit;
+    font-weight: 600;
 }
 
+/* Summary text below title */
+.accordion-summary {
+    display: block;
+    font-size: 0.9em;
+    color: var(--secondary);
+    margin-top: 0.25rem;
+    font-weight: 400;
+    line-height: 1.5;
+}
+
+/* Content area - matches regular post body text exactly */
 .accordion-content {
-    padding: 0.4rem 0.6rem 0.8rem 2.2rem;
-    border-left: 2px solid var(--border);
-    margin-left: 1.1rem;
-    font-size: 0.95rem;
-    line-height: 1.6;
+    padding: 0;
+    margin: 0;
+    font-size: inherit;
+    line-height: inherit;
     color: var(--content);
 }
 
-/* Ensure markdown inside works correctly */
+/* Spacing for content when expanded */
+.accordion[open] .accordion-content {
+    margin-top: 1rem;
+}
+
+/* Ensure proper spacing for elements inside */
 .accordion-content > *:first-child {
     margin-top: 0;
 }
 
 .accordion-content > *:last-child {
     margin-bottom: 0;
+}
+
+/* Paragraphs, lists match post-content styling */
+.accordion-content p,
+.accordion-content ul,
+.accordion-content ol {
+    margin-bottom: var(--content-gap, 20px);
+}
+
+/* Links in accordion */
+.accordion-content a {
+    color: var(--primary);
+}
+
+.accordion-content a:hover {
+    text-decoration: underline;
 }
