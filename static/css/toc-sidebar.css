@@ -168,7 +168,6 @@
 
 /* Completely hide ToC on tablet/phones to prevent conflicts */
 /* Completely hide ToC on tablet/phones initially */
-/* Completely hide ToC on tablet/phones initially */
 @media (max-width: 1024px) {
   #toc-sidebar {
     display: none;
