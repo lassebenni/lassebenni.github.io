@@ -196,5 +196,32 @@ document.addEventListener('DOMContentLoaded', function () {
 
   updateActive();
   window.addEventListener('scroll', updateActive, { passive: true });
+
+  // Mobile TOC Toggle
+  const mobileButton = document.getElementById('mobile-toc-button');
+  if (mobileButton && tocSidebar) {
+    mobileButton.addEventListener('click', (e) => {
+      e.stopPropagation(); // prevent immediate close
+      tocSidebar.classList.toggle('visible');
+    });
+
+    // Close when clicking outside
+    document.addEventListener('click', (e) => {
+      if (tocSidebar.classList.contains('visible') && 
+          !tocSidebar.contains(e.target) && 
+          !mobileButton.contains(e.target)) {
+        tocSidebar.classList.remove('visible');
+      }
+    });
+    
+    // Close when clicking a link
+    if(tocLinks) {
+        tocLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                tocSidebar.classList.remove('visible');
+            });
+        });
+    }
+  }
 });
 </script>

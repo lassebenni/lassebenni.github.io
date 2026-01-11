@@ -167,21 +167,74 @@
 }
 
 /* Completely hide ToC on tablet/phones to prevent conflicts */
+/* Completely hide ToC on tablet/phones initially */
 @media (max-width: 1024px) {
   #toc-sidebar {
-    display: none !important;
-    width: 0 !important;
-    height: 0 !important;
-    padding: 0 !important;
-    margin: 0 !important;
+    display: none;
+    position: fixed !important;
+    top: auto !important;
+    bottom: 80px !important;
+    right: 20px !important;
+    width: 250px !important;
+    max-height: 60vh !important;
+    background: var(--theme) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius) !important;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+    z-index: 100 !important;
+    padding: 16px !important;
+    overflow-y: auto !important;
+  }
+}
+
+/* Mobile TOC Button */
+.mobile-toc-button {
+  display: none;
+  position: fixed !important;
+  bottom: 20px !important;
+  right: 20px !important;
+  width: 50px !important;
+  height: 50px !important;
+  background: var(--primary) !important;
+  color: var(--theme) !important; 
+  border-radius: 50% !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
+  cursor: pointer !important;
+  z-index: 101 !important;
+  transition: transform 0.2s ease !important;
+}
+.mobile-toc-button svg {
+  fill: currentColor;
+}
+.mobile-toc-button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 1024px) {
+  .mobile-toc-button {
+    display: flex !important;
+  }
+  
+  /* Show sidebar when toggled */
+  #toc-sidebar.visible {
+    display: block !important;
+    animation: fadeUp 0.2s ease-out;
+  }
+  
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  #post-container {
+    flex-direction: column;
+    align-items: center;
   }
   #post-main {
-    margin-right: 0 !important;
-  }
-  #post-container {
-    justify-content: center !important;
-    flex-direction: column !important;
-    align-items: center !important;
+    margin-right: 0;
+    width: 100%;
   }
 }
 /* Ensure in-page anchor scroll lands below sticky header */
