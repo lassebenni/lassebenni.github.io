@@ -1,0 +1,8 @@
+<figure class="pull-quote">
+  <blockquote>
+    <p>{{ .Inner | markdownify }}</p>
+  </blockquote>
+  {{ if .Get "author" }}
+    <figcaption>— {{ .Get "author" }}</figcaption>
+  {{ end }}
+</figure>

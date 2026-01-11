@@ -20,7 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // At the very top - always show
     if (currentScrollY <= 50) {
       header.classList.remove('header--hidden');
-      header.classList.remove('header--compact');
+      if (header.dataset.isHome === 'true') {
+        header.classList.remove('header--compact');
+      }
     }
     // Scrolling down past threshold - hide
     else if (scrollDelta > SCROLL_DELTA && currentScrollY > HIDE_THRESHOLD) {

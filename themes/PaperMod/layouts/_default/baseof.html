@@ -17,6 +17,9 @@
 {{- print " dark" }}
 {{- end -}}
 " id="top">
+    {{- if eq .Kind "page" }}
+    {{- partial "progress_bar.html" . }}
+    {{- end }}
     {{- partialCached "header.html" . .Page -}}
     <main class="main">
         {{- block "main" . }}{{ end }}
