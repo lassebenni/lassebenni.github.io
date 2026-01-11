@@ -43,17 +43,7 @@
 }
 
 /* Also apply via media query for system preference if class is missing */
-@media (prefers-color-scheme: dark) {
-  :root:not(.light) {
-    --theme: #1a1b1e !important;
-    --entry: #25262b !important;
-    --primary: #e0e1e3 !important;
-    --secondary: #a0a1a3 !important;
-    --content: #c1c2c5 !important;
-    --code-block-bg: #141517 !important;
-    --border: #2c2e33 !important;
-  }
-}
+
 
 /* Softer images and code to match the aesthetic */
 .post-content img{ border-radius: 12px; }
