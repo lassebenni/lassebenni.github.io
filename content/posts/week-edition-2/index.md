@@ -12,11 +12,9 @@ Another week, another `select *`! Let's dive in.
 
 {{% accordion title="GammaVibe architecture video" level="3" summary="Mirko's YouTube walkthrough of the GammaVibe architecture, showcasing the AI agent chain for news extraction and startup idea generation." %}}
 
-![GammaVibe Architecture](image-1.png)
+{{< youtube YAFdxO8jANc >}}
 
 After my last weekly blog on GammaVibe (the Startup-idea-generator-as-a-newsletter-service), it's creator Mirko has added a new YT video-walkthrough of the architecture. In this video he goes into the details of the setup that extracts news from the EventRegistry news API's and goes through a rigorous chain of events that bundles this information using AI agents into, well, the startup idea. Impressive to see all the different stages, very helpful as target-architecture. I was heavily inspired by it to create my own "news-ingestion service", which I might share later on.
-
-{{< youtube YAFdxO8jANc >}}
 
 {{% /accordion %}}
 
