@@ -2,8 +2,8 @@
 title: "SELECT * FROM WEEK (2)"
 date: 2026-01-30T19:21:55+01:00
 draft: false
-ai_summary: "This second edition explores the power of single-machine compute with DuckDB, the evolution of RDBMS architecture, and why unstructured 'decision traces' might be the next big data moat. We also dive into the future of columnar storage beyond Parquet and discuss the shifting landscape of computer science education in the agentic era."
-tags: ["duckdb", "data-engineering", "parquet", "llm", "architecture"]
+ai_summary: "In this edition: The 'DuckDB Revolution' and the power of single-node compute, a look at the genealogy of databases, and why 'decision traces' could be the next data moat. Plus: The future of columnar formats beyond Parquet, and a debate on whether AI is rendering traditional CS education obsolete."
+tags: ["duckdb", "data-engineering", "parquet", "llm", "architecture", "career"]
 ---
 
 Another week, another `select *`! Let's dive in.
@@ -15,7 +15,7 @@ Another week, another `select *`! Let's dive in.
 {{< youtube YAFdxO8jANc >}}
 <br>
 
-After my last weekly blog on GammaVibe (the Startup-idea-generator-as-a-newsletter-service), it's creator Mirko has added [a new YT video-walkthrough of the architecture](https://gammavibe.com/updates/video-walkthrough-inside-the-gammavibe-architecture/). In this video he goes into the details of the setup that extracts news from the EventRegistry news API's and goes through a rigorous chain of events that bundles this information using AI agents into, well, the startup idea. Impressive to see all the different stages, very helpful as target-architecture. I was heavily inspired by it to create my own "news-ingestion service", which I will introduce later this year.
+After my [last weekly blog](http://localhost:1313/posts/week-edition-1/) on GammaVibe (the Startup-idea-generator-as-a-newsletter-service), it's creator Mirko has added [a new YT video-walkthrough of the architecture](https://gammavibe.com/updates/video-walkthrough-inside-the-gammavibe-architecture/). In this video he goes into the details of the setup that extracts news from the EventRegistry news API's and goes through a rigorous chain of events that bundles this information using AI agents into, well, the startup idea. Impressive to see all the different stages, very helpful as target-architecture, thanks Mirko!. I was heavily inspired by it to create my own "news-ingestion service", which I will introduce later this year.
 
 {{% /accordion %}}
 
