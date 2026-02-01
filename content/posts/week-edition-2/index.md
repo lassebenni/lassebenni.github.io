@@ -1,8 +1,8 @@
 ---
 title: "SELECT * FROM WEEK (2)"
-date: 2026-01-30T19:21:55+01:00
+date: 2026-02-01T16:12:16+01:00
 draft: false
-ai_summary: "In this edition: The 'DuckDB Revolution' and the power of single-node compute, a look at the genealogy of databases, and why 'decision traces' could be the next data moat. Plus: The future of columnar formats beyond Parquet, and a debate on whether AI is rendering traditional CS education obsolete."
+ai_summary: "In this edition: GammaVibe's architecture video, cathing up on the 'DuckDB Revolution', and whether AI is ruining traditional CS education."
 tags: ["duckdb", "data-engineering", "parquet", "llm", "architecture", "career"]
 ---
 
@@ -57,8 +57,6 @@ Some quotes I liked:
 <br>
 
 Basically the talk boils down to this quote by Hannes: "What you can do on a single machine is *insane*" (on the power of single-node compute nowadays).
-
-![PyData Amsterdam 2025](image-6.png)
 
 The second talk (simiarily free on YouTube) is more recent, and starts as an attack on the established database vendors (Oracle) and their price-gouging ways. Hannes argues during the talk that the old way of the world where the database vendor is effectively "holding your data hostage" are over, and due to the explosive growth of the capabilities of "small" compute has overgrown the requirements of data storage (e.g. the size of data that *most* companies store *has not* grown as much compared to the previous years , in contrast to the price of compute, storage and networking, which *has* radically maybe even exponentially reduced over the last decade. This means that it shouldn't actually make sense to be paying the same prices for databases as in the years before, and you probably don't even need the most powerful state-of-the-art distributed systems for it either.
 
