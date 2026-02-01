@@ -13,6 +13,8 @@ Another week, another `select *`! Let's dive in.
 {{% accordion title="GammaVibe architecture video" level="3" summary="Mirko's YouTube walkthrough of the GammaVibe architecture, showcasing the AI agent chain for news extraction and startup idea generation." %}}
 
 {{< youtube YAFdxO8jANc >}}
+<br>
+<br>
 
 After my last weekly blog on GammaVibe (the Startup-idea-generator-as-a-newsletter-service), it's creator Mirko has added a new YT video-walkthrough of the architecture. In this video he goes into the details of the setup that extracts news from the EventRegistry news API's and goes through a rigorous chain of events that bundles this information using AI agents into, well, the startup idea. Impressive to see all the different stages, very helpful as target-architecture. I was heavily inspired by it to create my own "news-ingestion service", which I might share later on.
 
@@ -35,6 +37,8 @@ Now onto the talks I watched:
 - <https://www.youtube.com/watch?v=-wCzn9gKoUk>
 
 {{< youtube -wCzn9gKoUk >}}
+<br>
+<br>
 
 In this talk, Hannes goes over the history of information systems (databases), it's real fun talk that demonstrates his ability to make a walk through "dry" subjects as IT systems history engaging (well for me at least, although I might be biased). I think it's a must-watch for DE's (and anyone working with databases) new to the game, since it's a condensed history of our working-field and the different types of databases, although it's end is slightly tilted towards vendor-speak (duckdb-can-do-all-of-this-for-you).
 
@@ -61,6 +65,8 @@ Basically the talk boils down to this quote by Hannes: "What you can do on a sin
 <https://www.youtube.com/watch?v=DxwDaoUijTc>  
 
 {{< youtube DxwDaoUijTc >}}
+<br>
+<br>
 
 The second talk (simiarily free on YouTube) is more recent, and starts as an attack on the established database vendors (Oracle) and their price-gouging ways. Hannes argues during the talk that the old way of the world where the database vendor is effectively "holding your data hostage" are over, and due to the explosive growth of the capabilities of "small" compute has overgrown the requirements of data storage (e.g. the size of data that *most* companies store *has not* grown as much compared to the previous years , in contrast to the price of compute, storage and networking, which *has* radically maybe even exponentially reduced over the last decade. This means that it shouldn't actually make sense to be paying the same prices for databases as in the years before, and you probably don't even need the most powerful state-of-the-art distributed systems for it either.
 
