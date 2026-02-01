@@ -16,3 +16,9 @@
 {{ if eq .RelPermalink "/about/" }}
 <link rel="stylesheet" href="{{ "css/about-page.css" | absURL }}">
 {{ end }}
+
+{{- /* Umami Analytics - only in production */ -}}
+{{- if not .Site.IsServer -}}
+<script defer src="https://changed.lasse.be/script.js" data-website-id="6fa18ad1-a190-418d-a229-292dc477ec5f"></script>
+<script src="{{ "js/scroll-tracking.js" | absURL }}" defer></script>
+{{- end -}}
