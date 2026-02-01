@@ -18,7 +18,7 @@
 {{ end }}
 
 {{- /* Umami Analytics - only in production */ -}}
-{{- if not .Site.IsServer -}}
+{{- if not hugo.IsServer -}}
 <script defer src="https://changed.lasse.be/script.js" data-website-id="6fa18ad1-a190-418d-a229-292dc477ec5f"></script>
 <script src="{{ "js/scroll-tracking.js" | absURL }}" defer></script>
 {{- end -}}
