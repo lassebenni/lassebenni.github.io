@@ -2,7 +2,7 @@
 title: "SELECT * FROM WEEK (2)"
 date: 2026-02-01T16:12:16+01:00
 draft: false
-ai_summary: "In this edition: GammaVibe's architecture video, cathing up on the 'DuckDB Revolution', and whether AI is ruining traditional CS education."
+ai_summary: "In this edition: GammaVibe's architecture video, catching up on the 'DuckDB Revolution', and whether AI is ruining traditional CS education."
 tags: ["duckdb", "data-engineering", "parquet", "llm", "architecture", "career"]
 ---
 
