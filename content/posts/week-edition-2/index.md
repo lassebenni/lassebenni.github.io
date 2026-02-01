@@ -15,7 +15,7 @@ Another week, another `select *`! Let's dive in.
 {{< youtube YAFdxO8jANc >}}
 <br>
 
-After my [last weekly blog](http://localhost:1313/posts/week-edition-1/) on GammaVibe (the Startup-idea-generator-as-a-newsletter-service), its creator Mirko has added [a new YT video-walkthrough of the architecture](https://gammavibe.com/updates/video-walkthrough-inside-the-gammavibe-architecture/). In this video he goes into the details of the setup that extracts news from the EventRegistry news APIs and goes through a rigorous chain of events that bundles this information using AI agents into, well, the startup idea. Impressive to see all the different stages, very helpful as target-architecture, thanks Mirko!. I was heavily inspired by it to create my own "news-ingestion service", which I will introduce later this year.
+After my [last weekly blog](http://localhost:1313/posts/week-edition-1/) on GammaVibe (the Startup-idea-generator-as-a-newsletter-service), its creator Mirko has added [a new YT video-walkthrough of the architecture](https://gammavibe.com/updates/video-walkthrough-inside-the-gammavibe-architecture/). In this video he goes into the details of the setup that extracts news from the [EventRegistry'](https://eventregistry.org/) news-APIs and goes through a rigorous chain of events that bundles this information using AI agents into, well, the [daily newsletter](https://gammavibe.com/newsletter/). Impressive to see all the different stages, and very helpful as a target-architecture, thanks Mirko!. I was heavily inspired by it to create my own "news-ingestion service", which I will introduce later this year.
 
 {{% /accordion %}}
 
