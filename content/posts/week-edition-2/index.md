@@ -27,7 +27,7 @@ Starting first as a researcher of database architectures, and since last year a 
 
 Now onto the talks I watched:
 
-{{% accordion title="A Short Summary of the Last Decades of Data Management • Hannes Mühleisen • GOTO 2024" level="3" summary="" %}}
+{{% accordion title="A Short Summary of the Last Decades of Data Management • Hannes Mühleisen • GOTO 2024" level="3" summary="Hannes walks through the history of databases, from the genealogy of RDBMS to the distinction between analytical and transactional systems." %}}
 
 {{< youtube -wCzn9gKoUk >}}
 <br>
