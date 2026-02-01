@@ -97,6 +97,20 @@ Somewhat curiously, but also expected, we have Motherduck pointing out that if y
 
 ## Articles
 
+{{% accordion title="CS students ruined by AI?" level="3" summary="A Reddit thread on whether CS grads still need to code to provide business value." %}}
+
+[![Reddit: CS Careers](image-11.png)](https://www.reddit.com/r/cscareerquestions/comments/1qian6p/cs_student_here_no_one_i_know_actually_writes/)
+
+I stumbled across [this Reddit thread](https://www.reddit.com/r/cscareerquestions/comments/1qian6p/cs_student_here_no_one_i_know_actually_writes/) and think it's a interesting insight into what the future might hold for CS students. Will CS grads still really need to code to provide business value? Will high-level languages go like the way of assembly? And will software engineering transition into an all-day long guessing game to [figure out if your brilliant intern is deceiving you](https://www.anthropic.com/research/alignment-faking)? Will a new upperclass arise that *manages* the models while the rest of us drink from their fountains, or did that already happen?  
+
+![Reddit: AI alignment](image-12.png)
+
+Anyways, it feels that Reddit's opinion is that this is *a big mistake* and students are making themselves unemployable. Perhaps. Or perhaps it will go the way of the sage wisdom of the 70s of "You can't bring a calculator everywhere you go you know." We actually *could* and we actually *did* and we acually *will* keep bringing our calculators everywhere go and [look at them non-stop for up to 10 hours a day](https://www.mastermindbehavior.com/post/average-screen-time-statistics), thank you very much.
+
+{{% /accordion %}}
+
+Other stuff:
+
 - [Have you tried a text box - by Benn Stancil](https://benn.substack.com/p/have-you-tried-a-text-box?utm_source=tldrdata#footnote-1-183276617) - As usual, Benn raises interesting points. What if, instead of trying to "hardcode business decisions", we just handed the LLM's the real, raw context of an organization in voicenotes and let it derive the insights, perhaps these models are already smarter we could dream of? How would we even know?
 
 - [Where AI is headed in 2026 - Foundation Capital](https://foundationcapital.com/where-ai-is-headed-in-2026/) - A quote from the predictions: "Today, most AI interfaces wait for you to ask. But the best employees don’t work that way: they observe the situation, propose a solution, and ask for sign-off.".
@@ -105,15 +119,5 @@ Somewhat curiously, but also expected, we have Motherduck pointing out that if y
 
 - <https://adocomplete.com/advent-of-claude-2025/> - The best cheatsheet for Claude Code I've seen to date.
 <br>
-
-[![Reddit: CS Careers](image-11.png)](https://www.reddit.com/r/cscareerquestions/comments/1qian6p/cs_student_here_no_one_i_know_actually_writes/)
-
-- <https://www.reddit.com/r/cscareerquestions/comments/1qian6p/cs_student_here_no_one_i_know_actually_writes/>
-
-- Came across this Reddit thread, think it's a good insight into what the future holds. Will CS grads still really need to code to provide business value? Will high-level languages go like the way of assembly? And will software engineering transition into an all-day long guessing game to [figure out if your brilliant intern is deceiving you](https://www.anthropic.com/research/alignment-faking)? Will a new upperclass arise that *manages* the models while the rest of us drink from their fountains, or did that already happen?  
-
-![Reddit: AI alignment](image-12.png)
-
-- Anyways, it feels that Reddit's opinion is that this is *a big mistake* and students are making themselves unemployable. Perhaps. Or perhaps it will go the way of the sage wisdom of the 70s of "You can't bring a calculator everywhere you go you know." We actually *could* and we actually *did* and we acually *will* keep bringing our calculators everywhere go and [look at them non-stop for up to 10 hours a day](https://www.mastermindbehavior.com/post/average-screen-time-statistics), thank you very much.
 
 That's all, till the next one!
