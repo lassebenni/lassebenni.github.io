@@ -23,3 +23,7 @@ build:
 # Remove build artifacts
 clean:
     rm -rf public resources
+
+# Convert a Hugo post for Medium import
+medium-prep slug:
+    python scripts/convert_for_medium.py content/posts/{{slug}}/index.md
