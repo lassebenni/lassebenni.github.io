@@ -1,6 +1,6 @@
 {{- $id := .Get "id" | default (.Get 0) -}}
-{{- $title := .Get "title" | default "YouTube Video" -}}
-<div class="youtube-facade" data-id="{{ $id }}">
+{{- $title := .Get "title" | default "" -}}
+<div class="youtube-facade" data-id="{{ $id }}" data-title="{{ $title }}">
   <img
     src="https://img.youtube.com/vi/{{ $id }}/hqdefault.jpg"
     alt="{{ $title }}"
@@ -54,8 +54,9 @@
   var facade = document.currentScript.previousElementSibling.previousElementSibling;
   facade.addEventListener('click', function() {
     var id = this.dataset.id;
+    var title = this.dataset.title;
     if (typeof umami !== 'undefined') {
-      umami.track('youtube-play', { video_id: id });
+      umami.track('youtube-play', { video_id: id, title: title || id });
     }
     var iframe = document.createElement('iframe');
     iframe.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1';

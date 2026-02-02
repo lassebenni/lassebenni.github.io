@@ -12,7 +12,7 @@ Another week, another `select *`! Let's dive in.
 
 {{% accordion title="GammaVibe architecture video" level="3" summary="Mirko's YouTube walkthrough of the GammaVibe architecture, showcasing the AI agent chain for news extraction and startup idea generation." %}}
 
-{{< youtube YAFdxO8jANc >}}
+{{< youtube id="YAFdxO8jANc" title="GammaVibe Architecture Walkthrough" >}}
 <br>
 
 After my [last weekly blog](https://lasse.be/posts/week-edition-1/) on GammaVibe (the Startup-idea-generator-as-a-newsletter-service), its creator Mirko has added [a new YT video-walkthrough of the architecture](https://gammavibe.com/updates/video-walkthrough-inside-the-gammavibe-architecture/). In this video he goes into the details of the setup that extracts news from the [EventRegistry'](https://eventregistry.org/) news-APIs and goes through a rigorous chain of events that bundles this information using AI agents into, well, the [daily newsletter](https://gammavibe.com/newsletter/). Impressive to see all the different stages, and very helpful as a target-architecture, thanks Mirko!. I was heavily inspired by it to create my own "news-ingestion service", which I will introduce later this year.
@@ -29,7 +29,7 @@ Now onto the talks I watched:
 
 {{% accordion title="A Short Summary of the Last Decades of Data Management • Hannes Mühleisen • GOTO 2024" level="3" summary="Hannes walks through the history of databases, from the genealogy of RDBMS to the distinction between analytical and transactional systems." %}}
 
-{{< youtube -wCzn9gKoUk >}}
+{{< youtube id="-wCzn9gKoUk" title="A Short Summary of the Last Decades of Data Management - Hannes Mühleisen - GOTO 2024" >}}
 <br>
 
 In this talk, Hannes goes over the history of information systems (databases), it's a real fun talk that demonstrates his ability to make a walk through "dry" subjects as IT systems history engaging (well for me at least, although I might be biased). I think it's a must-watch for DE's (and anyone working with databases) new to the game, since it's a condensed history of our working-field and the different types of databases, although its end is slightly tilted towards vendor-speak (duckdb-can-do-all-of-this-for-you).
@@ -53,7 +53,7 @@ Some quotes I liked:
 
 {{% accordion title="Keynote: Data Architecture Turned Upside Down" level="3" summary="Hannes Mühleisen's PyData Amsterdam keynote on the power of commodity hardware and the shift towards single-machine compute for modern data architecture." %}}
 
-{{< youtube DxwDaoUijTc >}}
+{{< youtube id="DxwDaoUijTc" title="Keynote: Data Architecture Turned Upside Down - Hannes Mühleisen - PyData Amsterdam" >}}
 <br>
 
 Basically the talk boils down to this quote by Hannes: "What you can do on a single machine is *insane*" (on the power of single-node compute nowadays).
