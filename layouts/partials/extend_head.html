@@ -19,6 +19,16 @@
 
 {{- /* Umami Analytics - only in production */ -}}
 {{- if not hugo.IsServer -}}
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-RVCPHT7SEM"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-RVCPHT7SEM');
+</script>
+
 <script defer src="https://changed.lasse.be/script.js" data-website-id="6fa18ad1-a190-418d-a229-292dc477ec5f"></script>
 <script src="{{ "js/scroll-tracking.js" | absURL }}" defer></script>
 <script src="{{ "js/link-tracking.js" | absURL }}" defer></script>
