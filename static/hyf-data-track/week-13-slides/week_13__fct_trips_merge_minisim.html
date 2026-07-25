@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERGE mini-sim: trip_id match vs insert</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0d1117;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 10px;
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #c9d1d9;
+  }
+  .wrap {
+    width: 100%;
+    max-width: 980px;
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 16px 36px rgba(0,0,0,0.6);
+  }
+  .titlebar {
+    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+    padding: 10px 14px; background: #0d1117; border-bottom: 1px solid #21262d;
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot.r { background: #ff5f56; } .dot.y { background: #ffbd2e; } .dot.g { background: #27c93f; }
+  .title { font-family: 'SF Mono', Menlo, monospace; font-size: 12px; color: #8b949e; margin-right: auto; }
+  .badge {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(88,166,255,0.4);
+    color: #58a6ff; background: rgba(88,166,255,0.1);
+  }
+
+  .controls {
+    display: flex; gap: 8px; flex-wrap: wrap; align-items: center;
+    padding: 10px 14px; border-bottom: 1px solid #21262d; background: #0d1117;
+  }
+  .controls button {
+    appearance: none; border: 1px solid #30363d; background: #21262d; color: #f0f6fc;
+    font: inherit; font-size: 12px; font-weight: 600; padding: 7px 12px; border-radius: 8px; cursor: pointer;
+  }
+  .controls button:hover { border-color: #58a6ff; }
+  .controls button:disabled { opacity: 0.4; cursor: default; }
+  .controls button.primary { background: #1f6feb; border-color: #1f6feb; }
+  .step-pill {
+    font-family: 'SF Mono', Menlo, monospace; font-size: 12px; color: #8b949e; margin-left: auto;
+  }
+
+  .stage {
+    display: grid; grid-template-columns: 1fr auto 1fr; gap: 12px;
+    padding: 14px; align-items: start;
+  }
+  @media (max-width: 720px) { .stage { grid-template-columns: 1fr; } .arrow { transform: rotate(90deg); } }
+
+  .panel {
+    background: #0d1117; border: 1px solid #30363d; border-radius: 8px; overflow: hidden;
+  }
+  .panel h3 {
+    font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: #8b949e;
+    padding: 8px 12px; border-bottom: 1px solid #21262d; background: #161b22;
+  }
+  table { width: 100%; border-collapse: collapse; font-family: 'SF Mono', Menlo, monospace; font-size: 12px; }
+  th, td { text-align: left; padding: 7px 10px; border-bottom: 1px solid #21262d; }
+  th { color: #8b949e; font-weight: 600; }
+  tr.row { transition: background 0.2s ease, outline 0.2s ease; }
+  tr.match { background: rgba(255, 166, 87, 0.16); outline: 1px solid rgba(255,166,87,0.45); }
+  tr.insert { background: rgba(63, 185, 80, 0.16); outline: 1px solid rgba(63,185,80,0.45); }
+  tr.dup { background: rgba(248, 81, 73, 0.16); outline: 1px solid rgba(248,81,73,0.45); }
+  tr.dim { opacity: 0.35; }
+  .tag {
+    display: inline-block; font-size: 10px; font-weight: 700; text-transform: uppercase;
+    padding: 1px 6px; border-radius: 999px; margin-left: 6px;
+  }
+  .tag.match { color: #ffa657; background: rgba(255,166,87,0.15); }
+  .tag.insert { color: #3fb950; background: rgba(63,185,80,0.15); }
+  .tag.dup { color: #ffa198; background: rgba(248,81,73,0.15); }
+
+  .arrow {
+    align-self: center; color: #58a6ff; font-size: 22px; font-weight: 700; padding-top: 28px;
+  }
+
+  .legend {
+    display: flex; gap: 14px; flex-wrap: wrap; padding: 0 14px 10px;
+    font-size: 12px; color: #8b949e;
+  }
+  .legend span::before {
+    content: ''; display: inline-block; width: 10px; height: 10px; border-radius: 2px;
+    margin-right: 6px; vertical-align: -1px;
+  }
+  .legend .l-match::before { background: #ffa657; }
+  .legend .l-insert::before { background: #3fb950; }
+  .legend .l-dup::before { background: #f85149; }
+
+  .dock {
+    border-top: 1px solid #30363d; padding: 12px 16px; background: #161b22; min-height: 78px;
+  }
+  .dock-kicker {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    color: #8b949e; margin-bottom: 4px;
+  }
+  .dock-body { font-size: 13px; line-height: 1.45; color: #f0f6fc; }
+  .dock-body strong { color: #ffa657; }
+  .dock-body code {
+    font-family: 'SF Mono', Menlo, monospace; font-size: 12px;
+    background: #0d1117; padding: 1px 5px; border-radius: 4px; color: #79c0ff;
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="titlebar">
+      <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+      <span class="title">Toy MERGE mini-sim · unique_key = trip_id</span>
+    </div>
+
+    <div class="controls">
+      <button type="button" id="btn-prev" disabled>← Back</button>
+      <button type="button" id="btn-next" class="primary">Next →</button>
+      <button type="button" id="btn-reset">Reset</button>
+      <span class="step-pill" id="step-pill">Step 1 / 5</span>
+    </div>
+
+    <div class="stage">
+      <div class="panel">
+        <h3>Incoming batch (new run)</h3>
+        <table>
+          <thead><tr><th>trip_id</th><th>pickup</th><th>fare</th></tr></thead>
+          <tbody id="incoming"></tbody>
+        </table>
+      </div>
+      <div class="arrow" aria-hidden="true">⟶</div>
+      <div class="panel">
+        <h3>fct_trips ({{ this }})</h3>
+        <table>
+          <thead><tr><th>trip_id</th><th>pickup</th><th>fare</th></tr></thead>
+          <tbody id="target"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="legend">
+      <span class="l-match">MATCH → update</span>
+      <span class="l-insert">NO MATCH → insert</span>
+      <span class="l-dup">≥ trap → duplicate risk</span>
+    </div>
+
+    <div class="dock">
+      <div class="dock-kicker">Say this out loud</div>
+      <div class="dock-body" id="say"></div>
+    </div>
+  </div>
+
+  <script>
+    const incomingEl = document.getElementById('incoming');
+    const targetEl = document.getElementById('target');
+    const sayEl = document.getElementById('say');
+    const stepPill = document.getElementById('step-pill');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+    const btnReset = document.getElementById('btn-reset');
+
+    // Toy data: existing table has A,B,C. New batch has B (updated fare), D (new), and E at boundary.
+    const baseTarget = [
+      { id: 't_A', pickup: '10:00', fare: '12.0' },
+      { id: 't_B', pickup: '10:05', fare: '8.5' },
+      { id: 't_C', pickup: '10:10', fare: '15.0' },
+    ];
+    const baseIncoming = [
+      { id: 't_B', pickup: '10:05', fare: '9.0' },   // same trip_id → MATCH/update
+      { id: 't_D', pickup: '10:20', fare: '11.0' },  // new → INSERT
+      { id: 't_E', pickup: '10:10', fare: '7.0' },   // same timestamp as max → ≥ would re-read C's second
+    ];
+
+    const steps = [
+      {
+        title: 'Table already exists',
+        incoming: [],
+        target: baseTarget,
+        marks: {},
+        say: 'Start of an incremental run. <strong>fct_trips</strong> already has rows. <code>unique_key</code> is <code>trip_id</code> — that is how MERGE will match.'
+      },
+      {
+        title: 'New batch arrives',
+        incoming: baseIncoming,
+        target: baseTarget,
+        marks: {},
+        say: 'New batch lands. Without a key, you cannot tell “same trip, updated fare” from “brand new trip”.'
+      },
+      {
+        title: 'MATCH on trip_id',
+        incoming: baseIncoming,
+        target: baseTarget,
+        marks: { incoming: { t_B: 'match' }, target: { t_B: 'match' } },
+        say: '<code>t_B</code> exists in both. MERGE <strong>updates</strong> the row (fare 8.5 → 9.0). That is why we built a surrogate <code>trip_id</code>.'
+      },
+      {
+        title: 'INSERT new trip_id',
+        incoming: baseIncoming,
+        target: [
+          { id: 't_A', pickup: '10:00', fare: '12.0' },
+          { id: 't_B', pickup: '10:05', fare: '9.0' },
+          { id: 't_C', pickup: '10:10', fare: '15.0' },
+          { id: 't_D', pickup: '10:20', fare: '11.0' },
+        ],
+        marks: { incoming: { t_D: 'insert' }, target: { t_D: 'insert' } },
+        say: '<code>t_D</code> has no match → <strong>insert</strong>. MERGE = update-or-insert on <code>unique_key</code>, not a full rebuild.'
+      },
+      {
+        title: 'Why > not ≥',
+        incoming: baseIncoming,
+        target: [
+          { id: 't_A', pickup: '10:00', fare: '12.0' },
+          { id: 't_B', pickup: '10:05', fare: '9.0' },
+          { id: 't_C', pickup: '10:10', fare: '15.0' },
+          { id: 't_D', pickup: '10:20', fare: '11.0' },
+          { id: 't_E', pickup: '10:10', fare: '7.0' },
+        ],
+        marks: { incoming: { t_E: 'dup' }, target: { t_C: 'dup', t_E: 'dup' } },
+        say: 'Watermark max pickup is <code>10:10</code>. Filter with <code>&gt;=</code> re-reads the boundary and can invent duplicates. Use strict <code>&gt;</code>.'
+      }
+    ];
+
+    let step = 0;
+
+    function renderRows(el, rows, markMap) {
+      el.innerHTML = '';
+      if (!rows.length) {
+        el.innerHTML = '<tr class="dim"><td colspan="3">(empty for this step)</td></tr>';
+        return;
+      }
+      for (const r of rows) {
+        const mark = (markMap && markMap[r.id]) || '';
+        const tr = document.createElement('tr');
+        tr.className = 'row' + (mark ? ' ' + mark : '');
+        const tag = mark ? `<span class="tag ${mark}">${mark}</span>` : '';
+        tr.innerHTML = `<td>${r.id}${tag}</td><td>${r.pickup}</td><td>${r.fare}</td>`;
+        el.appendChild(tr);
+      }
+    }
+
+    function render() {
+      const s = steps[step];
+      renderRows(incomingEl, s.incoming, s.marks.incoming || {});
+      renderRows(targetEl, s.target, s.marks.target || {});
+      sayEl.innerHTML = s.say;
+      stepPill.textContent = `Step ${step + 1} / ${steps.length} · ${s.title}`;
+      btnPrev.disabled = step === 0;
+      btnNext.disabled = step === steps.length - 1;
+      btnNext.textContent = step === steps.length - 1 ? 'Done' : 'Next →';
+    }
+
+    btnPrev.addEventListener('click', () => { if (step > 0) { step--; render(); } });
+    btnNext.addEventListener('click', () => { if (step < steps.length - 1) { step++; render(); } });
+    btnReset.addEventListener('click', () => { step = 0; render(); });
+    render();
+  </script>
+</body>
+</html>
